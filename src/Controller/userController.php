@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Model\Database;
+use App\Model\UserDb;
 
 class UserController extends AbstractController
 {
@@ -11,8 +11,8 @@ class UserController extends AbstractController
      */
     public function userIndex(): string
     {
-        $database = new Database();
-        $users = $database->getAll("user", "App\Model\User");
+        $database = new UserDb();
+        $users = $database->getAllUsers();
         $database = null;
 
         return $this->twig->render('User/index.html.twig', ['users' => $users]);
@@ -23,7 +23,7 @@ class UserController extends AbstractController
      */
     public function userShow(int $id): string
     {
-        $database = new Database();
+        $database = new UserDB();
         $user = $database->getUserById($id);
         $database = null;
 
@@ -32,7 +32,7 @@ class UserController extends AbstractController
 
     /**
      * Edit a specific item
-     */
+     *
     public function edit(int $id): ?string
     {
         $itemManager = new ItemManager();
@@ -58,9 +58,9 @@ class UserController extends AbstractController
         ]);
     }
 
-    /**
+     *
      * Add a new item
-     */
+     *
     public function add(): ?string
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -80,9 +80,9 @@ class UserController extends AbstractController
         return $this->twig->render('Item/add.html.twig');
     }
 
-    /**
+     **
      * Delete a specific item
-     */
+     *
     public function delete(): void
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -93,4 +93,5 @@ class UserController extends AbstractController
             header('Location:/items');
         }
     }
+     */
 }
