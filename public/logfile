@@ -1,0 +1,1 @@
+Error DB Connection : <br>PDO::__construct(): Argument #1 ($dsn) must be a valid data source nameError DB Get User By Id : <br>SQLSTATE[42S02]: Base table or view not found: 1146 Table 'bonheur_et_paillettes.yuy' doesn't exist<br>Error DB Get User By Id : <br>SQLSTATE[42S02]: Base table or view not found: 1146 Table 'bonheur_et_paillettes.yuy' doesn't exist<br>

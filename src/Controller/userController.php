@@ -2,30 +2,32 @@
 
 namespace App\Controller;
 
-use App\Model\ItemManager;
+use App\Model\Database;
 
-class ItemController extends AbstractController
+class UserController extends AbstractController
 {
     /**
-     * List items
+     * List users
      */
-    public function index(): string
+    public function userIndex(): string
     {
-        $itemManager = new ItemManager();
-        $items = $itemManager->selectAll('title');
+        $database = new Database();
+        $users = $database->getAll("user", "App\Model\User");
+        $database = null;
 
-        return $this->twig->render('Item/index.html.twig', ['items' => $items]);
+        return $this->twig->render('User/index.html.twig', ['users' => $users]);
     }
 
     /**
      * Show informations for a specific item
      */
-    public function show(int $id): string
+    public function userShow(int $id): string
     {
-        $itemManager = new ItemManager();
-        $item = $itemManager->selectOneById($id);
+        $database = new Database();
+        $user = $database->getUserById($id);
+        $database = null;
 
-        return $this->twig->render('Item/show.html.twig', ['item' => $item]);
+        return $this->twig->render('User/show.html.twig', ['user' => $user]);
     }
 
     /**
