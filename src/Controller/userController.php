@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Model\UserDb;
+use App\Model\User;
+use App\Model\Util;
 
 class UserController extends AbstractController
 {
@@ -11,9 +13,9 @@ class UserController extends AbstractController
      */
     public function userIndex(): string
     {
-        $database = new UserDb();
-        $users = $database->getAllUsers();
-        $database = null;
+        $userDB = new UserDb(); //creation de connection DB specif. User
+        $users = $userDB->getAllUsers(); //recuperation d'un tableau d'objets User pret à l'emploi
+        $userDB = null; //destruction de la connection
 
         return $this->twig->render('User/index.html.twig', ['users' => $users]);
     }
@@ -23,12 +25,35 @@ class UserController extends AbstractController
      */
     public function userShow(int $id): string
     {
-        $database = new UserDB();
-        $user = $database->getUserById($id);
-        $database = null;
+        $userDb = new UserDB(); //creation de connection DB specif. User
+        $user = $userDb->getUserById($id); //recupperation de l'objet User prêt à l'emploi
+        $userDb = null; //destruction de la connection
 
         return $this->twig->render('User/show.html.twig', ['user' => $user]);
     }
+
+
+    /* *
+     * Add a new item
+     **/
+    public function add(): ?string
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $user = new User();  // creation d'un objet User
+            $user->arrayToUser($_POST); // mappage array POST vers User
+            // TODO validations (length, format...)
+            // if validation is ok, insert and redirection
+            $userDB = new UserDb(); //creation de connection DB specif. User
+            $userDB->addUser($user); // add de objet user en DB renvoie un booleen
+            $userDB = null; //destruction de la connection
+            header('Location:/users/'); // pour l'instant on revient sur index de home
+            return null;
+        }
+
+        return $this->twig->render('User/addUser.html.twig');
+    }
+
+
 
     /**
      * Edit a specific item
@@ -57,29 +82,6 @@ class UserController extends AbstractController
             'item' => $item,
         ]);
     }
-
-     *
-     * Add a new item
-     *
-    public function add(): ?string
-    {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // clean $_POST data
-            $item = array_map('trim', $_POST);
-
-            // TODO validations (length, format...)
-
-            // if validation is ok, insert and redirection
-            $itemManager = new ItemManager();
-            $id = $itemManager->insert($item);
-
-            header('Location:/items/show?id=' . $id);
-            return null;
-        }
-
-        return $this->twig->render('Item/add.html.twig');
-    }
-
      **
      * Delete a specific item
      *

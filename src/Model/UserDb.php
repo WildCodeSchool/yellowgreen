@@ -7,28 +7,31 @@ use App\Model\User;
 
 class UserDb extends Database
 {
-    public function getAllUsers()
+    public function getAllUsers(): array | false
     {
-        $this->getAll("App\Model\User", "user");
+        return $this->getAll("App\Model\User", "user");
     }
 
-    public function getUserById(int $id)
+    public function getUserById(int $id): AbstractModel|false
     {
-        $this->getRowById("App\Model\User", "user", $id);
+        return $this->getRowById("App\Model\User", "user", $id);
     }
 
-    public function getUserByName(string $name)
+    public function getUserByName(string $name): AbstractModel|false
     {
-        $this->getRowByName("App\Model\User", "user", $name);
+        return $this->getRowByName("App\Model\User", "user", $name);
     }
 
     public function addUser(User $user): bool
     {
-        $columnsValues = $user->objectToArray("App\Model\User");
+        $columnsValues = $user->userToArray(['id']);
+
+
         $check = $this->addRow("user", $columnsValues);
         if ($check) {
             try {
-                $user->setId($this->getConnect()->lastInsertId());
+                $id = $this->getConnect()->lastInsertId();
+                $user->setId($id);
                 return true;
             } catch (PDOException $err) {
                 $this->util->writeLog($err);
@@ -49,7 +52,7 @@ class UserDb extends Database
 
     public function updateUser(User $user): bool
     {
-        $columnsValues = $user->objectToArray("App\Model\User");
+        $columnsValues = $user->userToArray(['id']);
         return $this->updateRow("user", $columnsValues, "id", $user->getId());
     }
 }

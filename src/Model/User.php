@@ -13,8 +13,12 @@ class User extends AbstractModel
     protected string $description;
     protected int $score = 0;
 
-    public function __construct(string $name = "name", string $email = "email", string $avatar = "", string $description = "")
-    {
+    public function __construct(
+        string $name = "name",
+        string $email = "email",
+        string $avatar = "",
+        string $description = ""
+    ) {
         $this->id = -1;
         $this->name = $name;
         $this->email = $email;
@@ -141,5 +145,15 @@ class User extends AbstractModel
         $this->description = $description;
 
         return $this;
+    }
+
+    public function arrayToUser(array $array): User | false
+    {
+        return $this->arrayToObject($array);
+    }
+
+    public function userToArray(array $restricts): array
+    {
+        return $this->objectToArray($restricts);
     }
 }

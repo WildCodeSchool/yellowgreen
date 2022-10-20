@@ -8,22 +8,23 @@ abstract class AbstractModel
      *   $arrayToMap elles y sont affectées
      *
      *  */
-    public static function arrayToObject(array $arrayToMap, string $class): object
+    public function arrayToObject(array $arrayToMap): object
     {
-        $model = new $class();
-        $properties = get_object_vars($model);
+        $properties = get_object_vars($this);
         foreach ($properties as $key => $val) {
-            $model->$key = isset($arrayToMap[$key]) ? $arrayToMap[$key] : $val;
+            $this->$key = isset($arrayToMap[$key]) ? $arrayToMap[$key] : $val;
         }
-        return $model;
+        return $this;
     }
 
-    public static function objectToArray(string $class): array
+    public function objectToArray(array $restricts): array
     {
         $columnsValues = array();
-        $properties = get_class_vars($class);
+        $properties = get_object_vars($this);
         foreach ($properties as $key => $val) {
-            $columnsValues[$key] = $val;
+            if (!in_array($key, $restricts)) {
+                $columnsValues[$key] = $val;
+            }
         }
         return $columnsValues;
     }

@@ -27,7 +27,7 @@ abstract class Database
         return $this->connection;
     }
 
-    private function getParamBind(mixed $value): null|int
+    private function getParamBind(mixed $value): int
     {
         switch (gettype($value)) {
             case "boolean":
@@ -37,7 +37,7 @@ abstract class Database
             case "string":
                 return PDO::PARAM_STR;
             default:
-                return null;
+                return 0;
         }
     }
 
@@ -47,7 +47,7 @@ abstract class Database
      *     getUsers('user', 'User',[name,email]) : select name,email from user;
      */
 
-    public function getAll(string $class, string $tableSql, array $columns = null): array|false
+    public function getAll(string $class, string $tableSql, ?array $columns = []): array|false
     {
         $all = array();
 
@@ -67,7 +67,7 @@ abstract class Database
             $statement = $this->connection->query($query);
             $result = $statement->fetchAll(PDO::FETCH_ASSOC);
             foreach ($result as $res) {
-                $all[] = AbstractModel::arrayToObject($res, $class); /*utilisation fonction static de abstract model*/
+                $all[] = (new $class())->arrayToObject($res);
             }
             return $all;
         } catch (PDOException $err) {
@@ -85,7 +85,7 @@ abstract class Database
             $statement->bindValue(':' . $col, $value, $this->getParamBind($value));
             $statement->execute();
             $result = $statement->fetch(PDO::FETCH_ASSOC);
-            $row = AbstractModel::arrayToObject($result, $class); /*utilisation fonction static de abstract model*/
+            $row = (new $class())->arrayToObject($result); /*utilisation fonction static de abstract model*/
             return $row;
         } catch (PDOException $err) {
             $this->util->writeLog("Error DB Get Row By Prop : <br>" . $err->getMessage() . "<br>");
@@ -120,6 +120,7 @@ abstract class Database
 
 
             $query = "INSERT INTO " . $tableSql . " (" . $columnsStr . ") VALUES (" . $valuesStr . ");";
+
             $statement = $this->connection->prepare($query);
 
             foreach ($columnsValues as $col => $val) {
