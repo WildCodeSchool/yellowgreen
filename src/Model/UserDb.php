@@ -15,12 +15,12 @@ class UserDb extends Database
         return $this->getAll(self::$classPath, self::$tableSql);
     }
 
-    public function getUserById(int $id): AbstractModel|false
+    public function getUserById(int $id): User|false
     {
         return $this->getRowByProp(self::$classPath, self::$tableSql, 'id', $id);
     }
 
-    public function getUserByName(string $name): AbstractModel|false
+    public function getUserByName(string $name): User|false
     {
         return $this->getRowByName(self::$classPath, self::$tableSql, $name);
     }
@@ -34,7 +34,7 @@ class UserDb extends Database
         if ($check) {
             try {
                 $id = $this->getConnect()->lastInsertId();
-                $user->setId($id);
+                $user->setId((int)$id);
                 return true;
             } catch (PDOException $err) {
                 $this->util->writeLog($err);

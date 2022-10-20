@@ -23,7 +23,7 @@ class UserController extends AbstractController
     /**
      * Show informations for a specific item
      */
-    public function userShow(int $id): string
+    public function showUser(int $id): string
     {
         $userDb = new UserDb(); //creation de connection DB specif. User
         $user = $userDb->getUserById($id); //recupperation de l'objet User prêt à l'emploi
@@ -36,7 +36,7 @@ class UserController extends AbstractController
     /* *
      * Add a new item
      **/
-    public function add(): ?string
+    public function addUser(): ?string
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $user = new User();  // creation d'un objet User
@@ -57,43 +57,42 @@ class UserController extends AbstractController
 
     /**
      * Edit a specific item
-     *
-    public function edit(int $id): ?string
+     */
+    public function editUser(int $id): ?string
     {
-        $itemManager = new ItemManager();
-        $item = $itemManager->selectOneById($id);
+        $userDb = new UserDb();
+        $user = $userDb->getUserById($id);
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // clean $_POST data
-            $item = array_map('trim', $_POST);
+
 
             // TODO validations (length, format...)
 
             // if validation is ok, update and redirection
-            $itemManager->update($item);
-
-            header('Location: /items/show?id=' . $id);
+            $user->arrayToUser($_POST);
+            $userDb->updateUser($user);
+            header('Location: /users/show?id=' . $id);
 
             // we are redirecting so we don't want any content rendered
             return null;
         }
 
-        return $this->twig->render('Item/edit.html.twig', [
-            'item' => $item,
+        return $this->twig->render('User/editUser.html.twig', [
+            'user' => $user,
         ]);
     }
-     **
+
+    /**
      * Delete a specific item
-     *
-    public function delete(): void
+     */
+    public function deleteUser(): void
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id = trim($_POST['id']);
-            $itemManager = new ItemManager();
-            $itemManager->delete((int)$id);
-
-            header('Location:/items');
+            $userDb = new UserDb();
+            $userDb->deleteUserById((int)$id);
+            header('Location:/users');
         }
     }
-     */
 }

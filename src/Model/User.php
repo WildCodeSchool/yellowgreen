@@ -30,7 +30,7 @@ class User extends AbstractModel
     /**
      * Get the value of id
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
@@ -40,7 +40,7 @@ class User extends AbstractModel
      *
      * @return  self
      */
-    public function setId($id)
+    public function setId(int $id)
     {
         $this->id = $id;
 

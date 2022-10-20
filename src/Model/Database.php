@@ -47,8 +47,13 @@ abstract class Database
      *     getUsers('user', 'User',[name,email]) : select name,email from user;
      */
 
-    public function getAll(string $class, string $tableSql, ?array $columns = []): array|false
-    {
+    public function getAll(
+        string $class,
+        string $tableSql,
+        ?array $columns = [],
+        ?string $columnOrder = "",
+        ?string $directionOrder = "ASC"
+    ): array|false {
         $all = array();
 
         $colToRetrieve = "";
@@ -61,9 +66,11 @@ abstract class Database
         if ($colToRetrieve === "") {
             $colToRetrieve = "*";
         }
-
+        $query = "SELECT" . $colToRetrieve . " FROM " . $tableSql;
+        if ($columnOrder) {
+            $query .= ' ORDER BY ' . $columnOrder . ' ' . $directionOrder;
+        }
         try {
-            $query = "SELECT" . $colToRetrieve . " FROM " . $tableSql;
             $statement = $this->connection->query($query);
             $result = $statement->fetchAll(PDO::FETCH_ASSOC);
             foreach ($result as $res) {
@@ -76,17 +83,15 @@ abstract class Database
         return false;
     }
 
-    public function getRowByProp(string $class, string $tableSql, string $col, mixed $value): AbstractModel|false
+    public function getRowByProp(string $class, string $tableSql, string $col, mixed $value): object|false
     {
         try {
             $query = "SELECT * FROM " . $tableSql . " WHERE " . $col . " = :" .  $col . ";";
-            echo $query;
             $statement = $this->connection->prepare($query);
-
             $statement->bindValue(':' . $col, $value, $this->getParamBind($value));
             $statement->execute();
             $result = $statement->fetch(PDO::FETCH_ASSOC);
-            $row = (new $class())->arrayToObject($result); /*utilisation fonction static de abstract model*/
+            $row = (new $class())->arrayToObject($result); /*utilisation fonction de abstract model*/
             return $row;
         } catch (PDOException $err) {
             $this->util->writeLog("Error DB Get Row By Prop : <br>" . $err->getMessage() . "<br>");
@@ -118,12 +123,8 @@ abstract class Database
                 $columnsStr .= ($columnsStr != "" ? "," : "") . $col;
                 $valuesStr .= ($valuesStr != "" ? ", :" : ":") . $col;
             }
-
-
             $query = "INSERT INTO " . $tableSql . " (" . $columnsStr . ") VALUES (" . $valuesStr . ");";
-
             $statement = $this->connection->prepare($query);
-
             foreach ($columnsValues as $col => $val) {
                 $statement->bindValue(":" . $col, $val, $this->getParamBind($val));
             }
@@ -138,7 +139,7 @@ abstract class Database
     public function deleteRow(string $tableSql, string $column, mixed $value): bool
     {
         try {
-            $query = "DELETE FROM " . $tableSql . " WHERE " . $column . " = :" . $column . ");";
+            $query = "DELETE FROM " . $tableSql . " WHERE " . $column . " = :" . $column . ";";
             $statement = $this->connection->prepare($query);
             $statement->bindValue(":" . $column, $value, $this->getParamBind($value));
             $statement->execute();
@@ -153,17 +154,24 @@ abstract class Database
         string $tableSql,
         array $columnsValues,
         string $columnTarget,
-        string $valueTarget
+        mixed $valueTarget
     ): bool {
         try {
             $setStr = "";
             foreach ($columnsValues as $col => $val) {
-                $setStr .= ($setStr != "" ? ", " : "") . $col . " = " . $val;
+                if ($val !== "") {
+                    $setStr .= ($setStr != "" ? ", " : "") . $col . " = :" . $col;
+                }
             }
-            $query = "UPDATE INTO " . $tableSql . " SET " . $setStr . " WHERE " .
+            $query = "UPDATE " . $tableSql . " SET " . $setStr . " WHERE " .
                 $columnTarget . " = :" . $columnTarget . ";";
             $statement = $this->connection->prepare($query);
             $statement->bindValue(":" . $columnTarget, $valueTarget, $this->getParamBind($valueTarget));
+            foreach ($columnsValues as $col => $val) {
+                if ($val !== "") {
+                    $statement->bindValue(":" . $col, $val, $this->getParamBind($val));
+                }
+            }
             $statement->execute();
             return true;
         } catch (PDOException $err) {

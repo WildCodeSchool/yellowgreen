@@ -9,8 +9,8 @@
 return [
     '' => ['HomeController', 'index',],
     'users' => ['userController', 'userIndex',],
-    'users/edit' => ['userController', 'edit', ['id']],
-    'users/show' => ['userController', 'userShow', ['id']],
-    'users/add' => ['userController', 'add',],
-    'users/delete' => ['userController', 'delete',],
+    'users/edit' => ['userController', 'editUser', ['id']],
+    'users/show' => ['userController', 'showUser', ['id']],
+    'users/add' => ['userController', 'addUser',],
+    'users/delete' => ['userController', 'deleteUser',],
 ];
