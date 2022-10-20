@@ -7,19 +7,22 @@ use App\Model\User;
 
 class UserDb extends Database
 {
+    private static string $tableSql = "user";
+    private static string $classPath = "App\Model\User";
+
     public function getAllUsers(): array | false
     {
-        return $this->getAll("App\Model\User", "user");
+        return $this->getAll(self::$classPath, self::$tableSql);
     }
 
     public function getUserById(int $id): AbstractModel|false
     {
-        return $this->getRowById("App\Model\User", "user", $id);
+        return $this->getRowByProp(self::$classPath, self::$tableSql, 'id', $id);
     }
 
     public function getUserByName(string $name): AbstractModel|false
     {
-        return $this->getRowByName("App\Model\User", "user", $name);
+        return $this->getRowByName(self::$classPath, self::$tableSql, $name);
     }
 
     public function addUser(User $user): bool
@@ -27,7 +30,7 @@ class UserDb extends Database
         $columnsValues = $user->userToArray(['id']);
 
 
-        $check = $this->addRow("user", $columnsValues);
+        $check = $this->addRow(self::$tableSql, $columnsValues);
         if ($check) {
             try {
                 $id = $this->getConnect()->lastInsertId();
@@ -42,7 +45,7 @@ class UserDb extends Database
 
     public function deleteUserById(int $id): bool
     {
-        return $this->deleteRow("user", "id", $id);
+        return $this->deleteRow(self::$tableSql, "id", $id);
     }
 
     public function deleteUser(User $user): bool
@@ -53,6 +56,6 @@ class UserDb extends Database
     public function updateUser(User $user): bool
     {
         $columnsValues = $user->userToArray(['id']);
-        return $this->updateRow("user", $columnsValues, "id", $user->getId());
+        return $this->updateRow(self::$tableSql, $columnsValues, "id", $user->getId());
     }
 }

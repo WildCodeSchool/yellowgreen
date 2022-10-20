@@ -80,6 +80,7 @@ abstract class Database
     {
         try {
             $query = "SELECT * FROM " . $tableSql . " WHERE " . $col . " = :" .  $col . ";";
+            echo $query;
             $statement = $this->connection->prepare($query);
 
             $statement->bindValue(':' . $col, $value, $this->getParamBind($value));
@@ -95,12 +96,12 @@ abstract class Database
 
     public function getRowByName(string $class, string $tableSql, string $name): AbstractModel|false
     {
-        return $this->getRowByProp($tableSql, $class, 'name', $name);
+        return $this->getRowByProp($class, $tableSql, 'name', $name);
     }
 
     public function getRowById(string $class, string $tableSql, int $id): AbstractModel|false
     {
-        return $this->getRowByProp($tableSql, $class, 'name', $id);
+        return $this->getRowByProp($class, $tableSql, 'id', $id);
     }
 
 

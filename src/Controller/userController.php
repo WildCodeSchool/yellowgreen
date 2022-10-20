@@ -25,7 +25,7 @@ class UserController extends AbstractController
      */
     public function userShow(int $id): string
     {
-        $userDb = new UserDB(); //creation de connection DB specif. User
+        $userDb = new UserDb(); //creation de connection DB specif. User
         $user = $userDb->getUserById($id); //recupperation de l'objet User prêt à l'emploi
         $userDb = null; //destruction de la connection
 
@@ -46,7 +46,7 @@ class UserController extends AbstractController
             $userDB = new UserDb(); //creation de connection DB specif. User
             $userDB->addUser($user); // add de objet user en DB renvoie un booleen
             $userDB = null; //destruction de la connection
-            header('Location:/users/'); // pour l'instant on revient sur index de home
+            header('Location:/users/show?id=' . $user->getId()); // on embraye pour l'instant sur page show
             return null;
         }
 
