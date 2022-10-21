@@ -27,7 +27,7 @@ class Util
 
     public static function writeLog(mixed $data): int|bool
     {
-        if (DEBUG) {
+        if (DEBUG === 'false') {
             self::getAlertBox($data);
         }
         return file_put_contents("logfile", $data, FILE_APPEND);
@@ -50,8 +50,8 @@ class Util
                 break;
             case "array":
                 $newParam = array();
-                foreach ($param as $item) {
-                    $newParam[] = self::cleanParam($item);
+                foreach ($param as $key => $value) {
+                    $newParam[$key] = self::cleanParam($value);
                 }
                 $param = $newParam;
                 break;
