@@ -3,29 +3,31 @@
 namespace App\Model;
 
 use PDOException;
-use App\Model\User;
+use App\Model\UserModel;
+use App\Model\Util;
 
-class UserDb extends Database
+class DatabaseUserModel extends AbstractDatabase
 {
     private static string $tableSql = "user";
-    private static string $classPath = "App\Model\User";
+    private static string $classPath = "App\Model\UserModel";
+
 
     public function getAllUsers(): array | false
     {
         return $this->getAll(self::$classPath, self::$tableSql);
     }
 
-    public function getUserById(int $id): User|false
+    public function getUserById(int $id): UserModel|false
     {
         return $this->getRowByProp(self::$classPath, self::$tableSql, 'id', $id);
     }
 
-    public function getUserByName(string $name): User|false
+    public function getUserByName(string $name): UserModel|false
     {
         return $this->getRowByName(self::$classPath, self::$tableSql, $name);
     }
 
-    public function addUser(User $user): bool
+    public function addUser(UserModel $user): bool
     {
         $columnsValues = $user->userToArray(['id']);
 
@@ -37,7 +39,7 @@ class UserDb extends Database
                 $user->setId((int)$id);
                 return true;
             } catch (PDOException $err) {
-                $this->util->writeLog($err);
+                Util::writeLog($err);
             }
         }
         return false;
@@ -48,12 +50,12 @@ class UserDb extends Database
         return $this->deleteRow(self::$tableSql, "id", $id);
     }
 
-    public function deleteUser(User $user): bool
+    public function deleteUser(UserModel $user): bool
     {
         return $this->deleteUserById($user->getId());
     }
 
-    public function updateUser(User $user): bool
+    public function updateUser(UserModel $user): bool
     {
         $columnsValues = $user->userToArray(['id']);
         return $this->updateRow(self::$tableSql, $columnsValues, "id", $user->getId());

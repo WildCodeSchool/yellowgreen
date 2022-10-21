@@ -5,8 +5,10 @@ USE bonheur_et_paillettes;
 CREATE TABLE
     IF NOT EXISTS user (
         id INT NOT NULL AUTO_INCREMENT,
-        name VARCHAR(45) NOT NULL UNIQUE,
-        email VARCHAR(45),
+        firstName VARCHAR(45) NOT NULL,
+        lastName VARCHAR(45) NOT NULL,
+        nickName VARCHAR(45) NOT NULL UNIQUE,
+        email VARCHAR(45) NOT NULL UNIQUE,
         avatar VARCHAR(100),
         description VARCHAR(100),
         score INT,
@@ -14,10 +16,9 @@ CREATE TABLE
     );
 
 CREATE TABLE
-    IF NOT EXISTS unicorne(
+    IF NOT EXISTS unicorn(
         id INT NOT NULL AUTO_INCREMENT,
         name VARCHAR(45) NOT NULL UNIQUE,
-        email VARCHAR(45),
         avatar VARCHAR(100),
         score INT,
         fights INT,
@@ -34,15 +35,15 @@ CREATE TABLE
         avatar VARCHAR(100),
         cost INT,
         gain INT,
-        succes_rate FLOAT,
+        succes_rate INT,
         PRIMARY KEY(id)
     );
 
 CREATE TABLE
-    IF NOT EXISTS unicorne_attack(
-        unicorne_id INT NOT NULL,
+    IF NOT EXISTS unicorn_attack(
+        unicorne_id INT NOT,
         attack_id INT NOT NULL,
-        INDEX uni_att (unicorne_id, attack_id),
+        INDEX uni_att (unicorn_id, attack_id),
         FOREIGN KEY (unicorne_Id) REFERENCES unicorne(id) ON DELETE CASCADE,
         FOREIGN KEY (attack_Id) REFERENCES attack(id) ON DELETE CASCADE
     );

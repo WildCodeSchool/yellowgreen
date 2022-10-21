@@ -4,7 +4,7 @@ namespace App\Model;
 
 use App\Model\AbstractModel;
 
-class User extends AbstractModel
+class UserModel extends AbstractModel
 {
     protected int $id;
     protected string $name;
@@ -147,7 +147,7 @@ class User extends AbstractModel
         return $this;
     }
 
-    public function arrayToUser(array $array): User | false
+    public function arrayToUser(array $array): UserModel | false
     {
         return $this->arrayToObject($array);
     }

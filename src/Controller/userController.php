@@ -2,9 +2,8 @@
 
 namespace App\Controller;
 
-use App\Model\UserDb;
-use App\Model\User;
-use App\Model\Util;
+use App\Model\DatabaseUserModel;
+use App\Model\UserModel;
 
 class UserController extends AbstractController
 {
@@ -13,7 +12,7 @@ class UserController extends AbstractController
      */
     public function userIndex(): string
     {
-        $userDB = new UserDb(); //creation de connection DB specif. User
+        $userDB = new DatabaseUserModel(); //creation de connection DB specif. User
         $users = $userDB->getAllUsers(); //recuperation d'un tableau d'objets User pret à l'emploi
         $userDB = null; //destruction de la connection
 
@@ -25,7 +24,7 @@ class UserController extends AbstractController
      */
     public function showUser(int $id): string
     {
-        $userDb = new UserDb(); //creation de connection DB specif. User
+        $userDb = new DatabaseUserModel(); //creation de connection DB specif. User
         $user = $userDb->getUserById($id); //recupperation de l'objet User prêt à l'emploi
         $userDb = null; //destruction de la connection
 
@@ -39,11 +38,11 @@ class UserController extends AbstractController
     public function addUser(): ?string
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $user = new User();  // creation d'un objet User
+            $user = new UserModel();  // creation d'un objet User
             $user->arrayToUser($_POST); // mappage array POST vers User
             // TODO validations (length, format...)
             // if validation is ok, insert and redirection
-            $userDB = new UserDb(); //creation de connection DB specif. User
+            $userDB = new DatabaseUserModel(); //creation de connection DB specif. User
             $userDB->addUser($user); // add de objet user en DB renvoie un booleen
             $userDB = null; //destruction de la connection
             header('Location:/users/show?id=' . $user->getId()); // on embraye pour l'instant sur page show
@@ -60,7 +59,7 @@ class UserController extends AbstractController
      */
     public function editUser(int $id): ?string
     {
-        $userDb = new UserDb();
+        $userDb = new DatabaseUserModel();
         $user = $userDb->getUserById($id);
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -90,7 +89,7 @@ class UserController extends AbstractController
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id = trim($_POST['id']);
-            $userDb = new UserDb();
+            $userDb = new DatabaseUserModel();
             $userDb->deleteUserById((int)$id);
             header('Location:/users');
         }

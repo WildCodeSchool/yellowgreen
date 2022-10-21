@@ -7,18 +7,16 @@ use App\Model\AbstractModel;
 use PDO;
 use PDOException;
 
-abstract class Database
+abstract class AbstractDatabase
 {
     private PDO $connection;
-    protected Util $util;
 
     public function __construct()
     {
-        $this->util = new Util();
         try {
             $this->connection = new PDO(APP_DB_HOST . ";dbname=" . APP_DB_NAME, APP_DB_USER, APP_DB_PASSWORD);
         } catch (PDOException $err) {
-            $this->util->writeLog("Error DB Connection : <br>" . $err->getMessage());
+            Util::writeLog("Error DB Connection : <br>" . $err->getMessage());
         }
     }
 
@@ -78,7 +76,7 @@ abstract class Database
             }
             return $all;
         } catch (PDOException $err) {
-            $this->util->writeLog("Error DB Get All Rows : <br>" . $err->getMessage() . "<br>");
+            Util::writeLog("Error DB Get All Rows : <br>" . $err->getMessage() . "<br>");
         }
         return false;
     }
@@ -91,10 +89,10 @@ abstract class Database
             $statement->bindValue(':' . $col, $value, $this->getParamBind($value));
             $statement->execute();
             $result = $statement->fetch(PDO::FETCH_ASSOC);
-            $row = (new $class())->arrayToObject($result); /*utilisation fonction de abstract model*/
+            $row = ($result ? (new $class())->arrayToObject($result) : false); //utilisation fonction de abstract model
             return $row;
         } catch (PDOException $err) {
-            $this->util->writeLog("Error DB Get Row By Prop : <br>" . $err->getMessage() . "<br>");
+            Util::writeLog("Error DB Get Row By Prop : <br>" . $err->getMessage() . "<br>");
         }
         return false;
     }
@@ -131,7 +129,7 @@ abstract class Database
             $statement->execute();
             return true;
         } catch (PDOException $err) {
-            $this->util->writeLog("Error DB Add Row : <br>" . $err->getMessage() . "<br>");
+            Util::writeLog("Error DB Add Row : <br>" . $err->getMessage() . "<br>");
         }
         return false;
     }
@@ -145,7 +143,7 @@ abstract class Database
             $statement->execute();
             return true;
         } catch (PDOException $err) {
-            $this->util->writeLog("Error DB Add Row : <br>" . $err->getMessage() . "<br>");
+            Util::writeLog("Error DB Add Row : <br>" . $err->getMessage() . "<br>");
         }
         return false;
     }
@@ -175,7 +173,7 @@ abstract class Database
             $statement->execute();
             return true;
         } catch (PDOException $err) {
-            $this->util->writeLog("Error DB Add Row : <br>" . $err->getMessage() . "<br>");
+            Util::writeLog("Error DB Add Row : <br>" . $err->getMessage() . "<br>");
         }
         return false;
     }
