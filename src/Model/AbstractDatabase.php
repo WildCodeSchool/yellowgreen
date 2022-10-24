@@ -57,40 +57,49 @@ abstract class AbstractDatabase
      *
      */
 
+    private function getSortString(array $columnsDirectsOrder): string
+    {
+        $sortStr  = "";
+        if ($columnsDirectsOrder) {  //build of optionnal string for sorting the result of SELECT
+            // we use the array $columnsDirectsOrder to build this string
+            foreach ($columnsDirectsOrder as $column => $direction) {
+                $assert = ($sortStr === "" ? " ORDER BY " : ", ") . $column;
+                $assert .= " " . ($direction != 'DESC' ? 'ASC' : 'DESC');
+                $sortStr .= $assert;
+            }
+        }
+        return $sortStr;
+    }
+
     public function getAll(
         string $class,
         string $tableSql,
         ?array $columns = [],
         ?array $columnsDirectsOrder = [],
     ): array|false {
-        $all = array();
-
         $colToRetrieve = "";
         if ($columns) { // build a string with columns if they exist
             foreach ($columns as $col) {
                 $colToRetrieve .= ($colToRetrieve ? "," : "") . $col;
             }
-        }
-        if (!$colToRetrieve) {  //if this string is empty
+        } else //if this string is empty
+        {
             $colToRetrieve = "*";
         }
         $query = "SELECT " . $colToRetrieve . " FROM " . $tableSql; //build of string $query
-        if ($columnsDirectsOrder) {  //build of optionnal string for sorting the result of SELECT
-            $orderStr  = "";         // we use the array $columnsDirectsOrder to build this string
-            foreach ($columnsDirectsOrder as $column => $direction) {
-                $orderStr .= ($orderStr == "" ? " ORDER BY " : ", ") .
-                    $column . " " . ($direction != 'DESC' ? 'ASC' : 'DESC');
-            }
-            $query .= $orderStr;
-        }
+
+        $query .= $this->getSortString($columnsDirectsOrder);
+        Util::writeLog($query);
+        $all = array();
         try {
             $statement = $this->connection->query($query);      //execute the query
             $result = $statement->fetchAll(PDO::FETCH_ASSOC);   //fetch all rows of select
             foreach ($result as $res) {         //for each row we build an object of $class
-                $all[] = (new $class())->arrayToObject($res);   // this object must extend the
-            }                                                   // AbstractModel and we use
-            return $all;                                        // arrayToObject to map values from
-        } catch (PDOException $err) {                           // array $res to object model
+                $model = new $class();          // this object must extend the
+                $all[] = $model->arrayToObject($res);   // AbstractModel and we use
+            }                                           // arrayToObject to map values from
+            return $all;                                // array $res to object model
+        } catch (PDOException $err) {
             Util::writeLog("Error DB Get All Rows : <br>" . $err->getMessage() . "<br>");
         }
         return false;
