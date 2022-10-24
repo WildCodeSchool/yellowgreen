@@ -12,9 +12,9 @@ class DatabaseUserModel extends AbstractDatabase
     private static string $classPath = "App\Model\UserModel";
 
 
-    public function getAllUsers(): array | false
+    public function getAllUsers(?array $columnsDirectsOrder = array()): array | false
     {
-        return $this->getAll(self::$classPath, self::$tableSql);
+        return $this->getAll(self::$classPath, self::$tableSql, [], $columnsDirectsOrder);
     }
 
     public function getUserById(int $id): UserModel|false
@@ -22,9 +22,9 @@ class DatabaseUserModel extends AbstractDatabase
         return $this->getRowByProp(self::$classPath, self::$tableSql, 'id', $id);
     }
 
-    public function getUserByName(string $name): UserModel|false
+    public function getUserByProp(string $property, mixed $value): UserModel|false
     {
-        return $this->getRowByName(self::$classPath, self::$tableSql, $name);
+        return $this->getRowByProp(self::$classPath, self::$tableSql, $property, $value);
     }
 
     public function addUser(UserModel $user): bool

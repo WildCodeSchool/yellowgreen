@@ -13,8 +13,8 @@ abstract class AbstractDatabase
 
     public function __construct()
     {
-        try {
-            $this->connection = new PDO(APP_DB_HOST . ";dbname=" . APP_DB_NAME, APP_DB_USER, APP_DB_PASSWORD);
+        try { // connection database avec constantes definies dans config.php
+            $this->connection = new PDO(DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD);
         } catch (PDOException $err) {
             Util::writeLog("Error DB Connection : <br>" . $err->getMessage());
         }
@@ -25,6 +25,15 @@ abstract class AbstractDatabase
         return $this->connection;
     }
 
+
+    /** getParamBind(mixed $value)
+     *
+     *  $value to bind
+     *
+     *  return an integer PDO flag for the bindValue
+     *         PDO function
+     *
+     */
     private function getParamBind(mixed $value): int
     {
         switch (gettype($value)) {
@@ -39,74 +48,69 @@ abstract class AbstractDatabase
         }
     }
 
-    /** getAll peut être lancer avec ou sans 3e parametre,
+    /** getAll peut être lancer avec ou sans 3e, 4e 5e parametre,
      *    examples :
-     *     getUsers() : select * from user;
-     *     getUsers('user', 'User',[name,email]) : select name,email from user;
+     *     getAll() : select * from user;
+     *     getAll('user', 'User',[name,email]) : select name,email from user;
+     *     getAll('user', 'User',[],['score' => 'DESC', 'name' => 'ASC' ]) :
+     *           select * from user ORDER BY score 'DESC', name 'DESC';
+     *
      */
 
     public function getAll(
         string $class,
         string $tableSql,
         ?array $columns = [],
-        ?string $columnOrder = "",
-        ?string $directionOrder = "ASC"
+        ?array $columnsDirectsOrder = [],
     ): array|false {
         $all = array();
 
         $colToRetrieve = "";
-        $count = count($columns);
-        if ($columns) {
-            for ($i = 0; $i < $count; $i++) {
-                $colToRetrieve .= ($i > 0 ? "," : "") . $columns[$i];
+        if ($columns) { // build a string with columns if they exist
+            foreach ($columns as $col) {
+                $colToRetrieve .= ($colToRetrieve ? "," : "") . $col;
             }
         }
-        if ($colToRetrieve === "") {
+        if (!$colToRetrieve) {  //if this string is empty
             $colToRetrieve = "*";
         }
-        $query = "SELECT" . $colToRetrieve . " FROM " . $tableSql;
-        if ($columnOrder) {
-            $query .= ' ORDER BY ' . $columnOrder . ' ' . $directionOrder;
+        $query = "SELECT " . $colToRetrieve . " FROM " . $tableSql; //build of string $query
+        if ($columnsDirectsOrder) {  //build of optionnal string for sorting the result of SELECT
+            $orderStr  = "";         // we use the array $columnsDirectsOrder to build this string
+            foreach ($columnsDirectsOrder as $column => $direction) {
+                $orderStr .= ($orderStr == "" ? " ORDER BY " : ", ") .
+                    $column . " " . ($direction != 'DESC' ? 'ASC' : 'DESC');
+            }
+            $query .= $orderStr;
         }
         try {
-            $statement = $this->connection->query($query);
-            $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-            foreach ($result as $res) {
-                $all[] = (new $class())->arrayToObject($res);
-            }
-            return $all;
-        } catch (PDOException $err) {
+            $statement = $this->connection->query($query);      //execute the query
+            $result = $statement->fetchAll(PDO::FETCH_ASSOC);   //fetch all rows of select
+            foreach ($result as $res) {         //for each row we build an object of $class
+                $all[] = (new $class())->arrayToObject($res);   // this object must extend the
+            }                                                   // AbstractModel and we use
+            return $all;                                        // arrayToObject to map values from
+        } catch (PDOException $err) {                           // array $res to object model
             Util::writeLog("Error DB Get All Rows : <br>" . $err->getMessage() . "<br>");
         }
         return false;
     }
 
-    public function getRowByProp(string $class, string $tableSql, string $col, mixed $value): object|false
+    public function getRowByProp(string $class, string $tableSql, string $column, mixed $value): object|false
     {
-        try {
-            $query = "SELECT * FROM " . $tableSql . " WHERE " . $col . " = :" .  $col . ";";
-            $statement = $this->connection->prepare($query);
-            $statement->bindValue(':' . $col, $value, $this->getParamBind($value));
-            $statement->execute();
-            $result = $statement->fetch(PDO::FETCH_ASSOC);
-            $row = ($result ? (new $class())->arrayToObject($result) : false); //utilisation fonction de abstract model
-            return $row;
+        try { //we build query select with table $tableSql and param to bind :$column
+            $query = "SELECT * FROM " . $tableSql . " WHERE " . $column . " = :" .  $column . ";";
+            $statement = $this->connection->prepare($query); //prepare to execute
+            $statement->bindValue(':' . $column, $value, $this->getParamBind($value));  // bind the $value to :$column
+            $statement->execute();                                                      // using getParamBind method
+            $result = $statement->fetch(PDO::FETCH_ASSOC);                              // returning the BDO::PARAM_???
+            $model = ($result ? (new $class())->arrayToObject($result) : false); //use method of AbstractModel
+            return $model;                                                       // to build $model
         } catch (PDOException $err) {
             Util::writeLog("Error DB Get Row By Prop : <br>" . $err->getMessage() . "<br>");
         }
         return false;
     }
-
-    public function getRowByName(string $class, string $tableSql, string $name): AbstractModel|false
-    {
-        return $this->getRowByProp($class, $tableSql, 'name', $name);
-    }
-
-    public function getRowById(string $class, string $tableSql, int $id): AbstractModel|false
-    {
-        return $this->getRowByProp($class, $tableSql, 'id', $id);
-    }
-
 
     public function addRow(string $tableSql, array $columnsValues): bool
     {

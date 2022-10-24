@@ -22,9 +22,9 @@ CREATE TABLE
         avatar VARCHAR(100),
         score INT,
         fights INT,
-        won_fights INT,
-        lost_fights INT,
-        ko_fights INT,
+        wonFights INT,
+        lostFights INT,
+        koFights INT,
         PRIMARY KEY(id)
     );
 
@@ -35,7 +35,7 @@ CREATE TABLE
         avatar VARCHAR(100),
         cost INT,
         gain INT,
-        succes_rate INT,
+        successRate INT,
         PRIMARY KEY(id)
     );
 

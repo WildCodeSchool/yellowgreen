@@ -1,0 +1,41 @@
+{% extends 'layout.html.twig' %}
+{% block stylesheet %}<link rel="stylesheet" href="/assets/css/show.css">
+{% endblock %}
+
+
+{% block content %}
+	<h1>Attaques</h1>
+	<table>
+		<tr>
+			<td>Id</td>
+			<td>Nom</td>
+			<td>Cout</td>
+			<td>Gain</td>
+			<td>Taux Réussite</td>
+		</tr>
+		{% for attack in attacks %}
+			<tr>
+				<td>
+					<a href="/attacks/show?id={{ attack.id }}">
+						{{ attack.id }}</a>
+				</td>
+
+				<td>{{ attack.name }}</td>
+
+				<td>{{ attack.cost }}</td>
+
+				<td>{{ attack.gain}}</td>
+
+				<td>{{ attack.successRate }}</td>
+
+			</tr>
+		{% endfor %}
+
+	</table>
+	<br>
+	<a href="/attacks/add">
+		<button>
+			Ajouter
+		</button>
+	</a>
+{% endblock %}

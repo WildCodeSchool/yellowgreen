@@ -1,0 +1,19 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+	<h1>Unicorns</h1>
+	<ul>
+		{% for unicorn in unicorns %}
+			<li>
+				<a href="/unicorns/show?id={{ unicorn.id }}">
+					{{ unicorn.id }}
+					{{ unicorn.name }}
+					{{ unicorn.score }}</a>
+			</li>
+		{% else %}
+			<li>Nothing to display</li>
+		{% endfor %}
+	</ul>
+	<a href="/unicorns/add">Ajouter</a>
+
+{% endblock %}

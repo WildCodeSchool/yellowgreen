@@ -14,8 +14,8 @@ class UserController extends AbstractController
     public function userIndex(): string
     {
         $userDB = new DatabaseUserModel(); //creation de connection DB specif. User
-        $users = $userDB->getAllUsers(); //recuperation d'un tableau d'objets User pret à l'emploi
-        $userDB = null; //destruction de la connection
+        $users = $userDB->getAllUsers(['score' => 'DESC', 'name' => 'ASC']); //recuperation
+        $userDB = null; //d'un tableau d'objets User pret à l'emploi et destruction de la connection
 
         return $this->twig->render('User/index.html.twig', ['users' => $users]);
     }
@@ -26,7 +26,7 @@ class UserController extends AbstractController
     public function showUser(int $id): string
     {
         $userDb = new DatabaseUserModel(); //creation de connection DB specif. User
-        $user = $userDb->getUserById($id); //recupperation de l'objet User prêt à l'emploi
+        $user = $userDb->getUserById((int)$id); //recupperation de l'objet User prêt à l'emploi
         $userDb = null; //destruction de la connection
 
         return $this->twig->render('User/show.html.twig', ['user' => $user]);
