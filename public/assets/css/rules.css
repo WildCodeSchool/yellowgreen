@@ -60,8 +60,11 @@ h2 {
     margin: 30px 0;
 }
 
+.rule-button {
+    text-align: center;
+}
 
-.rule-button-play button {
+.rule-button .button-play {
     font-size: 20px;
     font-family: var(--secondary-font);
     color: var(--secondary-color);
