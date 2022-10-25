@@ -1,6 +1,32 @@
 {% extends 'layout.html.twig' %}
 
+{% block stylesheet %}
+    <link rel="stylesheet" type="text/css" href="/assets/css/index.css"/> 
+{% endblock %}
+
 {% block content %}
-    <h1>Hello Wilder !</h1>
-    <p>Find a complete CRUD example on <a href="/items">/items</a> page.</p>
+<main>
+  <section>
+    <img class="imgMedium" src="https://image.similarpng.com/very-thumbnail/2022/01/Cute-unicorn-on-transparent-background-PNG-1.png">
+    <h1>Bienvenue dans Happiness & Glitters</h1>
+  </section>
+  <section>
+    <p> Ici tu vas pouvoir mettre à l'épreuve ta licorne et défier celle de ton adversaire !</p>
+
+    <div class="versus">
+      <img src="https://img.freepik.com/premium-vector/cute-unicorn-heads-vector-sky_70350-123.jpg">
+      <img class="imgSmall" src="https://upload.wikimedia.org/wikipedia/commons/7/70/Street_Fighter_VS_logo.png">
+      <img src="https://image.similarpng.com/very-thumbnail/2020/05/cute-unicorn--vector-with-candy-cake-PNG.png">
+    </div>
+
+    <p>Le but du jeu ? Envoyer le plus de bisous, de hugs et d'arc-en-ciel possible
+    </br>pour gagner des points et sortir vainqueur de ce combat d'amour! </p>
+  <section>
+    <img class="imgMedium" src="https://image.similarpng.com/very-thumbnail/2020/05/Dabbing-unicorn-with-stars-PNG.png">
+  </section>
+    <button class"primary">
+      <a href= "#">Je veux jouer !</a>
+    </button>
+  </section>
+</main>
 {% endblock %}
