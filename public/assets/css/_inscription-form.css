@@ -3,5 +3,10 @@
 }
 
 .show {
-    display: block;
+    display: flex;
+    flex-direction: column;
+}
+
+.show input {
+    margin: 2rem;
 }

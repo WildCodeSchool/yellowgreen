@@ -1,0 +1,55 @@
+{% extends 'layout.html.twig' %}
+
+{% block stylesheet %}
+	<link rel="stylesheet" href="/assets/css/rules.css">
+{% endblock %}
+
+{% block content %}
+	<h1>Bienvenue dans Happiness & Glitters</h1>
+	<h2>Comment jouer ? (et peut-être gagner)</h2>
+	<div class="rule">
+		<div class="rule-paragraphs">
+			<p>
+				Happiness & Glitters est un jeu hautement compétitif, basé sur des affrontements de gentillesse entre des licornes toutes mignonnes.
+			</p>
+			<p>
+				Un affrontement se déroule au tour par tour et est découpé en plusieurs rounds.
+			</p>
+		</div>
+		<div class="rule-image">
+			<img src="/assets/images/unicornVS.png" alt="" class="unicornVS">
+		</div>
+	</div>
+	<div class="rule">
+		<div class="rule-image">
+			<img src="/assets/images/unicorn-card.png" alt="" class="unicorn-card">
+		</div>
+		<div class="rule-paragraphs">
+			<p>
+				Au début de l’affrontement, tu vas devoir sélectionner UNE SEULE LICORNE qui t’accompagnera tout au long de la partie.
+			</p>
+			<p>
+				Chaque licorne est unique et possède plusieurs capacités dont les caractéristiques diffèrent.
+			</p>
+			<p>
+				Au début de l’affrontement, ton adversaire et toi avez 100 POINTS DE GENTILLESSE (PG) chacun.
+			</p>
+		</div>
+	</div>
+	<div class="rule">
+		<div class="rule-paragraphs">
+			<p>
+				Le total de PG évolue en cours de partie en fonction des capacités lancées par les licornes trop mignonnes !
+			</p>
+			<p>
+				Chaque capacité a un coût de PG, un gain de PG et une chance de toucher différents.
+			</p>
+		</div>
+		<div class="rule-image">
+			<img src="/assets/images/unicorn-walking.png" alt="" class="unicorn-card">
+		</div>
+	</div>
+	<div class="rule-button-play">
+		<button style="button" onclick="showInscriptionForm()">Je veux jouer !</button>
+	</div>
+{% endblock %}
