@@ -1,0 +1,117 @@
+.topHeader{
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+    background-color: var(--third-color);
+    font-family: var(--primary-font);
+    font-size: 25px;
+    font-weight: bold;
+  }
+
+  .topHeader a img{
+    width: 70px;
+    height: 70px;
+  }
+  
+  .topHeader a{
+    text-decoration: none;
+    color: var(--primary-color);
+    text-align: center;
+  }
+  
+  .topnav{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display:none;
+    background-color: var(--third-color);
+  }
+
+  .topnav.displayed{
+    display: block;
+  }
+  
+  .topnav ul li {
+    font-family: var(--secondary-font);
+    font-weight: bold;
+    list-style-type: none;
+    margin: 20px;
+    font-size: 30px;
+    text-align: center;
+  }
+  
+  .imgavatar{
+    width: 40px;
+    height: 40px;
+    margin: 0px;
+  }
+
+  .icon{
+    cursor: pointer;
+  }
+  
+
+  @media screen and (min-width: 768px){
+    .topnav{
+      display: flex;
+      justify-content: center;
+    }
+
+    .responsivenav ul{
+      display: flex;
+      flex-direction: row;
+      margin-top:0;
+      margin-bottom: 0;
+      
+    }
+
+    .icon{
+      display: none;
+    }
+
+    .topnav ul li{
+      font-size: 15px;
+      margin-left: 50px;
+      margin-right: 50px;
+    }
+
+    .topHeader{
+      font-size: 35px;
+      padding-left: 50px;
+      padding-right: 50px;
+    }
+
+    .radiusButton{
+      background-color: #bfa4e2;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      padding-right: 10px;
+      padding-left: 10px;
+      color: #383142;
+      font-weight: initial;
+      border-radius: 20px;
+    }
+
+    .topnav{
+      padding-top: 0px;
+      padding-bottom: 0px;
+    }
+
+    .unicornLogo{
+      padding-top: 20px;
+    }
+ }
+
+ @media screen and (min-width: 1024px){
+
+  .imgavatar{
+    width: 60px;
+    height: 60px;
+    margin-top: 20px;
+  }
+
+  .unicornLogo{
+    width: 100px;
+    height: 100px;
+  }
+
+ }

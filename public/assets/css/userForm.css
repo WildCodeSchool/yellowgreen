@@ -63,7 +63,9 @@ h1 a {
     padding: 5px;
 }
 
-
+.buttons {
+    display: flex;
+}
 
 .redButton,
 #redButton {
@@ -71,7 +73,7 @@ h1 a {
     background: linear-gradient(to bottom, #db6464 5%, #bd5959 100%);
     background-color: #db6464;
     border-radius: 42px;
-    display: table;
+    display: inline;
     cursor: pointer;
     color: #ffffff;
     font-family: Arial;
@@ -90,14 +92,14 @@ h1 a {
 #redButton:hover {
     background: linear-gradient(to bottom, #bd5959 5%, #db6464 100%);
     background-color: #bd5959;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
 }
 
 .redButton:active,
 #redButton:active {
-    position: relative;
+    /* position: relative; */
     top: 1px;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
 }
 
 .cancelButton,
@@ -116,7 +118,7 @@ h1 a {
     text-decoration: none;
     text-shadow: 0px 1px 0px #1d1515;
     justify-content: center;
-    margin: auto;
+    /* margin: auto; */
     border: 0;
     margin-bottom: 20px;
 }

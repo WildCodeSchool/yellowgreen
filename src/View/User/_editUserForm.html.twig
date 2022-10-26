@@ -32,8 +32,10 @@
 		<label for="description" display="hidden" required></label>
 		<input type="text" value="{{user.description}}" name="description" id="description" placeholder="Description">
 
-
+<div class="buttons">
 	<button class="redButton">Enregistrer</button>
+	<a href="/users/show?id={{ user.id }}" class="redButton">Retour</a>
+	</div>
 </form>
 </section>
 {% endblock %}
