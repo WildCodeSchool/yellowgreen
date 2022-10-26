@@ -1,52 +1,49 @@
-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #facfcf;
-  font-family: var(--primary-font);
-  font-size: 25px;
-  font-weight: bold;
-}
+.topHeader{
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+    background-color: var(--third-color);
+    font-family: var(--primary-font);
+    font-size: 25px;
+    font-weight: bold;
+  }
 
-aside {
-  background-color: #facfcf;
-}
+  .topHeader a img{
+    width: 70px;
+    height: 70px;
+  }
+  
+  .topHeader a{
+    text-decoration: none;
+    color: var(--primary-color);
+    text-align: center;
+  }
+  
+  .topnav{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display:none;
+    background-color: var(--third-color);
+  }
 
-header a img {
-  width: 70px;
-  height: 70px;
-}
-
-a {
-  text-decoration: none;
-  color: #f76c6c;
-  text-align: center;
-}
-
-.topnav {
-  padding-top: 20px;
-  padding-bottom: 20px;
-  display: none
-}
-
-.topnav.displayed {
-  display: block;
-}
-
-.topnav ul li {
-  font-family: var(--secondary-font);
-  font-weight: bold;
-  list-style-type: none;
-  margin: 20px;
-  font-size: 30px;
-  text-align: center;
-}
-
-.imgavatar {
-  width: 40px;
-  height: 40px;
-  margin: 0px;
-}
+  .topnav.displayed{
+    display: block;
+  }
+  
+  .topnav ul li {
+    font-family: var(--secondary-font);
+    font-weight: bold;
+    list-style-type: none;
+    margin: 20px;
+    font-size: 30px;
+    text-align: center;
+  }
+  
+  .imgavatar{
+    width: 40px;
+    height: 40px;
+    margin: 0px;
+  }
 
 .icon {
   cursor: pointer;
@@ -76,11 +73,11 @@ a {
     margin-right: 50px;
   }
 
-  header {
-    font-size: 35px;
-    padding-left: 50px;
-    padding-right: 50px;
-  }
+    .topHeader{
+      font-size: 35px;
+      padding-left: 50px;
+      padding-right: 50px;
+    }
 
   .radiusButton {
     background-color: #bfa4e2;
