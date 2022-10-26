@@ -13,7 +13,7 @@
     height: 70px;
   }
   
-  a{
+  .topHeader a{
     text-decoration: none;
     color: var(--primary-color);
     text-align: center;
