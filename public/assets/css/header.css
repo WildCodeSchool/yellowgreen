@@ -1,32 +1,29 @@
-header{
+.topHeader{
     display: flex;
     align-items: center;
     justify-content:space-between;
-    background-color: #facfcf;
-    font-family: 'Mali';
+    background-color: var(--third-color);
+    font-family: var(--primary-font);
     font-size: 25px;
     font-weight: bold;
   }
 
-  aside{
-    background-color: #facfcf;
-  }
-  
-  header a img{
+  .topHeader a img{
     width: 70px;
     height: 70px;
   }
   
   a{
     text-decoration: none;
-    color: #f76c6c;
+    color: var(--primary-color);
     text-align: center;
   }
   
   .topnav{
     padding-top: 20px;
     padding-bottom: 20px;
-    display:none
+    display:none;
+    background-color: var(--third-color);
   }
 
   .topnav.displayed{
@@ -34,7 +31,7 @@ header{
   }
   
   .topnav ul li {
-    font-family:'roboto';
+    font-family: var(--secondary-font);
     font-weight: bold;
     list-style-type: none;
     margin: 20px;
