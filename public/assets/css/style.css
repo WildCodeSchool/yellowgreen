@@ -12,5 +12,5 @@ body {
     --primary-color: rgba(219, 100, 100, 1);
     --secondary-color: white;
     --primary-font: 'Mali', sans-serif;
-    --secondary-font: 'Roboto' sans-serif;
+    --secondary-font: 'Roboto';
 }
