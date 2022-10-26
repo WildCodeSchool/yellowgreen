@@ -21,10 +21,10 @@
 		</div>
 	</div>
 	<div class="rule">
-		<div class="rule-image">
+		<div class="rule-image unicorn-show" id="card-flip">
 			<img src="/assets/images/unicorn-card.png" alt="" class="unicorn-card">
 		</div>
-		<div class="rule-paragraphs">
+		<div class="rule-paragraphs" id="paragraphs-flip">
 			<p>
 				Au début de l’affrontement, tu vas devoir sélectionner UNE SEULE LICORNE qui t’accompagnera tout au long de la partie.
 			</p>
@@ -37,7 +37,7 @@
 		</div>
 	</div>
 	<div class="rule">
-		<div class="rule-paragraphs">
+		<div class="rule-paragraphs" id="flip-text">
 			<p>
 				Le total de PG évolue en cours de partie en fonction des capacités lancées par les licornes trop mignonnes !
 			</p>
@@ -49,7 +49,22 @@
 			<img src="/assets/images/unicorn-walking.png" alt="" class="unicorn-walking">
 		</div>
 	</div>
-	<div class="rule-button">
-		<button class="button-play" style="button" onclick="">Je veux jouer !</button>
+	<div class="rule">
+		<div class="rule-paragraphs endgame">
+			<p>Deux moyens de terminer la partie :</p>
+
+			<p>1. Le premier joueur à atteindre 200 PG gagne la partie !
+			</p>
+
+			<p>2. Le joueur qui tombe à 0 PG perd la partie !</p>
+
+		</div>
+
 	</div>
+	<div class="rule-button">
+		<button class="button-play" style="button" onclick="">Chercher un adversaire</button>
+	</div>
+	{% block javascript %}
+		<script src="/assets/js/card-flip.js"></script>
+	{% endblock %}
 {% endblock %}
