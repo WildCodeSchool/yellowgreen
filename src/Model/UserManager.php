@@ -11,9 +11,11 @@ class UserManager extends AbstractManager
     /**
      * Insert new user in database
      */
-/*    public function insert(array $user): int
+    public function insert(array $item): int
     {
-        $statement = $this->pdo->prepare("INSERT INTO " . self::TABLE . " (`firstname`)");
+        $statement = $this->pdo->prepare("INSERT INTO " . self::TABLE . " (`title`) VALUES (:title)");
+        $statement->bindValue('title', $item['title'], PDO::PARAM_STR);
+
         $statement->execute();
         return (int)$this->pdo->lastInsertId();
     }
