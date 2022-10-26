@@ -6,11 +6,12 @@ body {
     color: #F76C6C;
     background: linear-gradient(43.68deg, rgba(89, 144, 25, 0.18) 2.2%, rgba(157, 132, 0, 0.26595) 10.86%, rgba(176, 124, 42, 0.237109) 21.05%, rgba(193, 116, 79, 0.242665) 30.21%, rgba(206, 111, 109, 0.246987) 37.35%, rgba(230, 100, 163, 0.255) 50.57%, rgba(211, 112, 191, 0.3) 55.67%, rgba(184, 126, 214, 0.345) 66.89%, rgba(149, 139, 229, 0.335) 74.53%, rgba(136, 142, 226, 0.335359) 81.15%, rgba(124, 144, 221, 0.37934) 86.76%, rgba(114, 146, 216, 0.5) 94.91%, rgba(107, 147, 209, 0.5) 100%);
     background-attachment: fixed;
+    margin: 0;
 }
 
 :root {
     --primary-color: rgba(219, 100, 100, 1);
     --secondary-color: white;
     --primary-font: 'Mali', sans-serif;
-    --secondary-font: 'Roboto' sans-serif;
+    --secondary-font: 'Roboto';
 }
