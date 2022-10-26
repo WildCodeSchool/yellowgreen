@@ -70,29 +70,21 @@ class UserController extends AbstractController
     public function add(): ?string
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // clean $_POST data
-            $user = array_map('trim', $_POST);
-            //img upload
-
-
             if (isset($_FILES['avatar'])) {
-                // $content_dir = 'images/';
-                // $tmp_file = $_FILES['avatar']['tmp_name'];
                 $nameFile = $_FILES['avatar']['name'];
                 $tmpName = $_FILES['avatar']['tmp_name'];
                 $name = $_FILES['avatar']['name'];
                 // $size = $_FILES['avatar']['size'];
                 // $error = $_FILES['avatar']['error'];
                 move_uploaded_file($tmpName, 'assets/images/' . $name);
-
-                $_POST['avatar'] = $nameFile;
+                if ($_FILES['avatar']['name'] === '') {
+                    $_POST['avatar'] = 'img_avatar.png';
+                } else {
+                    $_POST['avatar'] = $nameFile;
+                }
             }
-            // var_dump($_POST);
-            //  var_dump($_FILES);
-            //  die;
-            //    move_uploaded_file($tmp_file, $content_dir.$nameFile);
-            // $_POST['avatar'] = 'images/'.$nameFile;
 
+            $user = array_map('trim', $_POST);
             // TODO validations (length, format...)
 
             // if validation is ok, insert and redirection
