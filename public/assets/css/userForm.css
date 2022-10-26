@@ -189,3 +189,34 @@ h1 a {
     display: inline;
     ;
 }
+
+@media only screen and (max-width: 768px) {
+    .modal-content {
+        width: 90%;
+    }
+
+    .buttons {
+        display: grid;
+    }
+
+    .bottomSection {
+        margin: 20px 5%;
+    }
+
+    .rank {
+        width: 60px;
+    }
+
+    .points {
+        width: 80px;
+    }
+
+    .right-top {
+        align-items: center;
+    }
+
+    .clearfix {
+        display: flex;
+        align-items: center;
+    }
+}
