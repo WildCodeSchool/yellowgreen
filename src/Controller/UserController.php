@@ -37,21 +37,17 @@ class UserController extends AbstractController
         $user = $userManager->selectOneById($id);
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-
-            if(isset($_FILES['avatar'])){
-                $content_dir = 'images/';
-                $tmp_file = $_FILES['avatar']['tmp_name'];
-                $name_file = $_FILES['avatar']['name'];
+            if (isset($_FILES['avatar'])) {
+                // $content_dir = 'images/';
+                // $tmp_file = $_FILES['avatar']['tmp_name'];
+                $nameFile = $_FILES['avatar']['name'];
                 $tmpName = $_FILES['avatar']['tmp_name'];
                 $name = $_FILES['avatar']['name'];
-                $size = $_FILES['avatar']['size'];
-                $error = $_FILES['avatar']['error'];
-                move_uploaded_file($tmpName, 'assets/images/'.$name);
+                // $size = $_FILES['avatar']['size'];
+                // $error = $_FILES['avatar']['error'];
+                move_uploaded_file($tmpName, 'assets/images/' . $name);
 
-                $_POST['avatar'] = $name_file;
-
-                   
+                $_POST['avatar'] = $nameFile;
             }
                  // clean $_POST data
                     $user = array_map('trim', $_POST);
@@ -61,8 +57,6 @@ class UserController extends AbstractController
             // TODO validations (length, format...
             // if validation is ok, update and redirection
             // we are redirecting so we don't want any content rendered
-
-        
         }
 
         return $this->twig->render('User/editUser.html.twig', [
@@ -81,24 +75,23 @@ class UserController extends AbstractController
             //img upload
 
 
-
-            if(isset($_FILES['avatar'])){
-                $content_dir = 'images/';
-                $tmp_file = $_FILES['avatar']['tmp_name'];
-                $name_file = $_FILES['avatar']['name'];
+            if (isset($_FILES['avatar'])) {
+                // $content_dir = 'images/';
+                // $tmp_file = $_FILES['avatar']['tmp_name'];
+                $nameFile = $_FILES['avatar']['name'];
                 $tmpName = $_FILES['avatar']['tmp_name'];
                 $name = $_FILES['avatar']['name'];
-                $size = $_FILES['avatar']['size'];
-                $error = $_FILES['avatar']['error'];
-                move_uploaded_file($tmpName, 'assets/images/'.$name);
+                // $size = $_FILES['avatar']['size'];
+                // $error = $_FILES['avatar']['error'];
+                move_uploaded_file($tmpName, 'assets/images/' . $name);
 
-                $_POST['avatar'] = $name_file;
+                $_POST['avatar'] = $nameFile;
             }
             // var_dump($_POST);
             //  var_dump($_FILES);
-            //  die; 
-            //    move_uploaded_file($tmp_file, $content_dir.$name_file);
-            // $_POST['avatar'] = 'images/'.$name_file;
+            //  die;
+            //    move_uploaded_file($tmp_file, $content_dir.$nameFile);
+            // $_POST['avatar'] = 'images/'.$nameFile;
 
             // TODO validations (length, format...)
 

@@ -2,6 +2,9 @@
 
 namespace App\Controller;
 
+use App\Controller\AbstractController;
+use App\Model\UserManager;
+
 class HomeController extends AbstractController
 {
     /**
@@ -21,15 +24,15 @@ class HomeController extends AbstractController
 
 
 
-            if(isset($_FILES['avatar'])){
-                $name_file = $_FILES['avatar']['name'];
+            if (isset($_FILES['avatar'])) {
+                $nameFile = $_FILES['avatar']['name'];
                 $tmpName = $_FILES['avatar']['tmp_name'];
                 $name = $_FILES['avatar']['name'];
                 // $size = $_FILES['avatar']['size'];
                 // $error = $_FILES['avatar']['error'];
-                move_uploaded_file($tmpName, 'assets/images/'.$name);
+                move_uploaded_file($tmpName, 'assets/images/' . $name);
 
-                $_POST['avatar'] = $name_file;
+                $_POST['avatar'] = $nameFile;
             }
 
             $userManager = new UserManager();
