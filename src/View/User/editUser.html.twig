@@ -1,0 +1,16 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+	
+      <div class="modal-content">
+
+
+			{% include 'User/_editUserForm.html.twig' %}
+			<a href="/users/show?id={{ user.id }}" class="redButton">Retour</a>
+
+		
+
+
+    </div>
+
+{% endblock %}

@@ -15,7 +15,12 @@
 <body>
     {% block content %}{% endblock %}
     {% block javascript %}{% endblock %}
-</body>
+
+    {% block footer %}
+    {% include '/Components/_footer.html.twig' %}
+    {% endblock %}
+    
+    </body>
 </html>
 
 

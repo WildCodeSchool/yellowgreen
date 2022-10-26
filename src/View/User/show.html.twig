@@ -1,0 +1,98 @@
+{% extends 'layout.html.twig' %}
+
+{% block stylesheet %}
+<link rel="stylesheet" href="/assets/css/show.css">
+<link rel="stylesheet" href="/assets/css/userForm.css">
+{% endblock %}
+
+{% block content %}
+
+<div id="id01" class="modal">
+  	<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
+  	<section class="formSection formSectionModale">
+ 
+      <h1>Delete Account</h1>
+      <h3>Are you sure you want to delete your account {{user.nickName}}?</h3>
+
+      	<div class="clearfix">
+			<button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelButton">Cancel</button>
+			<button type="button" onclick="document.getElementById('id01').style.display='none'" id="myButton" class="redButton">Delete</button>
+      	</div>
+
+	</section>
+
+</div>
+
+<section class="top">
+
+	<div class="left-top">
+	<img src="/../assets/images/{{ user.avatar }}" alt="Avatar" class="userPic">
+	</div>
+
+	<div class="right-top">
+		<div class="rank">🥇 1st</div>
+		<div class="points">{{ user.score }}</div>
+	</div>
+
+</section>
+
+<section class="bottomSection">
+
+  <h1>My Details <a href="/users/edit?id={{ user.id }}">✏️</a>  </h1>
+
+	<table>
+        <tr>
+          <td>First Name</td>
+          <td>{{ user.firstName }}</td>
+        </tr>
+        <tr>
+          <td>Last Name</td>
+          <td>{{ user.lastName }}</td>
+        </tr>
+        <tr>
+          <td>Nickname</td>
+          <td>{{ user.nickName }}</td>
+        </tr>
+        <tr>
+          <td>Email</td>
+          <td>{{ user.email }}</td>
+        </tr>
+        <tr>
+          <td>Description</td>
+          <td>{{ user.description }}</td>
+        </tr>
+
+
+    </table>
+
+</section>
+
+<div>
+
+	<a href="#" onclick="document.getElementById('id01').style.display='block'">Supprimer mon profil</a>
+	<a href="/users">Retour</a>
+
+</div>
+
+
+{% endblock %}
+
+
+{% block javascript %}
+{# <script type="application/javascript" src="/assets/js/confirmModale.js"></script> #}
+<script>
+// Get the modal
+var modal = document.getElementById('id01');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+document.getElementById("myButton").onclick = function () {
+	location.href = "delete?id={{ user.id }}";
+};
+</script>
+{% endblock %}
