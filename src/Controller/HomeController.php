@@ -22,8 +22,6 @@ class HomeController extends AbstractController
             $user = array_map('trim', $_POST);
             //img upload
 
-
-
             if (isset($_FILES['avatar'])) {
                 $nameFile = $_FILES['avatar']['name'];
                 $tmpName = $_FILES['avatar']['tmp_name'];
