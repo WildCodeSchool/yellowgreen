@@ -4,7 +4,6 @@
 
 {% block content %}
 <section class="formSection">
-{% block formsection %}
 <form method="post" enctype="multipart/form-data">
 	<h1>Edit user {{ user.nickName }}  </h1>
 	
@@ -38,6 +37,5 @@
 	<a href="/users/show?id={{ user.id }}" class="redButton">Retour</a>
 	</div>
 </form>
-{% endblock %}
 </section>
 {% endblock %}

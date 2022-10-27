@@ -13,7 +13,4 @@ return [
     'users/show' => ['UserController', 'show', ['id']],
     'users/add' => ['UserController', 'add',],
     'users/delete' => ['UserController', 'delete',],
-    'fights' => ['FightController', 'index'],
-    'fights/unicornSelect' => ['FightController', 'unicornSelect'],
-
 ];

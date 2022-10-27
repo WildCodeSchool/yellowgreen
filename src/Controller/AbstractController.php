@@ -33,32 +33,4 @@ abstract class AbstractController
             $this->twig->addGlobal('user', $this->user);
         }
     }
-
-    public static function cleanParam(mixed $param): mixed
-    {
-        switch (gettype($param)) {
-            case "string":
-                $param = htmlentities(trim($param));
-                break;
-            case "integer":
-                $param = filter_var($param, FILTER_VALIDATE_INT);
-                break;
-            case "double":
-                $param = filter_var($param, FILTER_VALIDATE_FLOAT);
-                break;
-            case "boolean":
-                $param = filter_var($param, FILTER_VALIDATE_BOOLEAN);
-                break;
-            case "array":
-                $newParam = array();
-                foreach ($param as $key => $value) {
-                    $newParam[$key] = self::cleanParam($value);
-                }
-                $param = $newParam;
-                break;
-            default:
-                $param = false;
-        }
-        return $param;
-    }
 }

@@ -12,7 +12,7 @@
     align-items: center;
 }
 
-footer a {
+.globalFooter a {
     color: inherit;
     text-decoration: inherit;
 
