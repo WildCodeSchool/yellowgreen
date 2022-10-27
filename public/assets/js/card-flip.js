@@ -1,6 +1,6 @@
 let textDiv = document.getElementById("paragraphs-flip"); //catches the flip-text ID
 let cardDiv = document.getElementById("card-flip"); //catches the card-flip ID
-let blink = document.getElementById("blink"); //catches the card-flip ID
+let blink = document.getElementById("blink"); //catches the blinking paragraph
 let textDivContent = textDiv.innerHTML;
 let cardDivContent = cardDiv.innerHTML;
 console.log(blink.innerHTML);
