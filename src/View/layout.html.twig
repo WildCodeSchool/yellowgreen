@@ -13,9 +13,12 @@
 		</head>
 
 		<body>
-			{% block header %}{% endblock %}
+			{% block header %}
+				{% include 'components/_header.html.twig'%}
+			{% endblock %}
 			{% block navbar %}{% endblock %}
 			{% block content %}{% endblock %}
+			<script src="/assets/js/header.js"></script>
 			{% block javascript %}{% endblock %}
 		</body>
 	</html>

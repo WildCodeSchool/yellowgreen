@@ -1,4 +1,4 @@
-let textDiv = document.getElementById("flip-text"); //catches the flip-text ID
+let textDiv = document.getElementById("paragraphs-flip"); //catches the flip-text ID
 let cardDiv = document.getElementById("card-flip"); //catches the card-flip ID
 let textDivContent = textDiv.innerHTML;
 let cardDivContent = cardDiv.innerHTML;
