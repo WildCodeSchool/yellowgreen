@@ -15,6 +15,7 @@ function flipWithTimeout() {
         cardDiv.classList.add('flip-2-ver-right-2');
         blink.innerHTML = "<p>Clique sur la licorne !</p>";
         setTimeout(removeClass, 450);
+        cardDiv.innerHTML = cardDivContent;
     }
 }
 
