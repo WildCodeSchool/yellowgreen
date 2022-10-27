@@ -1,4 +1,4 @@
- section h1 {
+ section h2 {
      background: #FACFCF;
      border-top-left-radius: 15px;
      border-top-right-radius: 15px;
@@ -90,6 +90,15 @@
  }
 
  div a {
+     justify-content: center;
+     margin: 12px auto;
+     color: inherit;
+     /* blue colors for links too */
+     text-decoration: inherit;
+     /* no underline */
+ }
+
+ a {
      justify-content: center;
      margin: 12px auto;
      color: inherit;
