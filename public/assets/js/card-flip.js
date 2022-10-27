@@ -1,16 +1,19 @@
 let textDiv = document.getElementById("paragraphs-flip"); //catches the flip-text ID
 let cardDiv = document.getElementById("card-flip"); //catches the card-flip ID
+let blink = document.getElementById("blink"); //catches the card-flip ID
 let textDivContent = textDiv.innerHTML;
 let cardDivContent = cardDiv.innerHTML;
+console.log(blink.innerHTML);
 
 function flipWithTimeout() {
     if (cardDiv.innerHTML === cardDivContent) {
         cardDiv.classList.add('flip-2-ver-right-2');
-        cardDiv.innerHTML = textDivContent;
+        blink.innerHTML = "<p>Clique sur le texte !</p>";
         setTimeout(removeClass, 450);
+        cardDiv.innerHTML = textDivContent;
     } else {
         cardDiv.classList.add('flip-2-ver-right-2');
-        cardDiv.innerHTML = cardDivContent;
+        blink.innerHTML = "<p>Clique sur la licorne !</p>";
         setTimeout(removeClass, 450);
     }
 }

@@ -94,12 +94,19 @@
     pointer-events: none;
 }
 
+.blink-paragraph {
+    display: none;
+    -webkit-text-stroke: 0.5px rgba(121, 10, 77, 1);
+}
+
+
 /* Responsive */
 
 @media screen and (max-width: 600px) {
 
     .rule {
         margin: 0 1rem 1rem 1rem;
+        flex-direction: column;
     }
 
     .rule-paragraphs {
@@ -124,6 +131,19 @@
 
     #card-flip {
         pointer-events: auto;
+    }
+
+    .blink-paragraph {
+        display: flex;
+        font-weight: 800;
+        animation: blinker 1.5s linear infinite;
+        font-family: sans-serif;
+    }
+
+    @keyframes blinker {
+        50% {
+            opacity: 0;
+        }
     }
 
 }
