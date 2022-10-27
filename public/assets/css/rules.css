@@ -115,7 +115,7 @@
     }
 
     .unicorn-show {
-        display: block
+        display: flex
     }
 
     #paragraphs-flip {
