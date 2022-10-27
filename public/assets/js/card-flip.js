@@ -1,47 +1,22 @@
-let textDiv = document.getElementById("flip-text"); //catches the text
+let textDiv = document.getElementById("flip-text"); //catches the flip-text ID
 let cardDiv = document.getElementById("card-flip"); //catches the card-flip ID
 let textDivContent = textDiv.innerHTML;
-console.log(textDivContent);
 let cardDivContent = cardDiv.innerHTML;
-console.log(cardDivContent);
-cardDivContent = textDivContent;
-console.log(cardDivContent);
 
-
-
-
-/*let result;
-let cardArray = (Array.from(cardFlip.classList));
-
-cardArray.forEach(element => {
-    result = element.includes('flip-2-ver-right-2');
-    cardFlip = document.getElementById("card-flip");
-    cardArray = (Array.from(cardFlip.classList));
-});
-
-if (result === false) {
-    cardFlip.addEventListener('click', flip);
+function flipWithTimeout() {
+    if (cardDiv.innerHTML === cardDivContent) {
+        cardDiv.classList.add('flip-2-ver-right-2');
+        cardDiv.innerHTML = textDivContent;
+        setTimeout(removeClass, 450);
+    } else {
+        cardDiv.classList.add('flip-2-ver-right-2');
+        cardDiv.innerHTML = cardDivContent;
+        setTimeout(removeClass, 450);
+    }
 }
 
-if (result === true) {
-    cardFlip.addEventListener('click', flip2);
-
-}
-*/
-
-
-function flip() {
-    cardDiv.classList.add('flip-2-ver-right-2');
-    cardDiv.innerHTML = textDivContent;
-    /*cardArray.forEach(element => {
-        result = element.includes('flip-2-ver-right-2');
-    })*/
+function removeClass() {
+    cardDiv.classList.remove('flip-2-ver-right-2');
 }
 
-// console.log(result);
-
-function flip2() {
-    cardDiv.classList.add('flip-2-ver-left-2');
-}
-
-cardDiv.addEventListener('click', flip);
+cardDiv.addEventListener('click', flipWithTimeout);

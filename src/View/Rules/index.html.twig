@@ -1,0 +1,72 @@
+{% extends 'layout.html.twig' %}
+
+{% block stylesheet %}
+	<link rel="stylesheet" href="/assets/css/rules.css">
+{% endblock %}
+
+{% block content %}
+	<main>
+		<h1 class="rule-title">Bienvenue dans Happiness & Glitters</h1>
+		<h2 class="rule-title">Comment jouer ? (et peut-être gagner)</h2>
+		<ul class="rules">
+			<li class="rule">
+				<div class="rule-paragraphs">
+					<p>
+						Happiness & Glitters est un jeu hautement compétitif, basé sur des affrontements de gentillesse entre des licornes toutes mignonnes.
+					</p>
+					<p>
+						Un affrontement se déroule au tour par tour et est découpé en plusieurs rounds.
+					</p>
+				</div>
+				<div class="rule-image">
+					<img src="/assets/images/unicornVS.png" alt="" class="unicornVS">
+				</div>
+			</li>
+			<li class="rule">
+				<div class="rule-image unicorn-show" id="card-flip">
+					<img src="/assets/images/unicorn-card.png" alt="" class="unicorn-card">
+				</div>
+				<div class="rule-paragraphs" id="paragraphs-flip">
+					<p>
+						Au début de l’affrontement, tu vas devoir sélectionner UNE SEULE LICORNE qui t’accompagnera tout au long de la partie.
+					</p>
+					<p>
+						Chaque licorne est unique et possède plusieurs capacités dont les caractéristiques diffèrent.
+					</p>
+					<p>
+						Au début de l’affrontement, ton adversaire et toi avez 100 POINTS DE GENTILLESSE (PG) chacun.
+					</p>
+				</div>
+			</li>
+			<li class="rule">
+				<div class="rule-paragraphs" id="flip-text">
+					<p>
+						Le total de PG évolue en cours de partie en fonction des capacités lancées par les licornes trop mignonnes !
+					</p>
+					<p>
+						Chaque capacité a un coût de PG, un gain de PG et une chance de toucher différents.
+					</p>
+				</div>
+				<div class="rule-image">
+					<img src="/assets/images/unicorn-walking.png" alt="" class="unicorn-walking">
+				</div>
+			</li>
+			<li class="rule">
+				<div class="rule-paragraphs endgame">
+					<p>Deux moyens de terminer la partie :</p>
+
+					<p>1. Le premier joueur à atteindre 200 PG gagne la partie !
+					</p>
+
+					<p>2. Le joueur qui tombe à 0 PG perd la partie !</p>
+				</div>
+			</li>
+		</ul>
+		<div class="rule-button">
+			<button class="button-play" style="button" onclick="">Chercher un adversaire</button>
+		</div>
+	</main>
+	{% block javascript %}
+		<script src="/assets/js/card-flip.js"></script>
+	{% endblock %}
+{% endblock %}
