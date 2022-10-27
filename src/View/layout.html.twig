@@ -13,9 +13,11 @@
 
     <title>{% block title %}{% endblock %}</title>
 
+
     <link rel="stylesheet" href="/assets/css/style.css">
-    <link rel="stylesheet" href="/assets/css/header.css">
-    {% block stylesheet %}{% endblock %}
+    {% block stylesheet %}
+        <link rel="stylesheet" href="/assets/css/header.css">
+    {% endblock %}
 </head>
 
 <body>
@@ -32,8 +34,9 @@
     {% include '/Components/_footer.html.twig' %}
     {% endblock %}
     
-    <script src="/assets/js/header.js"></script>
+    
     {% block javascript %}
+    <script src="/assets/js/header.js"></script>
     {% endblock %}
 </body>
 

@@ -1,32 +1,33 @@
 {% extends 'layout.html.twig' %}
 
 {% block stylesheet %}
-<link rel="stylesheet" href="/assets/css/show.css">
-<link rel="stylesheet" href="/assets/css/userForm.css">
+  {{ parent() }}
+  <link rel="stylesheet" href="/assets/css/show.css">
+  <link rel="stylesheet" href="/assets/css/userForm.css">
 {% endblock %}
 
 {% block content %}
 
-<div id="id01" class="modal">
+<aside id="id01" class="modal">
   	<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
   	<section class="formSection formSectionModale">
  
       <h1>Delete Account</h1>
-      <h3>Are you sure you want to delete your account {{user.nickName}}?</h3>
+      <h2>Are you sure you want to delete your account {{user.nickName}}?</h2>
 
-      	<div class="clearfix">
-			<button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelButton">Cancel</button>
-			<button type="button" onclick="document.getElementById('id01').style.display='none'" id="myButton" class="redButton">Delete</button>
-      	</div>
+      <div class="clearfix" style="display: flex;">
+        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelButton">Cancel</button>
+        <a class="redButton" href="delete?id={{ user.id }}">Delete</a>
+      </div>
 
 	</section>
 
-</div>
+</aside>
 
 <section class="top">
 
 	<div class="left-top">
-	<img src="/../assets/images/{{ user.avatar }}" alt="Avatar" class="userPic">
+	<img src="/../assets/images/profile/{{ user.avatar }}" alt="Avatar" class="userPic">
 	</div>
 
 	<div class="right-top">
@@ -38,7 +39,7 @@
 
 <section class="bottomSection">
 
-  <h1>My Details <a href="/users/edit?id={{ user.id }}">✏️</a>  </h1>
+  <h2>My Details <a href="/users/edit?id={{ user.id }}" style="font-size: 20px;">✏️</a></h2>
 
 	<table>
         <tr>
@@ -79,20 +80,5 @@
 
 
 {% block javascript %}
-{# <script type="application/javascript" src="/assets/js/confirmModale.js"></script> #}
-<script>
-// Get the modal
-var modal = document.getElementById('id01');
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
-
-document.getElementById("myButton").onclick = function () {
-	location.href = "delete?id={{ user.id }}";
-};
-</script>
+<script type="application/javascript" src="/assets/js/confirmModale.js"></script>
 {% endblock %}

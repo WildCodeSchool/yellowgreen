@@ -4,11 +4,12 @@
 
 {% block content %}
 <section class="formSection">
+{% block formsection %}
 <form method="post" enctype="multipart/form-data">
 	<h1>Edit user {{ user.nickName }}  </h1>
 	
 		<div class="image-holder" id="image-holder">
-		<img src="/../assets/images/{{ user.avatar }}" alt="Avatar" class="userPic" >
+		<img src="/../assets/images/profile/{{ user.avatar }}" alt="Avatar" class="userPic" >
 		</div>
 
 		<input type="hidden" value={{user.id}} name="id" id="id" placeholder="id" >
@@ -37,5 +38,6 @@
 	<a href="/users/show?id={{ user.id }}" class="redButton">Retour</a>
 	</div>
 </form>
+{% endblock %}
 </section>
 {% endblock %}

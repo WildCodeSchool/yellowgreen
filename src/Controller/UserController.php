@@ -24,7 +24,6 @@ class UserController extends AbstractController
     {
         $userManager = new UserManager();
         $user = $userManager->selectOneById($id);
-
         return $this->twig->render('User/show.html.twig', ['user' => $user]);
     }
 
@@ -38,14 +37,13 @@ class UserController extends AbstractController
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($_FILES['avatar'])) {
-                // $content_dir = 'images/';
-                // $tmp_file = $_FILES['avatar']['tmp_name'];
+
                 $nameFile = $_FILES['avatar']['name'];
                 $tmpName = $_FILES['avatar']['tmp_name'];
                 $name = $_FILES['avatar']['name'];
                 // $size = $_FILES['avatar']['size'];
                 // $error = $_FILES['avatar']['error'];
-                move_uploaded_file($tmpName, 'assets/images/' . $name);
+                move_uploaded_file($tmpName, 'assets/images/profile/' . $name);
 
                 $_POST['avatar'] = $nameFile;
             }
@@ -76,7 +74,7 @@ class UserController extends AbstractController
                 $name = $_FILES['avatar']['name'];
                 // $size = $_FILES['avatar']['size'];
                 // $error = $_FILES['avatar']['error'];
-                move_uploaded_file($tmpName, 'assets/images/' . $name);
+                move_uploaded_file($tmpName, 'assets/images/profile/' . $name);
                 if ($_FILES['avatar']['name'] === '') {
                     $_POST['avatar'] = 'img_avatar.png';
                 } else {
@@ -90,7 +88,7 @@ class UserController extends AbstractController
             // if validation is ok, insert and redirection
             $userManager = new UserManager();
             $id = $userManager->insert($user);
-
+            $_SESSION['userId'] = $id;
             header('Location:/users/show?id=' . $id);
             return null;
         }

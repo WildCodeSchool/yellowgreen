@@ -13,6 +13,7 @@ body {
     --primary-color: rgba(219, 100, 100, 1);
     --secondary-color: white;
     --third-color: #facfcf;
+    --grey-background: #474e5d;
     --primary-font: 'Mali', sans-serif;
     --secondary-font: 'Roboto';
 }
