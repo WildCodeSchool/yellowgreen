@@ -37,14 +37,12 @@ class UserController extends AbstractController
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($_FILES['avatar'])) {
-
                 $nameFile = $_FILES['avatar']['name'];
                 $tmpName = $_FILES['avatar']['tmp_name'];
                 $name = $_FILES['avatar']['name'];
                 // $size = $_FILES['avatar']['size'];
                 // $error = $_FILES['avatar']['error'];
                 move_uploaded_file($tmpName, 'assets/images/profile/' . $name);
-
                 $_POST['avatar'] = $nameFile;
             }
                  // clean $_POST data
