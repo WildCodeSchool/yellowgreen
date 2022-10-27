@@ -46,7 +46,7 @@ main.homePages p {
     margin: 30px 0;
 }
 
-main.homePages button {
+main.homePages .redButton {
     font-size: 20px;
     font-family: var(--secondary-font);
     color: var(--secondary-color);
