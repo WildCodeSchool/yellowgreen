@@ -1,6 +1,10 @@
 {% extends 'layout.html.twig' %}
 
+{% block title %}Règles du jeu
+{% endblock %}
+
 {% block stylesheet %}
+	{{parent()}}
 	<link rel="stylesheet" href="/assets/css/rules.css">
 {% endblock %}
 
@@ -70,6 +74,7 @@
 		</div>
 	</main>
 	{% block javascript %}
+		{{parent()}}
 		<script src="/assets/js/card-flip.js"></script>
 	{% endblock %}
 {% endblock %}

@@ -3,7 +3,6 @@ let cardDiv = document.getElementById("card-flip"); //catches the card-flip ID
 let blink = document.getElementById("blink"); //catches the blinking paragraph
 let textDivContent = textDiv.innerHTML;
 let cardDivContent = cardDiv.innerHTML;
-console.log(blink.innerHTML);
 
 function flipWithTimeout() {
     if (cardDiv.innerHTML === cardDivContent) {
