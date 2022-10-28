@@ -73,8 +73,8 @@
 			<button class="button-play" style="button" onclick="">Chercher un adversaire</button>
 		</div>
 	</main>
-	{% block javascript %}
-		{{parent()}}
-		<script src="/assets/js/card-flip.js"></script>
-	{% endblock %}
+{% endblock %}
+{% block javascript %}
+	{{parent()}}
+	<script src="/assets/js/card-flip.js"></script>
 {% endblock %}
