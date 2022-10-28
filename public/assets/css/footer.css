@@ -1,7 +1,6 @@
 .globalFooter {
     display: flex;
     justify-content: space-evenly;
-    position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
@@ -10,10 +9,10 @@
     color: #DB6464;
     text-align: center;
     align-items: center;
+    margin-top: 20px;
 }
 
 .globalFooter a {
     color: inherit;
     text-decoration: inherit;
-
 }

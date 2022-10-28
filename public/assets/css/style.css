@@ -17,7 +17,3 @@ body {
     --primary-font: 'Mali', sans-serif;
     --secondary-font: 'Roboto';
 }
-
-body:last-child {
-    margin-bottom: 3rem;
-}
