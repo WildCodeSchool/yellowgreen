@@ -5,7 +5,7 @@ namespace App\Controller;
 class RulesController extends AbstractController
 {
     /**
-     * Display home page
+     * Display rules page
      */
     public function index(): string
     {
