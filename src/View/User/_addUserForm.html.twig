@@ -1,13 +1,9 @@
-{% block stylesheet %}
-<link rel="stylesheet" href="/assets/css/userForm.css">
-{% endblock %}
-
 {% block content %}
 	 <section class="formSection">
 	 <form method="post" enctype="multipart/form-data" action="users/add">
 
-		<div class="image-holder" id="image-holder">
-		<img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" class="userPic" >
+		<div class="imageHolder" id="imageHolder">
+		<img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" class="userPic" id="avatar-src" >
 		</div>
 
 		<label for="firstName" display="hidden" required></label>
@@ -23,7 +19,7 @@
 		<input type="text" value="" name="email" id="email" placeholder="Email">
 
 		<label for="avatar"></label>
-		<input id="avatar" name="avatar" type="file"  accept="image/*" value="">
+		<input id="avatar" name="avatar" type="file"  accept="image/*" value="" onchange="showPreview(event);">
 
 		<label for="description" display="hidden"></label>
 		<input type="text" value="" name="description" id="description" placeholder="Description">
@@ -34,10 +30,4 @@
 	</form>
 	</section>
 
- 
-{% endblock %}
-
-{% block javascript %}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script type="application/javascript" src="/assets/js/profilePic.js"></script>
 {% endblock %}

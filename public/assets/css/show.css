@@ -1,5 +1,5 @@
  section h2 {
-     background: #FACFCF;
+     background: var(--third-color);
      border-top-left-radius: 15px;
      border-top-right-radius: 15px;
  }
@@ -19,16 +19,6 @@
      margin: 15px auto;
  }
 
- .tbl-content {
-     height: auto;
-     width: 100%;
-     overflow-x: auto;
-     margin-top: 0px;
-     border: 1px solid rgba(5, 1, 1, 0.3);
-     justify-items: center;
-     text-align: center;
- }
-
  td {
      padding: 15px;
      text-align: center;
@@ -39,36 +29,26 @@
      border-bottom: solid 1px rgba(85, 85, 85, 0.041);
  }
 
-
-
- .bottomSection {
-     margin: 20px 20%;
-     background-color: white;
-     border-top-left-radius: 15px;
-     border-top-right-radius: 15px;
-     border-bottom-left-radius: 15px;
-     border-bottom-right-radius: 15px;
-     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
- }
-
  .top {
      display: flex;
      justify-content: space-around;
      margin: auto 20%;
-     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+     filter: var(--filter-shadow);
  }
 
  .right-top {
      display: flex;
      justify-content: space-around;
+     flex-direction: column;
      text-align: center;
      margin: 1.5rem;
      width: 30%;
+
  }
 
  .rank {
      padding: 8px;
-     background-color: white;
+     background-color: var(--secondary-color);
      border-top-left-radius: 15px;
      border-top-right-radius: 15px;
      border-bottom-left-radius: 15px;
@@ -77,131 +57,57 @@
 
  .points {
      padding: 8px;
-     background-color: white;
+     background-color: var(--secondary-color);
      border-top-left-radius: 15px;
      border-top-right-radius: 15px;
      border-bottom-left-radius: 15px;
      border-bottom-right-radius: 15px;
  }
 
- div {
-     display: flex;
-     flex-direction: column;
- }
-
- div a {
-     justify-content: center;
-     margin: 12px auto;
-     color: inherit;
-     /* blue colors for links too */
-     text-decoration: inherit;
-     /* no underline */
+ .bottomSection {
+     margin: 20px 20%;
+     background-color: var(--secondary-color);
+     border-top-left-radius: 15px;
+     border-top-right-radius: 15px;
+     border-bottom-left-radius: 15px;
+     border-bottom-right-radius: 15px;
+     filter: var(--filter-shadow);
  }
 
  a {
      justify-content: center;
      margin: 12px auto;
      color: inherit;
-     /* blue colors for links too */
      text-decoration: inherit;
-     /* no underline */
  }
 
- .redButton {
-     box-shadow: 0px 10px 14px -7px #db6464;
-     background: linear-gradient(to bottom, #db6464 5%, #bd5959 100%);
-     background-color: #db6464;
-     border-radius: 42px;
-     display: inline-block;
-     cursor: pointer;
-     color: #ffffff;
-     font-family: Arial;
-     font-size: 20px;
-     font-weight: bold;
-     padding: 13px 32px;
-     text-decoration: none;
-     text-shadow: 0px 1px 0px #f54f4f;
-     justify-content: center;
-     margin: auto;
-     margin-bottom: 20px;
-
- }
-
- .redButton:hover {
-     background: linear-gradient(to bottom, #bd5959 5%, #db6464 100%);
-     background-color: #bd5959;
- }
-
- .redButton:active {
-     position: relative;
-     top: 1px;
- }
-
- .cancelButton {
-     width: fit-content;
-     align-self: center;
- }
-
- /* Float cancel and delete buttons and add an equal width */
- .cancelbtn,
- .deletebtn {
-     float: left;
-     width: 50%;
- }
-
- /* Add a color to the cancel button */
- .cancelbtn {
-     background-color: #ccc;
-     color: black;
- }
-
- /* Add a color to the delete button */
- .deletebtn {
-     background-color: --primary-color;
- }
-
- /* Add padding and center-align text to the container */
- .container {
-     padding: 16px;
-     text-align: center;
- }
-
- /* The Modal (background) */
  .modal {
      display: none;
-     /* Hidden by default */
      position: fixed;
-     /* Stay in place */
-     z-index: 1;
-     /* Sit on top */
-     left: 0;
-     top: 0;
      width: 100%;
-     /* Full width */
      height: 100%;
-     /* Full height */
-     overflow: auto;
-     /* Enable scroll if needed */
-     background-color: var(--grey-background);
-     padding-top: 50px;
+     z-index: 1;
+
  }
 
- /* Modal Content/Box */
  .modal-content {
-     background-color: var(--secondary-color);
-     margin: 5% auto 15% auto;
-     border: 1px solid #888;
-     width: 80%;
-
+     margin: 10px auto;
+     margin-top: 5rem;
+     border: none;
+     width: 60%;
  }
 
- /* Style the horizontal ruler */
+ .modalButtons {
+     display: flex;
+     justify-content: space-around;
+     margin: 25px;
+ }
+
  hr {
      border: 1px solid var(--secondary-color);
      margin-bottom: 25px;
  }
 
- /* The Modal Close Button (x) */
  .close {
      position: absolute;
      right: 35px;
@@ -216,3 +122,9 @@
      color: var(--primary-color);
      cursor: pointer;
  }
+
+ .endDiv {
+     display: grid;
+ }
+
+ @media only screen and (max-width: 768px) {}

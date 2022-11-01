@@ -1,14 +1,10 @@
-{% block stylesheet %}
-<link rel="stylesheet" href="/assets/css/userForm.css">
-{% endblock %}
-
 {% block content %}
 <section class="formSection">
 <form method="post" enctype="multipart/form-data">
-	<h1>Edit user {{ user.nickName }}  </h1>
+	<h2>Edit user {{ user.nickName }}</h2>
 	
-		<div class="image-holder" id="image-holder">
-		<img src="/../assets/images/profile/{{ user.avatar }}" alt="Avatar" class="userPic" >
+		<div class="userPic" id="imageHolder">
+		<img src="/../assets/images/profile/{{ user.avatar }}" alt="Avatar" class="userPic" id="avatar-src" >
 		</div>
 
 		<input type="hidden" value={{user.id}} name="id" id="id" placeholder="id" >
@@ -27,15 +23,15 @@
 		<input type="text" value="{{user.email}}" name="email" id="email" placeholder="Email">
 
 		<label for="avatar"></label>
-		<input id="avatar" name="avatar" type="file" value={{user.avatar}} accept="image/*"/>
+		<input id="avatar" name="avatar" type="file" value={{user.avatar}} accept="image/*" onchange="showPreview(event);"/>
 
 		<label for="description" display="hidden" required></label>
 		<input type="text" value="{{user.description}}" name="description" id="description" placeholder="Description">
 
-<div class="buttons">
-	<button class="redButton">Enregistrer</button>
-	<a href="/users/show?id={{ user.id }}" class="redButton">Retour</a>
-	</div>
+		<div class="modalButtons">
+		<button class="redButton">Enregistrer</button><br>
+		<button onclick="location.href='/users/show?id={{ user.id }}'" type="button" class="cancelButton">Retour</button>
+		</div>
 </form>
 </section>
 {% endblock %}

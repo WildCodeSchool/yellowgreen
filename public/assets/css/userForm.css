@@ -5,142 +5,37 @@ input {
     margin-bottom: 20px;
     padding: 10px;
     border: 0;
-    box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 0 15px 4px var(--shadow);
     border-radius: 10px;
-    font-weight: 600;
-    transition: .8s box-shadow;
+    font-weight: 400;
     outline: none;
 }
 
-section h1 {
-
-    background: #FACFCF;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-}
-
-h1 {
-    font-size: 30px;
-    color: black;
-    text-transform: uppercase;
-    font-weight: 300;
-    text-align: center;
-    margin-bottom: 15px;
-}
-
+h2,
 h3 {
     text-align: center;
-}
-
-h1 a {
-    color: inherit;
-    /* blue colors for links too */
-    text-decoration: inherit;
-    /* no underline */
+    padding: 3px;
 }
 
 .formSection {
-    margin: 50px 10px;
-    background-color: white;
+    margin: auto;
+    background-color: var(--secondary-color);
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    filter: drop-shadow(0px 4px 4px var(--shadow));
     padding-bottom: 10px;
 }
 
 .formSectionModale {
     display: block;
-    width: 70%;
+    width: 60%;
     margin: 20px auto;
 }
 
-.thumb-image {
-    float: left;
-    width: 100px;
-    position: relative;
-    padding: 5px;
-}
 
-.buttons {
-    display: flex;
-}
-
-.redButton,
-#redButton {
-    box-shadow: 0px 10px 14px -7px #db6464;
-    background: linear-gradient(to bottom, #db6464 5%, #bd5959 100%);
-    background-color: #db6464;
-    border-radius: 42px;
-    display: inline;
-    cursor: pointer;
-    color: #ffffff;
-    font-family: Arial;
-    font-size: 20px;
-    font-weight: bold;
-    padding: 13px 50px;
-    text-decoration: none;
-    text-shadow: 0px 1px 0px #f54f4f;
-    justify-content: center;
-    margin: auto;
-    border: 0;
-    margin-bottom: 20px;
-}
-
-.redButton:hover,
-#redButton:hover {
-    background: linear-gradient(to bottom, #bd5959 5%, #db6464 100%);
-    background-color: #bd5959;
-    /* margin-bottom: 20px; */
-}
-
-.redButton:active,
-#redButton:active {
-    /* position: relative; */
-    top: 1px;
-    /* margin-bottom: 20px; */
-}
-
-.cancelButton,
-#cancelButton {
-    box-shadow: 0px 10px 14px -7px #494747;
-    background: linear-gradient(to bottom, #504d4d 5%, #6d6565 100%);
-    background-color: #db6464;
-    border-radius: 42px;
-    display: table;
-    cursor: pointer;
-    color: #ffffff;
-    font-family: Arial;
-    font-size: 20px;
-    font-weight: bold;
-    padding: 10px 25px;
-    text-decoration: none;
-    text-shadow: 0px 1px 0px #1d1515;
-    justify-content: center;
-    /* margin: auto; */
-    border: 0;
-    margin-bottom: 20px;
-}
-
-.cancelButton:hover,
-#cancelButton:hover {
-    background: linear-gradient(to bottom, #2c2c2c 5%, #070505 100%);
-    background-color: #1d1919;
-    margin-bottom: 20px;
-}
-
-.cancelButton:active,
-#cancelButton:active {
-    position: relative;
-    top: 1px;
-    margin-bottom: 20px;
-}
-
-.userPic,
-.custom-file-upload,
-.thumb-image,
-.image-holder {
+.userPic {
     border-radius: 50%;
     max-width: 180px;
     max-height: 180px;
@@ -158,15 +53,11 @@ h1 a {
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
-    background-color: rgb(0, 0, 0);
-    background-color: rgba(0, 0, 0, 0.4);
+    overflow: hidden;
 }
 
 .modal-content {
-    margin: 10px auto;
-    margin-top: 5rem;
-    border: none;
+    margin: 4rem auto;
     width: 60%;
 }
 
@@ -178,25 +69,19 @@ h1 a {
     margin: -5px;
 }
 
-.close:hover,
-.close:focus {
+.close:hover {
     color: black;
     text-decoration: none;
     cursor: pointer;
 }
 
-.clearfix {
-    display: inline;
-    ;
-}
-
 @media only screen and (max-width: 768px) {
-    .modal-content {
-        width: 90%;
+    .modal {
+        overflow: auto;
     }
 
-    .buttons {
-        display: grid;
+    .modal-content {
+        width: 90%;
     }
 
     .bottomSection {
@@ -215,8 +100,15 @@ h1 a {
         align-items: center;
     }
 
-    .clearfix {
+    .formSectionModale {
         display: flex;
-        align-items: center;
+        flex-direction: column;
+        width: 80%;
+        margin: 20px auto;
     }
+
+    .modalButtons {
+        flex-direction: column;
+    }
+
 }
