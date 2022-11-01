@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 namespace App\Controller;
 
 class RgpdController extends AbstractController
@@ -11,4 +12,3 @@ class RgpdController extends AbstractController
         return $this->twig->render('Rgpd/index.html.twig');
     }
 }
-?> 
