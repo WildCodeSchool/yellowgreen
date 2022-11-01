@@ -11,9 +11,4 @@ class HomeController extends AbstractController
     {
         return $this->twig->render('Home/index.html.twig');
     }
-
-    public function rules(): string
-    {
-        return $this->twig->render('Home/rules.html.twig');
-    }
 }
