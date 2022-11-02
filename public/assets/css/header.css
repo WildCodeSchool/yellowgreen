@@ -7,21 +7,19 @@
     font-size: 25px;
     font-weight: bold;
   }
-
+ 
   .topHeader a img{
     width: 70px;
     height: 70px;
   }
   
-  .topHeader a{
+  .headerLinks{
     text-decoration: none;
     color: var(--primary-color);
     text-align: center;
   }
   
   .topnav{
-    padding-top: 20px;
-    padding-bottom: 20px;
     display:none;
     background-color: var(--third-color);
   }
@@ -47,18 +45,23 @@
 
   .icon{
     cursor: pointer;
+    margin-right: 20px;
+  }
+
+  #burger{
+    padding-right: 20px;
+  }
+
+  .headerTitle{
+    width: 100%;
   }
   
 
   @media screen and (min-width: 768px){
-    .topnav{
-      display: flex;
-      justify-content: center;
-    }
 
     .responsivenav ul{
       display: flex;
-      flex-direction: row;
+      justify-content: space-around;
       margin-top:0;
       margin-bottom: 0;
       
@@ -70,8 +73,7 @@
 
     .topnav ul li{
       font-size: 15px;
-      margin-left: 50px;
-      margin-right: 50px;
+      
     }
 
     .topHeader{
@@ -82,18 +84,20 @@
 
     .radiusButton{
       background-color: #bfa4e2;
-      padding-top: 5px;
-      padding-bottom: 5px;
-      padding-right: 10px;
-      padding-left: 10px;
-      color: #383142;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      padding-right: 15px;
+      padding-left: 15px;
+      color: var(--secondary-color);
       font-weight: initial;
       border-radius: 20px;
     }
 
     .topnav{
+      display: flex;
       padding-top: 0px;
       padding-bottom: 0px;
+      justify-content: center;
     }
 
     .unicornLogo{
@@ -112,6 +116,10 @@
   .unicornLogo{
     width: 100px;
     height: 100px;
+  }
+
+  .radiusButton{
+    margin: 70px;
   }
 
  }
