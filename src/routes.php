@@ -14,4 +14,5 @@ return [
     'users/show' => ['UserController', 'show', ['id']],
     'users/add' => ['UserController', 'add',],
     'users/delete' => ['UserController', 'delete',],
+    'users/ranking' => ['UserController', 'ranking',],
 ];
