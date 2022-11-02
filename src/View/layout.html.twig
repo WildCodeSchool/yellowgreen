@@ -6,11 +6,12 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="icon" href="/assets/images/favicon.png">
 		<title>
-			{% block title %}H&G{% endblock %}
+			{% block title %}H&G
+			{% endblock %}
 		</title>
-		
-		<link rel="stylesheet" type="text/css" href="/assets/css/style.css">			
-		
+
+		<link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+
 		{% block stylesheet %}
 			<link rel="stylesheet" type="text/css" href="/assets/css/header.css">
 			<link rel="stylesheet" type="text/css" href="/assets/css/footer.css">
@@ -18,23 +19,22 @@
 	</head>
 
 
-<body>
-    {% block header %}
-        {% include 'components/_header.html.twig' %}
-    {% endblock %}
+	<body>
+		{% block header %}
+			{% include 'Components/_header.html.twig' %}
+		{% endblock %}
 
-    {% block navbar %}
-    {% endblock %}
-    {% block content %}{% endblock %}
+		{% block navbar %}{% endblock %}
+		{% block content %}{% endblock %}
 
 
-    {% block footer %}
-    {% include '/Components/_footer.html.twig' %}
-    {% endblock %}
-    
-    
-    {% block javascript %}
-    <script src="/assets/js/header.js"></script>
-    {% endblock %}
-</body>
+		{% block footer %}
+			{% include '/Components/_footer.html.twig' %}
+		{% endblock %}
+
+
+		{% block javascript %}
+			<script src="/assets/js/header.js"></script>
+		{% endblock %}
+	</body>
 </html>

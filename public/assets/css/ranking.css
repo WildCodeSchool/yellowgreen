@@ -4,25 +4,25 @@ main {
     justify-content: space-between;
     align-items: center;
     height: 100%;
-
+    width: 95%;
     font-family: var(--primary-font);
 }
 
-th,
-td {
+main table th,
+main table td {
     border: lightgrey 1px solid;
 }
 
-td img {
+main td img {
     width: 6.5vw;
     height: 6.5vw;
 }
 
-tr:nth-child(even) {
+main table tr:nth-child(even) {
     background-color: Lightgrey;
 }
 
-table {
+main table {
     font-size: 3vw;
     color: var(--primary-color);
     text-align: center;
@@ -34,12 +34,33 @@ table {
     max-width: 800px;
 }
 
+h1 {
+    font-size: 8vw;
+}
+
 .left-justify {
     text-align: left;
 }
 
 .right-justify {
     text-align: right;
+}
+
+section.info {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+.info-session {
+    color: var(--primary-color);
+    font-size: 3vw;
+    background-color: var(--third-color);
+    padding: 2vw;
+    border-radius: 2vw;
+    border: 0.3vw solid;
+    border-color: whitesmoke;
 }
 
 .podium {
@@ -72,13 +93,35 @@ table {
 .podium-3 {
     width: 15vw;
     max-width: 150px;
-    border-top-width: 3vw;
+    border-top-width: 0;
     border-top-style: solid;
     border-top-left-radius: 2.8vw;
     border-top-right-radius: 2.8vw;
-    text-align: center;
     color: var(--primary-color);
-    font-size: 8vw;
+    font-size: 3vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}
+
+.podium-img {
+    opacity: 0.3;
+}
+
+.podium-score {
+    border-top-width: 0;
+    border-top-style: solid;
+    border-top-left-radius: 2.8vw;
+    border-top-right-radius: 2.8vw;
+    background-image: linear-gradient(
+        to right,
+        var(--primary-color),
+        var(--third-color),
+        var(--primary-color)
+    );
+    width: 100%;
+    text-align: center;
 }
 
 .podium-1 {
@@ -94,13 +137,13 @@ table {
         silver,
         rgb(122, 94, 94)
     );
-    height: 15vw;
+    height: 18vw;
     border-top-color: rgb(65, 48, 48);
 }
 
 .podium-3 {
     background-image: linear-gradient(to right, #9c5221, #e69159, #9c5221);
-    height: 9vw;
+    height: 12vw;
     border-top-color: #41230f;
 }
 

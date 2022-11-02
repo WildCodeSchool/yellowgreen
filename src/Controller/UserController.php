@@ -9,22 +9,12 @@ class UserController extends AbstractController
     /**
      * List users
      */
-
-
     public function index(): string
     {
         $userManager = new UserManager();
         $users = $userManager->selectAll("score", "desc");
 
         return $this->twig->render('User/index.html.twig', ['users' => $users]);
-    }
-
-    public function ranking(): string
-    {
-        $userManager = new UserManager();
-        $users = $userManager->selectAll("score", "desc");
-
-        return $this->twig->render('User/userRanking.html.twig', ['users' => $users]);
     }
     /**
      * Show informations for a specific user
