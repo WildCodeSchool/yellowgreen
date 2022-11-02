@@ -33,8 +33,7 @@ class UserController extends AbstractController
     {
         $userManager = new UserManager();
         $user = $userManager->selectOneById($id);
-
-        return $this->twig->render('user/show.html.twig', ['user' => $user]);
+        return $this->twig->render('User/show.html.twig', ['user' => $user]);
     }
 
     /**
@@ -46,21 +45,26 @@ class UserController extends AbstractController
         $user = $userManager->selectOneById($id);
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (isset($_FILES['avatar'])) {
+                $nameFile = $_FILES['avatar']['name'];
+                $tmpName = $_FILES['avatar']['tmp_name'];
+                $name = $_FILES['avatar']['name'];
+                // $size = $_FILES['avatar']['size'];
+                // $error = $_FILES['avatar']['error'];
+                move_uploaded_file($tmpName, 'assets/images/profile/' . $name);
+                $_POST['avatar'] = $nameFile;
+            }
             // clean $_POST data
             $user = array_map('trim', $_POST);
-
-            // TODO validations (length, format...)
-
-            // if validation is ok, update and redirection
             $userManager->update($user);
-
             header('Location: /users/show?id=' . $id);
-
-            // we are redirecting so we don't want any content rendered
             return null;
+            // TODO validations (length, format...
+            // if validation is ok, update and redirection
+            // we are redirecting so we don't want any content rendered
         }
 
-        return $this->twig->render('user/edit.html.twig', [
+        return $this->twig->render('User/editUser.html.twig', [
             'user' => $user,
         ]);
     }
@@ -71,22 +75,32 @@ class UserController extends AbstractController
     public function add(): ?string
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // clean $_POST data
-            $user = array_map('trim', $_POST);
+            if (isset($_FILES['avatar'])) {
+                $nameFile = $_FILES['avatar']['name'];
+                $tmpName = $_FILES['avatar']['tmp_name'];
+                $name = $_FILES['avatar']['name'];
+                // $size = $_FILES['avatar']['size'];
+                // $error = $_FILES['avatar']['error'];
+                move_uploaded_file($tmpName, 'assets/images/profile/' . $name);
+                if ($_FILES['avatar']['name'] === '') {
+                    $_POST['avatar'] = 'img_avatar.png';
+                } else {
+                    $_POST['avatar'] = $nameFile;
+                }
+            }
 
+            $user = array_map('trim', $_POST);
             // TODO validations (length, format...)
 
             // if validation is ok, insert and redirection
             $userManager = new UserManager();
-            // $id = $userManager->insert($user);
-            $userManager->insert($user);
-
-            //header('Location:/users/show?id=' . $id);
-            header('Location: /');
+            $id = $userManager->insert($user);
+            $_SESSION['userId'] = $id;
+            header('Location:/users/show?id=' . $id);
             return null;
         }
 
-        return $this->twig->render('user/add.html.twig');
+        return $this->twig->render('User/addUser.html.twig');
     }
 
     /**

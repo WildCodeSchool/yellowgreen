@@ -1,8 +1,14 @@
 {% extends 'layout.html.twig' %}
 
 {% block stylesheet %}
-	{{parent()}}
+	{{ parent() }}
 	<link rel="stylesheet" type="text/css" href="/assets/css/index.css"/>
+	<link rel="stylesheet" type="text/css" href="/assets/css/userForm.css">
+{% endblock %}
+
+{% block title %}
+	Happiness and Glitters Home -
+	{{ parent() }}
 {% endblock %}
 
 {% block content %}
