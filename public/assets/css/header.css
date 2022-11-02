@@ -95,7 +95,6 @@
       color: var(--secondary-color);
       font-weight: initial;
       border-radius: 20px;
-      width: 
     }
 
     .topnav{
@@ -135,6 +134,6 @@
 
  @media screen and (min-width: 1440px){
   .headerTitle{
-    font-size: 50px;;
+    font-size: 50px;
   }
  }
