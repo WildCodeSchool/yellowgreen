@@ -38,7 +38,6 @@ main.homePages .versus .imgSmall {
     width: 5%;
 }
 
-
 main.homePages p {
     color: var(--primary-color);
     font-family: var(--primary-font);
@@ -46,11 +45,11 @@ main.homePages p {
     margin: 30px 0;
 }
 
-main.homePages button {
+main.homePages .redButton {
     font-size: 20px;
     font-family: var(--secondary-font);
     color: var(--secondary-color);
-    background-color: var(--primary-color);
+    background: linear-gradient(to bottom, var(--primary-color) 5%, var(--primary-hover) 100%);
     padding: 15px 30px;
     margin: 0;
     border-radius: 20px;
@@ -62,32 +61,31 @@ main.homePages button {
 }
 
 
+main.homePages .redButton:hover {
+    background: linear-gradient(to bottom, var(--primary-hover) 5%, var(--primary-color) 100%);
+}
+
+main.homePages .bottomSection {
+    display: contents;
+}
+
 @media screen and (max-width: 780px) {
 
     main.homePages .imgMedium {
         width: 35%;
     }
 
-
-
     main.homePages .versus {
-
         flex-direction: column;
-
     }
 
     main.homePages .versus img {
-
         display: block;
         padding: 0;
-
     }
 
     main.homePages .versus .imgSmall {
-
         transform: rotate(-20deg);
         width: 7%;
-
     }
-
 }
