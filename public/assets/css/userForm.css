@@ -75,6 +75,10 @@ h3 {
     cursor: pointer;
 }
 
+#description{
+    height: 100px;
+}
+
 @media only screen and (max-width: 768px) {
     .modal {
         overflow: auto;
