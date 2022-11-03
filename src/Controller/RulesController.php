@@ -9,6 +9,6 @@ class RulesController extends AbstractController
      */
     public function index(): string
     {
-        return $this->twig->render('Rules/index.html.twig', ['user' => $_SESSION]);
+        return $this->twig->render('Rules/index.html.twig');
     }
 }
