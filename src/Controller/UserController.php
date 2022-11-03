@@ -12,11 +12,10 @@ class UserController extends AbstractController
     public function index(): string
     {
         $userManager = new UserManager();
-        $users = $userManager->selectAll('nickName');
+        $users = $userManager->selectAll("score", "desc");
 
         return $this->twig->render('User/index.html.twig', ['users' => $users]);
     }
-
     /**
      * Show informations for a specific user
      */
@@ -45,11 +44,11 @@ class UserController extends AbstractController
                 move_uploaded_file($tmpName, 'assets/images/profile/' . $name);
                 $_POST['avatar'] = $nameFile;
             }
-                 // clean $_POST data
-                    $user = array_map('trim', $_POST);
-                $userManager->update($user);
-                header('Location: /users/show?id=' . $id);
-                    return null;
+            // clean $_POST data
+            $user = array_map('trim', $_POST);
+            $userManager->update($user);
+            header('Location: /users/show?id=' . $id);
+            return null;
             // TODO validations (length, format...
             // if validation is ok, update and redirection
             // we are redirecting so we don't want any content rendered
