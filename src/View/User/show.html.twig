@@ -18,7 +18,7 @@ Personal Profile - {{ parent() }}
   <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
   {# <section class="formSection formSectionModale"> #}
 
-    <h3>Are you sure you want to delete your account {{user.nickName}}?</h3>
+    <h3 class="deleteWarning">Are you sure you want to delete your account {{user.nickName}}?</h3>
 
     <div class="modalButtons">
       <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelButton">Cancel</button><br>
@@ -33,7 +33,7 @@ Personal Profile - {{ parent() }}
 <section class="top">
 
 	<div class="left-top">
-	  <img src="/assets/images/profile/img_avatar.png" alt="Avatar" class="userPic">
+	  <img src="/assets/images/profile/{{ user.avatar }}" alt="Avatar" class="userPic">
 	</div>
 
 	<div class="right-top">
