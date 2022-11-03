@@ -57,3 +57,10 @@ body {
 .cancelButton:hover {
     background: linear-gradient(to bottom, var(--grey-hover) 5%, var(--grey-background) 100%);
 }
+
+button{
+    border: none;
+    background-color: transparent;
+    color: var(--primary-color);
+    
+}
