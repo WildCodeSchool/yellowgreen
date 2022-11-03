@@ -7,6 +7,7 @@
 {% endblock %}
 
 {% block content %}
+
 <main class="homePages">
   <section>
     <img class="imgMedium" src="/assets/images/unicorn-index.png">
@@ -20,7 +21,7 @@
       <img class="imgSmall" src="/assets/images/vs-index.png">
       <img src="/assets/images/unicorn-right.png">
     </div>
-
+    
     <p>Le but du jeu ? Envoyer le plus de bisous, de hugs et d'arc-en-ciel possible
     </br>pour gagner des points et sortir vainqueur de ce combat d'amour! </p>
   </section>
@@ -40,6 +41,7 @@
 {% endblock %}
 
 {% block javascript %}
-<script type="application/javascript" src="/assets/js/formModale.js"></script>
-<script type="application/javascript" src="/assets/js/profilePic.js"></script>
+  {{ parent() }}
+  <script type="application/javascript" src="/assets/js/formModale.js"></script>
+  <script type="application/javascript" src="/assets/js/profilePic.js"></script>
 {% endblock %}
