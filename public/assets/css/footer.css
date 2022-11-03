@@ -10,6 +10,7 @@
     text-align: center;
     align-items: center;
     margin-top: 20px;
+    font-family: var(--primary-font);
 }
 
 .globalFooter a {
