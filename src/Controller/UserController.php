@@ -101,6 +101,7 @@ class UserController extends AbstractController
             $userManager = new UserManager();
             $id = $userManager->insert($user);
             $_SESSION['userId'] = $id;
+            $_SESSION['nickname'] = $user["nickName"];
             header('Location:/users/show?id=' . $id);
             return null;
         }
