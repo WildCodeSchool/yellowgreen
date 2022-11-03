@@ -39,7 +39,7 @@
 				{% for user in users|slice(0,3) %}
 					<div class="rank">
 						<figcaption>{{user.nickName}}</figcaption>
-						<img src="/assets/images/{{user.avatar}}" alt="{{user.nickName}}"/>
+						<img src="/assets/images/profile/{{user.avatar}}" alt="{{user.nickName}}"/>
 						<div class="podium-{{loop.index}}">
 							<div class="podium-score">{{user.score}}</div>
 							<img class="podium-img" src="/assets/images/podium2.png"/>
@@ -58,7 +58,7 @@
 			{% set rank = 1 %}
 			{% for user in users %}
 				<tr>
-					<td><img src="/assets/images/{{user.avatar}}"/></td>
+					<td><img src="/assets/images/profile/{{user.avatar}}"/></td>
 					<td>{{rank}}</td>
 					<td class="left-justify">{{user.nickName}}</td>
 					<td class="right-justify">{{user.score}}</td>
