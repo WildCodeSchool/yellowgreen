@@ -80,11 +80,11 @@ class UserController extends AbstractController
                 }
             }
 
+            $cleanValue = [];
             foreach ($_POST as $key) {
                 $cleanValue[] = htmlentities($key);
             }
             $user = array_map('trim', $cleanValue);
-            
 
             foreach ($_POST as $key => $value) {
                 if ($key === "password") {
@@ -130,12 +130,13 @@ class UserController extends AbstractController
                 $userManager = new UserManager();
                 $user = $userManager->selectOneByEmail($_POST["email"]);
                 if ($user && password_verify($_POST["password"], $user["password"])) {
-                    $_SESSION['user_id'] = $user["id"];
+                    $_SESSION['userId'] = $user["id"];
+                    $_SESSION['nickname'] = $user["nickName"];
                     header("location: /rules");
                 }
             }
         }
-        return $this->twig->render('User/_login.html.twig');
+        return $this->twig->render('Home/index.html.twig');
     }
 
     public function logout()

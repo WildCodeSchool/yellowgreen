@@ -1,21 +1,14 @@
 {% block content %}
-	<section class="formSection">
-		<form method="post" enctype="multipart/form-data" action="">
+	<section class="formSection login">
+		<form method="post" enctype="multipart/form-data" action="/login">
 
-			<div class="imageHolder" id="imageHolder">
-				<img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" class="userPic" id="avatar-src">
-			</div>
-
-			<label for="email" display="hidden" required></label>
+			<label class="email-login-label" for="email" display="hidden" required></label>
 			<input type="text" value="" name="email" id="email" placeholder="Email">
 
 			<label for="password" display="hidden" required></label>
 			<input type="text" value="" name="password" id="password" placeholder="Password">
 
 			<button class="button" type="submit">Je me connecte !</button>
-
-			<a href="">Créer un compte</a>
-
 		</form>
 	</section>
 
