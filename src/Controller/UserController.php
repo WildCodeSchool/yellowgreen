@@ -80,13 +80,16 @@ class UserController extends AbstractController
                 }
             }
 
-            // $user = [];
-            $user = array_map('trim', $_POST);
+            foreach ($_POST as $key) {
+                $cleanValue[] = htmlentities($key);
+            }
+            $user = array_map('trim', $cleanValue);
             
-            foreach($_POST as $key => $value){
-                if($key === "password"){
+
+            foreach ($_POST as $key => $value) {
+                if ($key === "password") {
                     $user[$key] = password_hash($value, PASSWORD_ARGON2ID);
-                } else{
+                } else {
                     $user[$key] = $value;
                 }
             }
@@ -121,42 +124,23 @@ class UserController extends AbstractController
 
     public function login(): string
     {
-        if($_SERVER["REQUEST_METHOD"] === "POST"){
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $cleanValue = htmlentities(trim($_POST["email"]));
-            if(filter_var($cleanValue, FILTER_VALIDATE_EMAIL)){
+            if (filter_var($cleanValue, FILTER_VALIDATE_EMAIL)) {
                 $userManager = new UserManager();
                 $user = $userManager->selectOneByEmail($_POST["email"]);
-                if($user && password_verify($_POST["password"], $user["password"])){
+                if ($user && password_verify($_POST["password"], $user["password"])) {
                     $_SESSION['user_id'] = $user["id"];
                     header("location: /rules");
-                    exit();
                 }
             }
         }
-        return $this->twig->render('User/login.html.twig');
+        return $this->twig->render('User/_login.html.twig');
     }
 
     public function logout()
     {
         session_destroy();
         header("location: /");
-    }
-
-    public function register(): string
-    {
-        if($_SERVER["REQUEST_METHOD"] === "POST"){
-            $user = [];
-            foreach($_POST as $key => $value){
-                if($key === "password"){
-                    $user[$key] = password_hash($value, PASSWORD_ARGON2ID);
-                } else{
-                    $user[$key] = $value;
-                }
-            }
-            $userManager = new UserManager();
-            $userManager->insert($user);
-            header("location: /");
-        }
-        return $this->twig->render('User/register.html.twig');
     }
 }
