@@ -26,12 +26,8 @@
   </section>
   <section class="bottomSection">
     <img class="imgMedium" src="/assets/images/dab-unicorn.png">
-	  <button class="redButton" data-modal="modalOne">Je veux jouer!</button>
+	  <a href="/rules" class="redButton">Voir Règles! </a>
   </section>
 
-<div id="modalOne" class="modal">
-	<div class="modal-content">
-		<a class="close">&times;</a>
-		{% include 'User/_addUserForm.html.twig' %}
-	</div>
-</div></main>{% endblock %}{% block javascript %}{{ parent() }}<script type="application/javascript" src="/assets/js/formModale.js"></script><script type="application/javascript" src="/assets/js/profilePic.js"></script>{% endblock %}
+
+</main>{% endblock %}{% block javascript %}{{ parent() }}<script type="application/javascript" src="/assets/js/formModale.js"></script><script type="application/javascript" src="/assets/js/profilePic.js"></script>{% endblock %}
