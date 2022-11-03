@@ -106,7 +106,7 @@ class UserController extends AbstractController
             return null;
         }
 
-        return $this->twig->render('User/addUser.html.twig');
+        return $this->twig->render('Home/index.html.twig');
     }
 
     /**
