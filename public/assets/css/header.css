@@ -1,138 +1,132 @@
-.topHeader{
+.topHeader {
     display: flex;
     align-items: center;
-    justify-content:space-between;
+    justify-content: space-between;
     background-color: var(--third-color);
     font-family: var(--primary-font);
     font-size: 25px;
     font-weight: bold;
-  }
- 
-  .topHeader a img{
+}
+
+.topHeader a img {
     width: 70px;
     height: 70px;
-  }
-  
-  .headerLinks{
+}
+
+.headerLinks {
     text-decoration: none;
     color: var(--primary-color);
     text-align: center;
-  }
-  
-  .topnav{
-    display:none;
-    background-color: var(--third-color);
-  }
+}
 
-  .topnav.displayed{
+.topnav {
+    display: none;
+    background-color: var(--third-color);
+}
+
+.topnav.displayed {
     display: block;
     padding: 10px;
-  }
-  
-  .topnav ul li {
+}
+
+.topnav ul li {
     font-family: var(--secondary-font);
     font-weight: bold;
     list-style-type: none;
     margin: 20px;
     font-size: 30px;
     text-align: center;
-  }
-  
-  .imgavatar{
+}
+
+.imgavatar {
     width: 40px;
     height: 40px;
     margin: 0px;
-  }
+}
 
-  .icon{
+.icon {
     cursor: pointer;
     margin-right: 20px;
     font-size: 30px;
-  }
+}
 
-  #burger{
+#burger {
     padding-right: 20px;
-  }
+}
 
-  .headerTitle{
+.headerTitle {
     width: 100%;
-  }
-  
+}
 
-  @media screen and (min-width: 768px){
-
-    .responsivenav ul{
-      display: flex;
-      justify-content: space-around;
-      margin-top:0;
-      margin-bottom: 0;
-      padding:0;
-      
+@media screen and (min-width: 768px) {
+    .responsivenav ul {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 0;
+        margin-bottom: 0;
+        padding: 0;
     }
 
-    .icon{
-      display: none;
+    .icon {
+        display: none;
     }
 
-    .topnav ul li{
-      font-size: 15px;
-      
+    .topnav ul li {
+        font-size: 15px;
     }
 
-    .topHeader{
-      font-size: 35px;
-      padding-left: 50px;
-      padding-right: 50px;
+    .topHeader {
+        font-size: 35px;
+        padding-left: 50px;
+        padding-right: 50px;
     }
 
-    .radiusButton{
-      background-color: #bfa4e2;
-      padding-top: 10px;
-      padding-bottom: 10px;
-      padding-right: 15px;
-      padding-left: 15px;
-      color: var(--secondary-color);
-      font-weight: initial;
-      border-radius: 20px;
+    .radiusButton {
+        background-color: #bfa4e2;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-right: 15px;
+        padding-left: 15px;
+        color: var(--secondary-color);
+        font-weight: initial;
+        border-radius: 20px;
     }
 
-    .topnav{
-      display: flex;
-      padding-top: 0px;
-      padding-bottom: 0px;
-      justify-content: center;
+    .topnav {
+        display: flex;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        justify-content: center;
     }
 
-    .unicornLogo{
-      padding-top: 20px;
+    .unicornLogo {
+        padding-top: 20px;
     }
 
-    .headerTitle{
-      padding-right: 70px;
+    .headerTitle {
+        padding-right: 70px;
     }
- }
+}
 
- @media screen and (min-width: 1024px){
+@media screen and (min-width: 1024px) {
+    .imgavatar {
+        width: 60px;
+        height: 60px;
+        margin-top: 20px;
+    }
 
-  .imgavatar{
-    width: 60px;
-    height: 60px;
-    margin-top: 20px;
-  }
+    .unicornLogo {
+        width: 100px;
+        height: 100px;
+    }
 
-  .unicornLogo{
-    width: 100px;
-    height: 100px;
-  }
+    .radiusButton {
+        margin: 60px;
+    }
+}
 
-  .radiusButton{
-    margin: 60px;
-  }
-
- }
-
- @media screen and (min-width: 1440px){
-  .headerTitle{
-    font-size: 50px;
-  }
- }
+@media screen and (min-width: 1440px) {
+    .headerTitle {
+        font-size: 50px;
+    }
+}

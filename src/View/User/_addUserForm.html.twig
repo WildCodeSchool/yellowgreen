@@ -1,9 +1,9 @@
 {% block content %}
-	 <section class="formSection">
-	 <form method="post" enctype="multipart/form-data" action="users/add">
+	<section class="formSection">
+		<form method="post" enctype="multipart/form-data" action="users/add">
 
 		<div class="imageHolder" id="imageHolder">
-		<img src="\assets\images\profile\default_avatar3.png" alt="Avatar" class="userPic" id="avatar-src" >
+		<img src="\assets\images\profile\img_avatar.png" alt="Avatar" class="userPic" id="avatar-src" >
 		</div>
 
 		<label for="firstName" display="hidden" required></label>
@@ -18,16 +18,23 @@
 		<label for="email" display="hidden" required></label>
 		<input type="text" value="" name="email" id="email" placeholder="Email">
 
-		<label for="avatar"></label>
-		<input id="avatar" name="avatar" type="file"  accept="image/*" value="" onchange="showPreview(event);">
+		<label for="password" display="hidden" required></label>
+		<input type="text" value="" name="password" id="password" placeholder="Password">
 
 		<label for="description" display="hidden"></label>
 		<input type="textarea" value="" name="description" id="description" placeholder="Description">
+    
+		<label for="avatar"></label>
+		<input id="avatar" name="avatar" type="file" accept="image/*" value="" onchange="showPreview(event);">
 
 
-		<button class="redButton" type="submit">Je démarre l’aventure !</button>
+			<label for="description" display="hidden"></label>
+			<input type="text" value="" name="description" id="description" placeholder="Description">
 
-	</form>
+
+			<button class="redButton" type="submit">Je démarre l’aventure !</button>
+
+		</form>
 	</section>
 
 {% endblock %}

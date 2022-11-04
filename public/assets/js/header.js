@@ -1,7 +1,6 @@
-console.log('blop')
 const burgerIcon = document.getElementById("burger")
 const navbar = document.getElementById("mytopnav")
 
-function displayMenu(){
+function displayMenu() {
   navbar.classList.toggle("displayed")
 }
