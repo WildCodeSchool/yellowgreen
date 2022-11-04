@@ -19,8 +19,7 @@
 				<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
 				{# <section class="formSection formSectionModale"> #}
 
-				<h3>Are you sure you want to delete your account
-					{{user.nickName}}?</h3>
+    <h3 class="deleteWarning">Are you sure you want to delete your account {{user.nickName}}?</h3>
 
 				<div class="modalButtons">
 					<button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelButton">Cancel</button><br>
@@ -34,9 +33,9 @@
 
 	<section class="top">
 
-		<div class="left-top">
-			<img src="/../assets/images/profile/{{ user.avatar }}" alt="Avatar" class="userPic">
-		</div>
+	<div class="left-top">
+	  <img src="/assets/images/profile/{{ user.avatar }}" alt="Avatar" class="userPic">
+	</div>
 
 		<div class="right-top">
 			<div class="rank">🥇 1st</div>
@@ -48,9 +47,7 @@
 
 	<section class="bottomSection">
 
-		<h2>My Details
-			<a href="/users/edit?id={{ user.id }}" style="font-size: 20px;">✏️</a>
-		</h2>
+  <h2 class="detailsTitle">My Details  <a href="/users/edit?id={{ user.id }}" style="font-size: 30px; ">✏️</a></h2>
 
 		<table>
 			<tr>

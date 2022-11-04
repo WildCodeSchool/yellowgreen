@@ -1,15 +1,14 @@
 {% block content %}
-	<section class="formSection">
-		<form method="post" enctype="multipart/form-data">
-			<h2>Edit user
-				{{ user.nickName }}</h2>
+<section class="formSection">
+<form method="post" enctype="multipart/form-data">
+	<h2>Edit user {{ user.nickName }}</h2>
+	
+		<div class="userPic" id="imageHolder">
+		<img src="/../assets/images/profile/img_avatar.png" alt="Avatar" class="userPic" id="avatar-src" >
+		</div>
 
-			<div class="userPic" id="imageHolder">
-				<img src="/../assets/images/profile/{{ user.avatar }}" alt="Avatar" class="userPic" id="avatar-src">
-			</div>
-
-			<input type="hidden" value={{user.id}} name="id" id="id" placeholder="id">
-			<input type="hidden" value={{user.score}} name="score" id="score" placeholder="score">
+		<input type="hidden" value={{user.id}} name="id" id="id" placeholder="id" >
+		<input type="hidden" value={{user.score}} name="score" id="score" placeholder="Score" >
 
 			<label for="firstName" display="hidden" required></label>
 			<input type="text" value="{{user.firstName}}" name="firstName" id="firstName" placeholder="Prenom">
@@ -17,8 +16,8 @@
 			<label for="lastName" display="hidden" required></label>
 			<input type="text" value="{{user.lastName}}" name="lastName" id="lastName" placeholder="Nom">
 
-			<label for="nickName" display="hidden" required></label>
-			<input type="text" value="{{user.nickName}}" name="nickName" id="nickName" placeholder="Nickname">
+		<label for="nickName" display="hidden" required></label>
+		<input type="text" value="{{user.nickName}}" name="nickName" id="nickName" placeholder="Pseudo">
 
 			<label for="email" display="hidden" required></label>
 			<input type="text" value="{{user.email}}" name="email" id="email" placeholder="Email">

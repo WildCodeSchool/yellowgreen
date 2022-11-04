@@ -16,5 +16,6 @@ return [
     'users/delete' => ['UserController', 'delete',],
     'login' => ['UserController', 'login',],
     'logout' => ['UserController', 'logout',],
-    'rgpd' => ['RgpdController', 'index',]
+    'rgpd' => ['RgpdController', 'index',],
+    'legal' => ['LegalController', 'index',],
 ];
