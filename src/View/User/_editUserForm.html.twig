@@ -4,7 +4,7 @@
 	<h2>Edit user {{ user.nickName }}</h2>
 	
 		<div class="userPic" id="imageHolder">
-		<img src="/../assets/images/profile/{{ user.avatar }}" alt="Avatar" class="userPic" id="avatar-src" >
+		<img src="/../assets/images/profile/img_avatar.png" alt="Avatar" class="userPic" id="avatar-src" >
 		</div>
 
 		<input type="hidden" value="{{user.id}}" name="id" id="id" placeholder="id" >
@@ -18,13 +18,10 @@
 
 		<input type="text" value="{{user.email}}" name="email" id="email" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
 
-		<label for="password" display="hidden" required></label>
 		<input type="password" value="" name="passWord" id="password" placeholder="Password" pattern=".{8,}" required>
 
-		<label for="avatar"></label>
 		<input id="avatar" name="avatar" type="file" value="{{user.avatar}}" accept="image/*" onchange="showPreview(event);"/>
 
-		<label for="description" display="hidden" required></label>
 		<input type="text" value="{{user.description}}" name="description" id="description" placeholder="Description">
 
 		<div class="modalButtons">
