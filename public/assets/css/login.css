@@ -5,3 +5,7 @@
 .formSection .login {
     padding-top: 3rem;
 }
+
+.login {
+    text-align: center;
+}
