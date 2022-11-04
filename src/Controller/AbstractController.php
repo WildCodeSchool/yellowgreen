@@ -13,7 +13,7 @@ use App\Model\UserManager;
 abstract class AbstractController
 {
     protected Environment $twig;
-    protected array|false $user = false;
+    protected array|false $sessionUser = false;
 
     public function __construct()
     {
@@ -29,8 +29,33 @@ abstract class AbstractController
 
         if (isset($_SESSION["userId"])) {
             $userManager = new UserManager();
-            $this->user = $userManager->selectOneById($_SESSION["userId"]);
-            $this->twig->addGlobal('user', $this->user);
+            $this->sessionUser = $userManager->selectOneById($_SESSION["userId"]);
+            $this->twig->addGlobal('sessionUser', $this->sessionUser);
         }
+    }
+
+    public function cleanParam(mixed $value): mixed
+    {
+        switch (gettype($value)) {
+            case "integer":
+                $value = filter_var($value, FILTER_VALIDATE_INT);
+                break;
+            case "boolean":
+                $value = filter_var($value, FILTER_VALIDATE_BOOLEAN);
+                break;
+            case "double":
+                $value = filter_var($value);
+                break;
+            case "string":
+                $value = htmlentities($value);
+                break;
+            case "array":
+                foreach ($value as $val) {
+                    $val = $this->cleanParam($val);
+                }
+                break;
+            default:
+        }
+        return $value;
     }
 }
