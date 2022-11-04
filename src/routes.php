@@ -14,5 +14,6 @@ return [
     'users/show' => ['UserController', 'show', ['id']],
     'users/add' => ['UserController', 'add',],
     'users/delete' => ['UserController', 'delete',],
-    'rgpd' => ['RgpdController', 'index',]
+    'rgpd' => ['RgpdController', 'index',],
+    'about' => ['AboutController', 'index',]
 ];
