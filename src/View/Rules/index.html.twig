@@ -6,10 +6,12 @@
 {% block stylesheet %}
 	{{parent()}}
 	<link rel="stylesheet" href="/assets/css/rules.css">
+	<link rel="stylesheet" type="text/css" href="/assets/css/userForm.css">
+	<link rel="stylesheet" type="text/css" href="/assets/css/login.css">
 {% endblock %}
 
 {% block content %}
-	<main>
+	<section>
 		<h1 class="rule-title">Bienvenue
 			{{ user.nickName }}
 			dans Happiness & Glitters</h1>
@@ -71,12 +73,19 @@
 				</div>
 			</li>
 		</ul>
-		<div class="rule-button">
-			<button class="button-play" style="button" onclick="">Chercher un adversaire</button>
+		<button class="redButton" id="login-button" data-modal="modalTwo">J'ai déja un compte</button>
+
+		<div id="modalTwo" class="modal">
+			<div class="modal-content">
+				<a class="close">&times;</a>
+				{% include 'User/_login.html.twig' %}
+			</div>
 		</div>
 	</main>
 {% endblock %}
 {% block javascript %}
 	{{parent()}}
+	<script type="application/javascript" src="/assets/js/formModale.js"></script>
+	<script type="application/javascript" src="/assets/js/profilePic.js"></script>
 	<script src="/assets/js/card-flip.js"></script>
 {% endblock %}
