@@ -12,73 +12,74 @@
 {% endblock %}
 
 {% block content %}
+	<main>
+		<aside id="id01" class="modal">
+			<div class="modal-content">
+				<section class="formSection">
+					<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+					{# <section class="formSection formSectionModale"> #}
 
-	<aside id="id01" class="modal">
-		<div class="modal-content">
-			<section class="formSection">
-				<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-				{# <section class="formSection formSectionModale"> #}
+					<h2 class="deleteWarning">Are you sure you want to delete your account
+						{{user.nickName}}?</h2>
 
-    <h3 class="deleteWarning">Are you sure you want to delete your account {{user.nickName}}?</h3>
+					<div class="modalButtons">
+						<button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelButton">Cancel</button><br>
+						<button onclick="location.href='delete?id={{ user.id }}'" type="button" class="redButton">Delete account</button>
+					</div>
+				</section>
+			</div>
+		</aside>
 
-				<div class="modalButtons">
-					<button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelButton">Cancel</button><br>
-					<button onclick="location.href='delete?id={{ user.id }}'" type="button" class="redButton">Delete account</button>
-				</div>
-			</section>
-		</div>
+		<section class="top">
 
+			<div class="left-top">
+				<img src="/assets/images/profile/{{ user.avatar }}" alt="Avatar" class="userPic">
+			</div>
 
-	</aside>
+			<div class="right-top">
+				<div class="rank">🥇 1st</div>
+				<div class="points">{{ user.score }}
+					Points</div>
+			</div>
 
-	<section class="top">
+		</section>
 
-	<div class="left-top">
-	  <img src="/assets/images/profile/{{ user.avatar }}" alt="Avatar" class="userPic">
-	</div>
+		<section class="bottomSection">
 
-		<div class="right-top">
-			<div class="rank">🥇 1st</div>
-			<div class="points">{{ user.score }}
-				Points</div>
-		</div>
+			<h1 class="detailsTitle">Mes infos
+				<a href="/users/edit?id={{ user.id }}" style="font-size: 30px; ">✏️</a>
+			</h1>
 
-	</section>
+			<table>
+				<tr>
+					<td>Prenom</td>
+					<td>{{ user.firstName }}</td>
+				</tr>
+				<tr>
+					<td>Nom</td>
+					<td>{{ user.lastName }}</td>
+				</tr>
+				<tr>
+					<td>Nickname</td>
+					<td>{{ user.nickName }}</td>
+				</tr>
+				<tr>
+					<td>Email</td>
+					<td>{{ user.email }}</td>
+				</tr>
+				<tr>
+					<td>Description</td>
+					<td>{{ user.description }}</td>
+				</tr>
+			</table>
 
-	<section class="bottomSection">
+			<div class="endDiv">
+				<a href="#" onclick="document.getElementById('id01').style.display='block'">Supprimer mon profil</a>
+				<a href="/users">⬅️Retour</a>
+			</div>
 
-  <h2 class="detailsTitle">My Details  <a href="/users/edit?id={{ user.id }}" style="font-size: 30px; ">✏️</a></h2>
-
-		<table>
-			<tr>
-				<td>Prenom</td>
-				<td>{{ user.firstName }}</td>
-			</tr>
-			<tr>
-				<td>Nom</td>
-				<td>{{ user.lastName }}</td>
-			</tr>
-			<tr>
-				<td>Nickname</td>
-				<td>{{ user.nickName }}</td>
-			</tr>
-			<tr>
-				<td>Email</td>
-				<td>{{ user.email }}</td>
-			</tr>
-			<tr>
-				<td>Description</td>
-				<td>{{ user.description }}</td>
-			</tr>
-		</table>
-
-	</section>
-
-	<div class="endDiv">
-		<a href="#" onclick="document.getElementById('id01').style.display='block'">Supprimer mon profil</a>
-		<a href="/users">⬅️Retour</a>
-	</div>
-
+		</section>
+	</main>
 {% endblock %}
 
 {% block javascript %}
