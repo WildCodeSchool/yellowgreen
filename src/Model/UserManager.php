@@ -11,7 +11,7 @@ class UserManager extends AbstractManager
     /**
      * Insert new user in database and retrieve the id
      */
-    public function insert(array $user): int
+    public function insert(array $user): int|array
     {
         $statement = $this->pdo->prepare("INSERT INTO " . self::TABLE . " (firstName, lastName, nickName, email,
         passWord, avatar, description) VALUES (:firstName, :lastName, :nickName,

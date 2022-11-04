@@ -53,7 +53,7 @@ class UserController extends AbstractController
             if ($user) {
                 $errors = $this->checkData($user);
             } else {
-                $errors[] = "Entreè(s) avec format invalide";
+                $errors[] = "Entrées avec format invalide";
             }
 
             if (empty($errors)) {
