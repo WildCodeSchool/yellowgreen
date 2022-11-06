@@ -1,0 +1,6 @@
+.unicorn-title {
+    text-align: center;
+    color: var(--primary-color);
+    -webkit-text-stroke: 0.5px rgba(121, 10, 77, 1);
+    font-family: var(--primary-font);
+}

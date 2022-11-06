@@ -25,5 +25,4 @@ class UnicornController extends AbstractController
         $unicorn = $unicornManager->selectOneById($id);
         return $this->twig->render('Unicorn/show.html.twig', ['unicorn' => $unicorn]);
     }
-
 }
