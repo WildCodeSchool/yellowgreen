@@ -1,4 +1,4 @@
- section h2 {
+ section h1 {
      background: var(--third-color);
      border-top-left-radius: 15px;
      border-top-right-radius: 15px;
@@ -34,6 +34,7 @@
      justify-content: space-around;
      margin: auto 20%;
      filter: var(--filter-shadow);
+     font-family: var(--primary-font);
  }
 
  .right-top {
@@ -72,6 +73,7 @@
      border-bottom-left-radius: 15px;
      border-bottom-right-radius: 15px;
      filter: var(--filter-shadow);
+     font-family: var(--primary-font);
  }
 
  a {
@@ -124,7 +126,18 @@
  }
 
  .endDiv {
+     font-family: var(--secondary-font);
      display: grid;
+ }
+
+ .detailsTitle {
+     font-family: var(--primary-font);
+     text-align: center;
+ }
+
+ .deleteWarning {
+     font-family: var(--secondary-font);
+     font-size: 2grem;
  }
 
  @media only screen and (max-width: 768px) {}

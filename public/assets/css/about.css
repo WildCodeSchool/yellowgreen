@@ -1,0 +1,50 @@
+main.about h1 {
+    text-align: center;
+    color: var(--primary-color);
+    -webkit-text-stroke: 0.5px rgba(121, 10, 77, 1);
+    font-family: var(--primary-font);
+}
+
+main.about section.dev ul {
+    list-style-type: none;
+    padding-left: 0%;
+}
+
+main.about section.dev ul {
+    display: flex;
+    flex-direction: row;
+}
+
+main.about section.dev ul p {
+    font-family: var(--secondary-font);
+    display: flex;
+    justify-content: center;
+}
+
+
+main.about section.dev ul li {
+    width: calc(100% / 5);
+}
+
+main.about section.dev ul li img.picture {
+    width: 100%;
+    height: 68%;
+    object-fit: cover;
+}
+
+main.about section.dev ul li div {
+    display: flex;
+    flex-direction: row-reverse;
+
+}
+
+main.about section.dev ul li div a:last-of-type {
+    margin-right: 10px;
+
+}
+
+main.about section.dev ul li div a img.social {
+    width: 100%;
+}
+
+@media screen and (max-width: 760px) {}

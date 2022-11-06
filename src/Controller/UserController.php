@@ -12,11 +12,10 @@ class UserController extends AbstractController
     public function index(): string
     {
         $userManager = new UserManager();
-        $users = $userManager->selectAll('nickName');
+        $users = $userManager->selectAll("score", "desc");
 
         return $this->twig->render('User/index.html.twig', ['users' => $users]);
     }
-
     /**
      * Show informations for a specific user
      */
@@ -45,11 +44,11 @@ class UserController extends AbstractController
                 move_uploaded_file($tmpName, 'assets/images/profile/' . $name);
                 $_POST['avatar'] = $nameFile;
             }
-                 // clean $_POST data
-                    $user = array_map('trim', $_POST);
-                $userManager->update($user);
-                header('Location: /users/show?id=' . $id);
-                    return null;
+            // clean $_POST data
+            $user = array_map('trim', $_POST);
+            $userManager->update($user);
+            header('Location: /users/show?id=' . $id);
+            return null;
             // TODO validations (length, format...
             // if validation is ok, update and redirection
             // we are redirecting so we don't want any content rendered
@@ -80,18 +79,33 @@ class UserController extends AbstractController
                 }
             }
 
-            $user = array_map('trim', $_POST);
+            $cleanValue = [];
+            foreach ($_POST as $key) {
+                $cleanValue[] = htmlentities($key);
+            }
+            $user = array_map('trim', $cleanValue);
+
+            foreach ($_POST as $key => $value) {
+                if ($key === "password") {
+                    $user[$key] = password_hash($value, PASSWORD_ARGON2ID);
+                } else {
+                    $user[$key] = $value;
+                }
+            }
+
+
             // TODO validations (length, format...)
 
             // if validation is ok, insert and redirection
             $userManager = new UserManager();
             $id = $userManager->insert($user);
             $_SESSION['userId'] = $id;
+            $_SESSION['nickname'] = $user["nickName"];
             header('Location:/users/show?id=' . $id);
             return null;
         }
 
-        return $this->twig->render('User/addUser.html.twig');
+        return $this->twig->render('Home/index.html.twig');
     }
 
     /**
@@ -106,5 +120,28 @@ class UserController extends AbstractController
 
             header('Location:/users');
         }
+    }
+
+    public function login(): string
+    {
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            $cleanValue = htmlentities(trim($_POST["email"]));
+            if (filter_var($cleanValue, FILTER_VALIDATE_EMAIL)) {
+                $userManager = new UserManager();
+                $user = $userManager->selectOneByEmail($_POST["email"]);
+                if ($user && password_verify($_POST["password"], $user["password"])) {
+                    $_SESSION['userId'] = $user["id"];
+                    $_SESSION['nickname'] = $user["nickName"];
+                    header("location: /rules");
+                }
+            }
+        }
+        return $this->twig->render('Home/index.html.twig');
+    }
+
+    public function logout()
+    {
+        session_destroy();
+        header("location: /");
     }
 }

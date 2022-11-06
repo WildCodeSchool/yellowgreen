@@ -44,7 +44,7 @@
 
 .rule-image .unicornVS {
     height: 100%;
-    width: -webkit-fill-available
+    width: 100%;
 }
 
 .rule-image .unicorn-card {
@@ -99,11 +99,9 @@
     -webkit-text-stroke: 0.5px rgba(121, 10, 77, 1);
 }
 
-
 /* Responsive */
 
 @media screen and (max-width: 600px) {
-
     .rule {
         margin: 0 1rem 1rem 1rem;
         flex-direction: column;
@@ -117,12 +115,16 @@
         display: none;
     }
 
+    .rule-image.unicorn-show p {
+        margin: 1rem;
+    }
+
     .rule p {
         text-align: center;
     }
 
     .unicorn-show {
-        display: flex
+        display: flex;
     }
 
     #paragraphs-flip {
@@ -145,20 +147,22 @@
             opacity: 0;
         }
     }
-
 }
-
 
 /* Animations */
 
 .flip-2-ver-right-2 {
-    -webkit-animation: flip-2-ver-right-2 0.5s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
-    animation: flip-2-ver-right-2 0.5s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+    -webkit-animation: flip-2-ver-right-2 0.5s
+        cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+    animation: flip-2-ver-right-2 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955)
+        both;
 }
 
 .flip-2-ver-left-2 {
-    -webkit-animation: flip-2-ver-left-2 0.5s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
-    animation: flip-2-ver-left-2 0.5s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+    -webkit-animation: flip-2-ver-left-2 0.5s
+        cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+    animation: flip-2-ver-left-2 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955)
+        both;
 }
 
 /* ----------------------------------------------
