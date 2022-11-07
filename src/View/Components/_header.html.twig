@@ -5,17 +5,18 @@
 
 	<a class="headerLinks headerTitle" href="/">Happiness & Glitters</a>
 
-	<button type="button" class="icon" onclick="displayMenu()" id="burger">
+	<button type="button" class="icon{{sessionUser ? '':' notconnected' }}" onclick="displayMenu()" id="burger">
+
 		<i class="fa-solid fa-bars"></i>
 	</button>
 
 </header>
 
-<aside class=" topnav responsivenav" id="mytopnav">
+<aside class=" topnav responsivenav{{sessionUser ? '':' notconnected' }}" id="mytopnav">
 	<ul>
 		<li><a class="headerLinks radiusButton" href="/rules">Règles</a></li>
-		<li><a class="headerLinks radiusButton" href="/users/show?id={{ user.id }}">Mon profil</a></li>
-		<li><a class="headerLinks radiusButton" href="/users">Joueurs</a></li>
+		<li><a class="headerLinks radiusButton"href={{sessionUser ? "/users/show?id=sessionUser.id" : "#"}}>Mon profil</a></li>
+		<li><a class="headerLinks radiusButton" href="/users">Classement</a></li>
 		<li><a class="headerLinks radiusButton" href="/fight">Combat</a></li>
 	</ul>
 </aside>

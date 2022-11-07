@@ -5,12 +5,13 @@
     bottom: 0;
     width: 100%;
     height: 2rem;
-    background-color: #FACFCF;
-    color: #DB6464;
+    background-color: #facfcf;
+    color: #db6464;
     text-align: center;
     align-items: center;
     margin-top: 20px;
     font-family: var(--primary-font);
+    position: absolute;
 }
 
 .globalFooter a {
