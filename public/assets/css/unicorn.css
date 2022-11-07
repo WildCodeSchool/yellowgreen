@@ -37,7 +37,8 @@
 }
 
 .unicorn-image img {
-    width: 40%;
+    width: 90px;
+    height: 100px;
 }
 
 .unicorn-table {
@@ -46,12 +47,19 @@
 }
 
 .unicorn-table table {
-
-    border-spacing: 10px;
+    border-spacing: 5px;
 
 }
 
 .unicorn-table th {
-    font-size: 1.2rem;
+    font-size: 1rem;
 
+}
+
+.selectUnicornForm {
+    text-align: center;
+}
+
+#select {
+    /*display: none;*/
 }

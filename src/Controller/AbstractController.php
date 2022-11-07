@@ -15,6 +15,7 @@ abstract class AbstractController
 {
     protected Environment $twig;
     protected array|false $user = false;
+    protected array|false $unicorn = false;
 
     public function __construct()
     {
@@ -33,8 +34,10 @@ abstract class AbstractController
             $this->user = $userManager->selectOneById($_SESSION["userId"]);
             $this->twig->addGlobal('user', $this->user);
         }
-        $unicornManager = new UnicornManager();
-        $this->unicorns = $unicornManager->selectAll();
-        $this->twig->addGlobal('unicorns', $this->unicorns);
+        if (isset($_SESSION["selectedUnicorn"])) {
+            $unicornManager = new UnicornManager();
+            $this->unicorn = $unicornManager->selectOneById($_SESSION["selectedUnicorn"]);
+            $this->twig->addGlobal('unicorn', $this->unicorn);
+        }
     }
 }

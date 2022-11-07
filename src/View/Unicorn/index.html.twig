@@ -10,16 +10,17 @@
 {% endblock %}
 
 {% block content %}
+
+	{% if post is defined %}
+		{{dump(post)}}
+	{% endif  %}
 	<main>
 		<h1 class="unicorn-title">Sélectionne ta licorne,
 			{{ user.nickName }}
 		</h1>
-		<pre>
-			{{ dump(unicorns) }}
-		</pre>
-		<h2 class="unicorn-title">N'oublie pas que tu ne peux choisir qu'une seule licorne, réfléchis bien !</h2>
+		<h2 class="unicorn-title">N'oublie pas que tu ne peux choisir qu'une seule licorne, alors réfléchis bien !</h2>
 		<ul class="unicorns">
-			<li class="unicorn">
+			<li class="unicorn" id="allena">
 				<div class="unicorn-name">
 					<h3>Allena</h3>
 				</div>
@@ -59,86 +60,102 @@
 					</table>
 				</div>
 			</li>
-		</li>
-		<li class="unicorn">
-			<div class="unicorn-name">
-				<h3>Larissa</h3>
-			</div>
-			<div class="unicorn-image">
-				<img src="/assets/images/unicorn/allena.png" alt="">
-			</div>
-			<div class="unicorn-skills">
-				<h4>Capacités</h4>
-			</div>
-			<div class="unicorn-table">
-				<table>
-					<tr>
-						<th>Nom</th>
-						<th>Coût</th>
-						<th>Gain</th>
-						<th>Chance</th>
-					</tr>
+			<li class="unicorn" id="larissa">
+				<div class="unicorn-name">
+					{% set userUnicorn2 = 2 %}
+					<h3>Larissa</h3>
+				</div>
+				<div class="unicorn-image">
+					<img src="/assets/images/unicorn/larissa.png" alt="">
+				</div>
+				<div class="unicorn-skills">
+					<h4>Capacités</h4>
+				</div>
+				<div class="unicorn-table">
+					<table>
+						<tr>
+							<th>Nom</th>
+							<th>Coût</th>
+							<th>Gain</th>
+							<th>Chance</th>
+						</tr>
 
-					<tr>
-						<td>Clin d'oeil</td>
-						<td>3</td>
-						<td>6</td>
-						<td>75%</td>
-					</tr>
-					<tr>
-						<td>Malice</td>
-						<td>5</td>
-						<td>15</td>
-						<td>60%</td>
-					</tr>
-					<tr>
-						<td>Bisou</td>
-						<td>8</td>
-						<td>24</td>
-						<td>30%</td>
-					</tr>
-				</table>
-			</div>
-		</li>
-	</li>
-	<li class="unicorn">
-		<div class="unicorn-name">
-			<h3>Suki</h3>
-		</div>
-		<div class="unicorn-image">
-			<img src="/assets/images/unicorn/allena.png" alt="">
-		</div>
-		<div class="unicorn-skills">
-			<h4>Capacités</h4>
-		</div>
-		<div class="unicorn-table">
-			<table>
-				<tr>
-					<th>Nom</th>
-					<th>Coût</th>
-					<th>Gain</th>
-					<th>Chance</th>
-				</tr>
+						<tr>
+							<td>Clin d'oeil</td>
+							<td>3</td>
+							<td>6</td>
+							<td>75%</td>
+						</tr>
+						<tr>
+							<td>Malice</td>
+							<td>5</td>
+							<td>15</td>
+							<td>60%</td>
+						</tr>
+						<tr>
+							<td>Bisou</td>
+							<td>8</td>
+							<td>24</td>
+							<td>30%</td>
+						</tr>
+					</table>
+				</div>
+			</li>
+			<li class="unicorn" id="sushi">
+				<div class="unicorn-name">
+					{% set userUnicorn3 = 3 %}
+					<h3>Suki</h3>
+				</div>
+				<div class="unicorn-image">
+					<img src="/assets/images/unicorn/suki.png" alt="">
+				</div>
+				<div class="unicorn-skills">
+					<h4>Capacités</h4>
+				</div>
+				<div class="unicorn-table">
+					<table>
+						<tr>
+							<th>Nom</th>
+							<th>Coût</th>
+							<th>Gain</th>
+							<th>Chance</th>
+						</tr>
 
-				<tr>
-					<td>Etoiles filantes</td>
-					<td>2</td>
-					<td>4</td>
-					<td>90%</td>
-				</tr>
-				<tr>
-					<td>Câlin</td>
-					<td>7</td>
-					<td>20</td>
-					<td>40%</td>
-				</tr>
-				<tr>
-					<td>Bisou</td>
-					<td>8</td>
-					<td>24</td>
-					<td>30%</td>
-				</tr>
-			</table>
+						<tr>
+							<td>Etoiles filantes</td>
+							<td>2</td>
+							<td>4</td>
+							<td>90%</td>
+						</tr>
+						<tr>
+							<td>Câlin</td>
+							<td>7</td>
+							<td>20</td>
+							<td>40%</td>
+						</tr>
+						<tr>
+							<td>Bisou</td>
+							<td>8</td>
+							<td>24</td>
+							<td>30%</td>
+						</tr>
+					</table>
+				</div>
+			</li>
+		</ul>
+		<div>
+			<form class="selectUnicornForm" method="post" action="">
+				<select name="selectedUnicorn" id="select">
+					<option value="1">Allena</option>
+					<option value="2">Larissa</option>
+					<option value="3">Sushi</option>
+				</select>
+				<input type="submit" value="Submit">
+			</form>
 		</div>
-	</li>
-</li></ul></main>{% endblock %}{% block javascript %}{{parent()}}<script type="application/javascript" src="/assets/js/profilePic.js"></script><script src="/assets/js/card-flip.js"></script>{% endblock %}
+	</main>
+{% endblock %}
+{% block javascript %}
+	{{parent()}}<script type="application/javascript" src="/assets/js/profilePic.js"></script>
+	<script src="/assets/js/select-unicorn.js"></script>
+{% endblock %}
