@@ -1,8 +1,8 @@
 {% block content %}
 <section class="formSection">
-<form method="post" enctype="multipart/form-data">
-	<h2>Edit user {{ user.nickName }}</h2>
-	
+	<form method="post" enctype="multipart/form-data">
+		<h2>Edit user {{ user.nickName }}</h2>
+		
 		<div class="userPic" id="imageHolder">
 		<img src="/../assets/images/profile/img_avatar.png" alt="Avatar" class="userPic" id="avatar-src" >
 		</div>
@@ -25,9 +25,9 @@
 		<input type="text" value="{{user.description}}" name="description" id="description" placeholder="Description">
 
 		<div class="modalButtons">
-		<button class="redButton">Enregistrer</button><br>
-		<button onclick="location.href='/users/show?id={{ user.id }}'" type="button" class="cancelButton">Retour</button>
+			<button class="redButton">Enregistrer</button><br>
+			<button onclick="location.href='/users/show?id={{ user.id }}'" type="button" class="cancelButton">Retour</button>
 		</div>
-</form>
+	</form>
 </section>
 {% endblock %}

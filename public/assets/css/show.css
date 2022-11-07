@@ -1,4 +1,4 @@
- section h2 {
+ section h1 {
      background: var(--third-color);
      border-top-left-radius: 15px;
      border-top-right-radius: 15px;
@@ -126,17 +126,18 @@
  }
 
  .endDiv {
-    font-family: var(--secondary-font);
+     font-family: var(--secondary-font);
      display: grid;
  }
 
- .detailsTitle{
-    font-family: var(--primary-font);
+ .detailsTitle {
+     font-family: var(--primary-font);
+     text-align: center;
  }
 
- .deleteWarning{
-    font-family: var(--secondary-font);
-    font-size: 25px;
+ .deleteWarning {
+     font-family: var(--secondary-font);
+     font-size: 2grem;
  }
 
  @media only screen and (max-width: 768px) {}

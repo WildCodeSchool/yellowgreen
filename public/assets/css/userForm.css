@@ -80,6 +80,10 @@ h3 {
     justify-content: center;
 }
 
+#modalOne {
+    z-index: 1;
+}
+
 #modalOne.displayed {
     display: block;
 }

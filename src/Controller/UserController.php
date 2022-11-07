@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Model\UserManager;
+use App\Utils\UserUtils;
 use PDOException;
 
 class UserController extends AbstractController
@@ -51,7 +52,7 @@ class UserController extends AbstractController
             $user = $this->cleanParam($user);
 
             if ($user) {
-                $errors = $this->checkData($user);
+                $errors = UserUtils::checkData($user);
             } else {
                 $errors[] = "Entrées avec format invalide";
             }
@@ -75,65 +76,6 @@ class UserController extends AbstractController
         ]);
     }
 
-    public function checkName(string $key, mixed $value): array
-    {
-        $errors = array();
-        if (!isset($value) || $value === '') {
-            $errors[] = $key . " is required";
-        } elseif (strlen($value) > 45 || strlen($value) < 2) {
-            $errors[] = "Your " . $key . " must be between 2 and 45 characters";
-        }
-        return $errors;
-    }
-
-    public function checkEmail(mixed $value): array
-    {
-        $errors = array();
-        if ($value === '') {
-            $errors[] = "Email is required";
-        } else {
-            $value = filter_var($value, FILTER_VALIDATE_EMAIL);
-            if (!$value) {
-                $errors[] = $value . "is not a valid email address";
-            }
-        }
-        return $errors;
-    }
-
-    public function checkPassword(mixed $value): array
-    {
-        $errors = array();
-        if (!isset($value) || $value === '') {
-            $errors[] = "Password is required";
-        } elseif (strlen($value) > 45 || strlen($value) < 9) {
-            $errors[] = "Your password must be between 8 and 45 characters";
-        } else {
-            $value = password_hash($value, PASSWORD_ARGON2ID);
-        }
-        return $errors;
-    }
-
-    public function checkData(array $user): array
-    {
-        $errors = array();
-        foreach ($user as $key => $value) {
-            switch ($key) {
-                case 'firstName':
-                case 'lastName':
-                case 'nickName':
-                    $errors = array_merge($errors, $this->checkName($key, $value));
-                    break;
-                case 'email':
-                    $errors = array_merge($errors, $this->checkEmail($value));
-                    break;
-                case 'passWord':
-                    $errors = array_merge($errors, $this->checkPassword($value));
-                    break;
-                default:
-            }
-        }
-        return $errors;
-    }
     /**
      * Add a new user
      */
@@ -161,9 +103,11 @@ class UserController extends AbstractController
             $user = array_map('trim', $_POST);
             $user = $this->cleanParam($user);
             if ($user) {
-                $errors = $this->checkData($user);
+                $result = UserUtils::checkData($user);
+                $errors = $result['errors'];
+                $user = $result['user'];
             } else {
-                $errors[] = "Entreè(s) avec format invalide";
+                $errors[] = "Entrée(s) avec format invalide";
             }
             // if validation is ok, insert and redirection
             $userManager = new UserManager();
@@ -180,7 +124,9 @@ class UserController extends AbstractController
             return $this->twig->render('Rules/index.html.twig', ["errors" => $errors, "user" => $user]);
         } else {
             $_SESSION['userId'] = $id;
-            header('Location:/users/show?id=' . $id);
+            $_SESSION['nickName'] = $user['nickName'];
+            $_SESSION['passWord'] = $user['passWord'];
+            header('Location:/users');
             return null;
         }
     }
@@ -197,5 +143,29 @@ class UserController extends AbstractController
 
             header('Location:/users');
         }
+    }
+
+    public function login(): string
+    {
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            $cleanValue = htmlentities(trim($_POST["email"]));
+            if (filter_var($cleanValue, FILTER_VALIDATE_EMAIL)) {
+                $userManager = new UserManager();
+                $user = $userManager->selectOneByEmail($_POST["email"]);
+                if ($user && password_verify($_POST["passWord"], $user["passWord"])) {
+                    $_SESSION['userId'] = $user["id"];
+                    $_SESSION['nickName'] = $user["nickName"];
+                    $_SESSION['passWord'] = $user['passWord'];
+                    header("location: /rules");
+                }
+            }
+        }
+        return $this->twig->render('Home/index.html.twig');
+    }
+
+    public function logout()
+    {
+        session_destroy();
+        header("location: /");
     }
 }
