@@ -12,9 +12,10 @@ class UnicornController extends AbstractController
     public function index(): string
     {
         $unicornManager = new UnicornManager();
-        $unicorns = $unicornManager->selectAll("score", "desc");
+        $unicorns = $unicornManager->selectAll("id", "asc");
 
-        return $this->twig->render('Unicorn/index.html.twig', ['unicorns' => $unicorns]);
+        // return $this->twig->render('Unicorn/index.html.twig', ['unicorns' => $unicorns]);
+        return $this->twig->render('Unicorn/index.html.twig');
     }
     /**
      * Show informations for a specific unicorn

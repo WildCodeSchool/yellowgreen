@@ -14,78 +14,131 @@
 		<h1 class="unicorn-title">Sélectionne ta licorne,
 			{{ user.nickName }}
 		</h1>
+		<pre>
+			{{ dump(unicorns) }}
+		</pre>
 		<h2 class="unicorn-title">N'oublie pas que tu ne peux choisir qu'une seule licorne, réfléchis bien !</h2>
 		<ul class="unicorns">
-			<li class="rule">
+			<li class="unicorn">
+				<div class="unicorn-name">
+					<h3>Allena</h3>
+				</div>
 				<div class="unicorn-image">
-					<img src="/assets/images/Allena.png" alt="" class="unicornVS">
+					<img src="/assets/images/unicorn/allena.png" alt="">
 				</div>
-				<div class="rule-paragraphs">
-					<p>
-						Happiness & Glitters est un jeu hautement compétitif, basé sur des affrontements de gentillesse entre des licornes toutes mignonnes.
-					</p>
-					<p>
-						Un affrontement se déroule au tour par tour et est découpé en plusieurs rounds.
-					</p>
+				<div class="unicorn-skills">
+					<h4>Capacités</h4>
 				</div>
-			</li>
-			<li class="rule">
-				<div class="blink-paragraph" id="blink">
-					<p>Clique sur la licorne !</p>
-				</div>
-				<div class="rule-image unicorn-show" id="card-flip">
-					<img src="/assets/images/unicorn-card.png" alt="" class="unicorn-card">
-				</div>
-				<div class="rule-paragraphs" id="paragraphs-flip">
-					<p>
-						Au début de l’affrontement, tu vas devoir sélectionner UNE SEULE LICORNE qui t’accompagnera tout au long de la partie.
-					</p>
-					<p>
-						Chaque licorne est unique et possède plusieurs capacités dont les caractéristiques diffèrent.
-					</p>
-				</div>
-			</li>
-			<li class="rule">
-				<div class="rule-paragraphs">
-					<p>
-						Au début de l’affrontement, ton adversaire et toi avez 100 POINTS DE GENTILLESSE (PG) chacun.
-					</p>
-					<p>
-						Le total de PG évolue en cours de partie en fonction des capacités lancées par les licornes trop mignonnes !
-					</p>
-					<p>
-						Chaque capacité a un coût de PG, un gain de PG et une chance de toucher différents.
-					</p>
-				</div>
-				<div class="rule-image">
-					<img src="/assets/images/unicorn-walking.png" alt="" class="unicorn-walking">
-				</div>
-			</li>
-			<li class="rule">
-				<div class="rule-paragraphs endgame">
-					<p>Deux moyens de terminer la partie :</p>
+				<div class="unicorn-table">
+					<table>
+						<tr>
+							<th>Nom</th>
+							<th>Coût</th>
+							<th>Gain</th>
+							<th>Chance</th>
+						</tr>
 
-					<p>1. Le premier joueur à atteindre 200 PG gagne la partie !
-					</p>
-
-					<p>2. Le joueur qui tombe à 0 PG perd la partie !</p>
+						<tr>
+							<td>Etoiles filantes</td>
+							<td>2</td>
+							<td>4</td>
+							<td>90%</td>
+						</tr>
+						<tr>
+							<td>Cabrage</td>
+							<td>4</td>
+							<td>10</td>
+							<td>70%</td>
+						</tr>
+						<tr>
+							<td>Bisou</td>
+							<td>8</td>
+							<td>24</td>
+							<td>30%</td>
+						</tr>
+					</table>
 				</div>
 			</li>
-		</ul>
-		<div class="login">
-			<button class="redButton" id="login-button" data-modal="modalTwo">J'ai déja un compte</button>
-		</div>
-
-		<div id="modalTwo" class="modal">
-			<div class="modal-content">
-				<a class="close">&times;</a>
-				{% include 'User/_login.html.twig' %}
+		</li>
+		<li class="unicorn">
+			<div class="unicorn-name">
+				<h3>Larissa</h3>
 			</div>
+			<div class="unicorn-image">
+				<img src="/assets/images/unicorn/allena.png" alt="">
+			</div>
+			<div class="unicorn-skills">
+				<h4>Capacités</h4>
+			</div>
+			<div class="unicorn-table">
+				<table>
+					<tr>
+						<th>Nom</th>
+						<th>Coût</th>
+						<th>Gain</th>
+						<th>Chance</th>
+					</tr>
+
+					<tr>
+						<td>Clin d'oeil</td>
+						<td>3</td>
+						<td>6</td>
+						<td>75%</td>
+					</tr>
+					<tr>
+						<td>Malice</td>
+						<td>5</td>
+						<td>15</td>
+						<td>60%</td>
+					</tr>
+					<tr>
+						<td>Bisou</td>
+						<td>8</td>
+						<td>24</td>
+						<td>30%</td>
+					</tr>
+				</table>
+			</div>
+		</li>
+	</li>
+	<li class="unicorn">
+		<div class="unicorn-name">
+			<h3>Suki</h3>
 		</div>
-	</main>
-{% endblock %}
-{% block javascript %}
-	{{parent()}}
-	<script type="application/javascript" src="/assets/js/profilePic.js"></script>
-	<script src="/assets/js/card-flip.js"></script>
-{% endblock %}
+		<div class="unicorn-image">
+			<img src="/assets/images/unicorn/allena.png" alt="">
+		</div>
+		<div class="unicorn-skills">
+			<h4>Capacités</h4>
+		</div>
+		<div class="unicorn-table">
+			<table>
+				<tr>
+					<th>Nom</th>
+					<th>Coût</th>
+					<th>Gain</th>
+					<th>Chance</th>
+				</tr>
+
+				<tr>
+					<td>Etoiles filantes</td>
+					<td>2</td>
+					<td>4</td>
+					<td>90%</td>
+				</tr>
+				<tr>
+					<td>Câlin</td>
+					<td>7</td>
+					<td>20</td>
+					<td>40%</td>
+				</tr>
+				<tr>
+					<td>Bisou</td>
+					<td>8</td>
+					<td>24</td>
+					<td>30%</td>
+				</tr>
+			</table>
+		</div>
+	</li>
+</li></ul></main>{% endblock %}{% block javascript %}{{parent()}}<script type="application/javascript" src="/assets/js/profilePic.js"></script><script src="/assets/js/card-flip.js"></script>{% endblock %}

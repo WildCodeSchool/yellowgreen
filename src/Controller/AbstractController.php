@@ -6,6 +6,7 @@ use Twig\Environment;
 use Twig\Extension\DebugExtension;
 use Twig\Loader\FilesystemLoader;
 use App\Model\UserManager;
+use App\Model\UnicornManager;
 
 /**
  * Initialized some Controller common features (Twig...)
@@ -32,5 +33,8 @@ abstract class AbstractController
             $this->user = $userManager->selectOneById($_SESSION["userId"]);
             $this->twig->addGlobal('user', $this->user);
         }
+        $unicornManager = new UnicornManager();
+        $this->unicorns = $unicornManager->selectAll();
+        $this->twig->addGlobal('unicorns', $this->unicorns);
     }
 }

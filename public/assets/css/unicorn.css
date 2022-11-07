@@ -4,3 +4,54 @@
     -webkit-text-stroke: 0.5px rgba(121, 10, 77, 1);
     font-family: var(--primary-font);
 }
+
+.unicorns {
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+.unicorn {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    background: linear-gradient(180deg, var(--third-color) 16%, var(--secondary-color) 40%);
+    border-radius: 15px;
+    color: var(--primary-color);
+    font-family: var(--primary-font);
+    text-align: center;
+}
+
+.unicorn h3,
+.unicorn h4 {
+    text-align: center;
+}
+
+.unicorn h3 {
+    font-size: 1.8rem;
+}
+
+
+.unicorn h4 {
+    font-size: 1.5rem;
+}
+
+.unicorn-image img {
+    width: 40%;
+}
+
+.unicorn-table {
+    text-align: center;
+    align-self: center;
+}
+
+.unicorn-table table {
+
+    border-spacing: 10px;
+
+}
+
+.unicorn-table th {
+    font-size: 1.2rem;
+
+}
