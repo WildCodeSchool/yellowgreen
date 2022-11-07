@@ -13,6 +13,7 @@
 
 	{% if post is defined %}
 		{{dump(post)}}
+		{{dump(unicorn)}}
 	{% endif  %}
 	<main>
 		<h1 class="unicorn-title">Sélectionne ta licorne,
@@ -144,11 +145,12 @@
 			</li>
 		</ul>
 		<div>
-			<form class="selectUnicornForm" method="post" action="">
+			<form class="selectUnicornForm" method="post" action="/unicorn/select?id={{ post.selectedUnicorn }}">
 				<select name="selectedUnicorn" id="select">
 					<option value="1">Allena</option>
 					<option value="2">Larissa</option>
 					<option value="3">Sushi</option>
+					{% set value = 3 %}
 				</select>
 				<input type="submit" value="Submit">
 			</form>

@@ -20,4 +20,5 @@ return [
     'legal' => ['LegalController', 'index',],
     'about' => ['AboutController', 'index',],
     'unicorn' => ['UnicornController', 'index',],
+    'unicorn/select' => ['UnicornController', 'addSelectedUnicornToSession', ['id']],
 ];

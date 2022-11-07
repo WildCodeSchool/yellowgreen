@@ -11,17 +11,23 @@ class UnicornController extends AbstractController
      */
     public function index(): string
     {
-        $unicornManager = new UnicornManager();
-        $unicorns = $unicornManager->selectAll("id", "asc");
         return $this->twig->render('Unicorn/index.html.twig', ['post' => $_POST]);
     }
     /**
      * Show informations for a specific unicorn
      */
-    public function chooseUnicorn(int $id): string
+    public function addSelectedUnicornToSession(): void
     {
-        $unicornManager = new UnicornManager();
-        $unicorn = $unicornManager->selectOneById($id);
-        return $this->twig->render('Unicorn/show.html.twig', ['unicorn' => $unicorn]);
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            $cleanId = htmlentities(trim($_POST["selectedUnicorn"]));
+            if (filter_var($cleanId, FILTER_VALIDATE_INT)) {
+                $unicornManager = new UnicornManager();
+                $unicorn = $unicornManager->selectOneById($cleanId);
+                $_SESSION['selectedUnicorn'] = $unicorn["id"];
+                header("location: /unicorn");
+            }
+        } else {
+            header("location: /");
+        }
     }
 }
