@@ -11,10 +11,10 @@
 
 {% block content %}
 
-	{% if post is defined %}
-		{{dump(post)}}
-		{{dump(unicorn)}}
-	{% endif  %}
+
+	{{dump(post)}}
+	{{dump(unicorn)}}
+	{{dump(opponentUnicorn)}}
 	<main>
 		<h1 class="unicorn-title">Sélectionne ta licorne,
 			{{ user.nickName }}
@@ -63,7 +63,6 @@
 			</li>
 			<li class="unicorn" id="larissa">
 				<div class="unicorn-name">
-					{% set userUnicorn2 = 2 %}
 					<h3>Larissa</h3>
 				</div>
 				<div class="unicorn-image">
@@ -102,9 +101,8 @@
 					</table>
 				</div>
 			</li>
-			<li class="unicorn" id="sushi">
+			<li class="unicorn" id="suki">
 				<div class="unicorn-name">
-					{% set userUnicorn3 = 3 %}
 					<h3>Suki</h3>
 				</div>
 				<div class="unicorn-image">
@@ -146,11 +144,15 @@
 		</ul>
 		<div>
 			<form class="selectUnicornForm" method="post" action="/unicorn/select?id={{ post.selectedUnicorn }}">
-				<select name="selectedUnicorn" id="select">
+				<select name="selectedUnicorn" id="select-user">
 					<option value="1">Allena</option>
 					<option value="2">Larissa</option>
-					<option value="3">Sushi</option>
-					{% set value = 3 %}
+					<option value="3">Suki</option>
+				</select>
+				<select name="opponentUnicorn" id="select-opponent">
+					<option value="1">Allena</option>
+					<option value="2">Larissa</option>
+					<option value="3">Suki</option>
 				</select>
 				<input type="submit" value="Submit">
 			</form>

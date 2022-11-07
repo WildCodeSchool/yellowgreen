@@ -18,16 +18,32 @@ class UnicornController extends AbstractController
      */
     public function addSelectedUnicornToSession(): void
     {
-        if ($_SERVER["REQUEST_METHOD"] === "POST") {
-            $cleanId = htmlentities(trim($_POST["selectedUnicorn"]));
-            if (filter_var($cleanId, FILTER_VALIDATE_INT)) {
+        if ($_SERVER["REQUEST_METHOD"] === "POST") 
+        {
+            $cleanValue = htmlentities(trim($_POST["selectedUnicorn"]));
+            $cleanIdUnicorn = intval($cleanValue);
+            if (filter_var($cleanIdUnicorn, FILTER_VALIDATE_INT)) {
                 $unicornManager = new UnicornManager();
-                $unicorn = $unicornManager->selectOneById($cleanId);
+                $unicorn = $unicornManager->selectOneById($cleanIdUnicorn);
                 $_SESSION['selectedUnicorn'] = $unicorn["id"];
+            }
+            $cleanValue = htmlentities(trim($_POST["opponentUnicorn"]));
+            $cleanIdUnicorn = intval($cleanValue);
+            if (filter_var($cleanIdUnicorn, FILTER_VALIDATE_INT)) {
+                $unicornManager = new UnicornManager();
+                $unicorn = $unicornManager->selectOneById($cleanIdUnicorn);
+                $_SESSION['opponentUnicorn'] = $unicorn["id"];
                 header("location: /unicorn");
             }
         } else {
             header("location: /");
         }
     }
+
+    /** 
+     * It's computer turn to pick a unicorn 
+     * Implement a function that removes the unicorn chosen by the user from the available choice list
+     * Implement a function that randomizes the choice 
+     * Save the choice to a $_SESSION var 
+    */
 }
