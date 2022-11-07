@@ -1,10 +1,16 @@
 {% block content %}
 <section class="formSection">
-	<form method="post" enctype="multipart/form-data">
+	<form method="post" enctype="multipart/form-data" >
 		<h2>Edit user {{ user.nickName }}</h2>
 		
+	 	<div class="show-errors">
+			{% for err in errors %}
+				<p>{{ err }}</p>
+			{% endfor %}
+		</div>
+
 		<div class="userPic" id="imageHolder">
-		<img src="/../assets/images/profile/img_avatar.png" alt="Avatar" class="userPic" id="avatar-src" >
+		<img src="/../assets/images/profile/{{ user.avatar }}" alt="Avatar" class="userPic" id="avatar-src" >
 		</div>
 
 		<input type="hidden" value="{{user.id}}" name="id" id="id" placeholder="id" >
