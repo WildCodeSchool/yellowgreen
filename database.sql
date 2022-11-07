@@ -49,4 +49,22 @@ CREATE TABLE
         FOREIGN KEY (attack_Id) REFERENCES attack(id) ON DELETE CASCADE
     );
 
-INSERT INTO unicorn (name, avatar, score, fights, wonFights, lostFights, koFights) VALUES ('Allena', 'allena.jpg')
+INSERT INTO
+    unicorn (
+        name,
+        avatar,
+        score,
+        fights,
+        wonFights,
+        lostFights,
+        koFights
+    )
+VALUES (
+        'Allena',
+        'allena.jpg',
+        100,
+        0,
+        0,
+        0,
+        0
+    );

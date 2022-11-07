@@ -17,6 +17,9 @@
 		<h2 class="unicorn-title">N'oublie pas que tu ne peux choisir qu'une seule licorne, réfléchis bien !</h2>
 		<ul class="unicorns">
 			<li class="rule">
+				<div class="unicorn-image">
+					<img src="/assets/images/Allena.png" alt="" class="unicornVS">
+				</div>
 				<div class="rule-paragraphs">
 					<p>
 						Happiness & Glitters est un jeu hautement compétitif, basé sur des affrontements de gentillesse entre des licornes toutes mignonnes.
@@ -24,9 +27,6 @@
 					<p>
 						Un affrontement se déroule au tour par tour et est découpé en plusieurs rounds.
 					</p>
-				</div>
-				<div class="rule-image">
-					<img src="/assets/images/unicornVS.png" alt="" class="unicornVS">
 				</div>
 			</li>
 			<li class="rule">
@@ -86,7 +86,6 @@
 {% endblock %}
 {% block javascript %}
 	{{parent()}}
-	<script type="application/javascript" src="/assets/js/formModale.js"></script>
 	<script type="application/javascript" src="/assets/js/profilePic.js"></script>
 	<script src="/assets/js/card-flip.js"></script>
 {% endblock %}
