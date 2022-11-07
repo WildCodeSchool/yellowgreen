@@ -39,11 +39,7 @@ class UserController extends AbstractController
         $user = $userManager->selectOneById($id);
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-
-
             if ($_FILES['avatar']['name'] !== '') {
-
                 $uploadDir = 'assets/images/profile/';
                 $tempName = explode(".", $_FILES["avatar"]["name"]);
                 $newName = round(microtime(true)) . '.' . end($tempName);
@@ -51,8 +47,7 @@ class UserController extends AbstractController
 
                 move_uploaded_file($_FILES['avatar']['tmp_name'], $uploadFile);
 
-                if ($_FILES['avatar']['name'] === '') {
-
+                if ($_FILES['avatar']['name'] == '') {
                     $_POST['avatar'] = 'img_avatar.png';
                 } else {
                     $_POST['avatar'] = $newName;
@@ -98,7 +93,6 @@ class UserController extends AbstractController
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($_FILES['avatar'])) {
-
                 $uploadDir = 'assets/images/profile/';
                 $tempName = explode(".", $_FILES["avatar"]["name"]);
                 $newName = round(microtime(true)) . '.' . end($tempName);
