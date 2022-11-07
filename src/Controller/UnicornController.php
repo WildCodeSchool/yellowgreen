@@ -18,8 +18,7 @@ class UnicornController extends AbstractController
      */
     public function addSelectedUnicornToSession(): void
     {
-        if ($_SERVER["REQUEST_METHOD"] === "POST") 
-        {
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $cleanValue = htmlentities(trim($_POST["selectedUnicorn"]));
             $cleanIdUnicorn = intval($cleanValue);
             if (filter_var($cleanIdUnicorn, FILTER_VALIDATE_INT)) {
@@ -40,10 +39,10 @@ class UnicornController extends AbstractController
         }
     }
 
-    /** 
-     * It's computer turn to pick a unicorn 
+    /**
+     * It's computer turn to pick a unicorn
      * Implement a function that removes the unicorn chosen by the user from the available choice list
-     * Implement a function that randomizes the choice 
-     * Save the choice to a $_SESSION var 
+     * Implement a function that randomizes the choice
+     * Save the choice to a $_SESSION var
     */
 }

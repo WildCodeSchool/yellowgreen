@@ -24,12 +24,28 @@ const SelectedByComputer = () => {
 };
 
 const allena = document.getElementById('allena');
-allena.addEventListener('click', changeSelected1);
+allena.addEventListener('click', () => {
+    changeSelected1();
+    allena.classList.toggle("shadow-drop-2-center");
+    larissa.classList.toggle('opacity-low');
+    suki.classList.toggle('opacity-low');
+});
+
 
 const larissa = document.getElementById('larissa');
-larissa.addEventListener('click', changeSelected2);
+larissa.addEventListener('click', () => {
+    changeSelected2();
+    larissa.classList.toggle("shadow-drop-2-center");
+    allena.classList.toggle('opacity-low');
+    suki.classList.toggle('opacity-low');
+});
 
-const sushi = document.getElementById('suki');
-sushi.addEventListener('click', changeSelected3);
+const suki = document.getElementById('suki');
+suki.addEventListener('click', () => {
+    changeSelected3();
+    suki.classList.toggle("shadow-drop-2-center");
+    allena.classList.toggle('opacity-low');
+    larissa.classList.toggle('opacity-low');
+});
 
 SelectedByComputer();
