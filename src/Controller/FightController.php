@@ -14,8 +14,6 @@ class FightController extends AbstractController
     {
         $userManager = new UserManager();
         $user = $userManager->selectRandomUsers();
-        var_dump($user);
-        die;
         return $this->twig->render('Fight/index.html.twig', ['user' => $user]);
     }
 }
