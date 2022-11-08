@@ -30,11 +30,26 @@ abstract class AbstractController
             ]
         );
         $this->twig->addExtension(new DebugExtension());
+        $unicornManager = new UnicornManager();
+        $this->unicorn = $unicornManager->selectAll();
+        $this->twig->addGlobal('unicorns', $this->unicorn);
 
         if (isset($_SESSION["userId"])) {
             $userManager = new UserManager();
             $this->sessionUser = $userManager->selectOneById($_SESSION["userId"]);
             $this->twig->addGlobal('sessionUser', $this->sessionUser);
+        }
+
+        if (isset($_SESSION["selectedUnicorn"])) {
+            $unicornManager = new UnicornManager();
+            $this->unicorn = $unicornManager->selectOneById($_SESSION["selectedUnicorn"]);
+            $this->twig->addGlobal('unicorn', $this->unicorn);
+        }
+
+        if (isset($_SESSION["opponentUnicorn"])) {
+            $unicornManager = new UnicornManager();
+            $this->opponentUnicorn = $unicornManager->selectOneById($_SESSION["opponentUnicorn"]);
+            $this->twig->addGlobal('opponentUnicorn', $this->opponentUnicorn);
         }
     }
 
@@ -59,17 +74,6 @@ abstract class AbstractController
                 }
                 break;
             default:
-        }
-        if (isset($_SESSION["selectedUnicorn"])) {
-            $unicornManager = new UnicornManager();
-            $this->unicorn = $unicornManager->selectOneById($_SESSION["selectedUnicorn"]);
-            $this->twig->addGlobal('unicorn', $this->unicorn);
-        }
-
-        if (isset($_SESSION["opponentUnicorn"])) {
-            $unicornManager = new UnicornManager();
-            $this->opponentUnicorn = $unicornManager->selectOneById($_SESSION["opponentUnicorn"]);
-            $this->twig->addGlobal('opponentUnicorn', $this->opponentUnicorn);
         }
         return $value;
     }

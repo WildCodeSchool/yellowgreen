@@ -8,7 +8,7 @@ CREATE TABLE
         firstName VARCHAR(45) NOT NULL,
         lastName VARCHAR(45) NOT NULL,
         nickName VARCHAR(45) NOT NULL UNIQUE,
-        passWord VARCHAR(45) NOT NULL,
+        passWord VARCHAR(255) NOT NULL,
         email VARCHAR(45) NOT NULL UNIQUE,
         avatar VARCHAR(100) DEFAULT 'avatar.png',
         description VARCHAR(100),

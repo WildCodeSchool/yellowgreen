@@ -19,6 +19,6 @@ return [
     'rgpd' => ['RgpdController', 'index',],
     'legal' => ['LegalController', 'index',],
     'about' => ['AboutController', 'index',],
-    'unicorn' => ['UnicornController', 'index',],
-    'unicorn/select' => ['UnicornController', 'addSelectedUnicornToSession', ['id']],
+    'select-unicorn' => ['UnicornController', 'index',],
+    'select-unicorn/select' => ['UnicornController', 'addSelectedUnicornToSession', ['id']],
 ];

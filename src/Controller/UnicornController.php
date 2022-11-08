@@ -11,7 +11,7 @@ class UnicornController extends AbstractController
      */
     public function index(): string
     {
-        return $this->twig->render('Unicorn/index.html.twig', ['post' => $_POST]);
+        return $this->twig->render('Fight/select-unicorn.html.twig', ['post' => $_POST]);
     }
     /**
      * Show informations for a specific unicorn
@@ -32,7 +32,7 @@ class UnicornController extends AbstractController
                 $unicornManager = new UnicornManager();
                 $unicorn = $unicornManager->selectOneById($cleanIdUnicorn);
                 $_SESSION['opponentUnicorn'] = $unicorn["id"];
-                header("location: /unicorn");
+                header("location: /select-unicorn");
             }
         } else {
             header("location: /");

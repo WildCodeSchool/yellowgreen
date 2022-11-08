@@ -62,9 +62,10 @@
     text-align: center;
 }
 
+/*
 .select-hidden {
     display: none;
-}
+} */
 
 .opacity-low {
     opacity: 0.3;
