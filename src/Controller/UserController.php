@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Model\UserManager;
+use App\Utils\UserUtils;
+use PDOException;
 
 class UserController extends AbstractController
 {
@@ -31,32 +33,53 @@ class UserController extends AbstractController
      */
     public function edit(int $id): ?string
     {
+        $errors = array();
+        $user = array();
         $userManager = new UserManager();
         $user = $userManager->selectOneById($id);
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (isset($_FILES['avatar'])) {
-                $nameFile = $_FILES['avatar']['name'];
-                $tmpName = $_FILES['avatar']['tmp_name'];
-                $name = $_FILES['avatar']['name'];
-                // $size = $_FILES['avatar']['size'];
-                // $error = $_FILES['avatar']['error'];
-                move_uploaded_file($tmpName, 'assets/images/profile/' . $name);
-                $_POST['avatar'] = $nameFile;
+            if ($_FILES['avatar']['name'] !== '') {
+                $uploadDir = 'assets/images/profile/';
+                $tempName = explode(".", $_FILES["avatar"]["name"]);
+                $newName = round(microtime(true)) . '.' . end($tempName);
+                $uploadFile = $uploadDir . $newName;
+
+                move_uploaded_file($_FILES['avatar']['tmp_name'], $uploadFile);
+
+                if ($_FILES['avatar']['name'] == '') {
+                    $_POST['avatar'] = 'img_avatar.png';
+                } else {
+                    $_POST['avatar'] = $newName;
+                    $user['avatar'] = $newName;
+                }
             }
-            // clean $_POST data
+
+            $_POST['avatar'] = $user['avatar'];
             $user = array_map('trim', $_POST);
-            $userManager->update($user);
-            header('Location: /users/show?id=' . $id);
-            return null;
-            // TODO validations (length, format...
-            // if validation is ok, update and redirection
-            // we are redirecting so we don't want any content rendered
+            $user = $this->cleanParam($user);
+            if ($user) {
+                $result = UserUtils::checkData($user);
+                $user = $result['user'];
+                $errors = $result['errors'];
+            } else {
+                $errors[] = "Entrées avec format invalide";
+            }
+
+            if (empty($errors)) {
+                try {
+                    $userManager->update($user);
+                    $_SESSION['nickName'] = $user['nickName'];
+                    $_SESSION['passWord'] = $user['passWord'];
+                    header('Location:/users/show?id=' . $id);
+                    return null;
+                } catch (PDOException $err) {
+                    $errors[] = $err->getMessage();
+                }
+            }
         }
 
-        return $this->twig->render('User/editUser.html.twig', [
-            'user' => $user,
-        ]);
+        return $this->twig->render('User/editUser.html.twig', ['errors' => $errors, 'user' => $user]);
     }
 
     /**
@@ -64,48 +87,54 @@ class UserController extends AbstractController
      */
     public function add(): ?string
     {
+        $errors = array();
+        $user = array();
+        $id = -1;
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($_FILES['avatar'])) {
-                $nameFile = $_FILES['avatar']['name'];
-                $tmpName = $_FILES['avatar']['tmp_name'];
-                $name = $_FILES['avatar']['name'];
-                // $size = $_FILES['avatar']['size'];
-                // $error = $_FILES['avatar']['error'];
-                move_uploaded_file($tmpName, 'assets/images/profile/' . $name);
+                $uploadDir = 'assets/images/profile/';
+                $tempName = explode(".", $_FILES["avatar"]["name"]);
+                $newName = round(microtime(true)) . '.' . end($tempName);
+                $uploadFile = $uploadDir . $newName;
+
+                move_uploaded_file($_FILES['avatar']['tmp_name'], $uploadFile);
                 if ($_FILES['avatar']['name'] === '') {
                     $_POST['avatar'] = 'img_avatar.png';
                 } else {
-                    $_POST['avatar'] = $nameFile;
+                    $_POST['avatar'] = $newName;
                 }
             }
 
-            $cleanValue = [];
-            foreach ($_POST as $key) {
-                $cleanValue[] = htmlentities($key);
+            $user = array_map('trim', $_POST);
+            $user = $this->cleanParam($user);
+            if ($user) {
+                $result = UserUtils::checkData($user);
+                $errors = $result['errors'];
+                $user = $result['user'];
+            } else {
+                $errors[] = "Entrée(s) avec format invalide";
             }
-            $user = array_map('trim', $cleanValue);
-
-            foreach ($_POST as $key => $value) {
-                if ($key === "password") {
-                    $user[$key] = password_hash($value, PASSWORD_ARGON2ID);
-                } else {
-                    $user[$key] = $value;
-                }
-            }
-
-
-            // TODO validations (length, format...)
-
             // if validation is ok, insert and redirection
             $userManager = new UserManager();
-            $id = $userManager->insert($user);
-            $_SESSION['userId'] = $id;
-            $_SESSION['nickname'] = $user["nickName"];
-            header('Location:/users/show?id=' . $id);
-            return null;
+            if (empty($errors)) {
+                try {
+                    $id = $userManager->insert($user);
+                } catch (PDOException $err) {
+                    $errors[] = $err->getMessage();
+                }
+            }
         }
 
-        return $this->twig->render('Home/index.html.twig');
+        if (!empty($errors)) {
+            return $this->twig->render('Rules/index.html.twig', ["errors" => $errors, "user" => $user]);
+        } else {
+            $_SESSION['userId'] = $id;
+            $_SESSION['nickName'] = $user['nickName'];
+            $_SESSION['passWord'] = $user['passWord'];
+            header('Location:/users');
+            return null;
+        }
     }
 
     /**
@@ -129,9 +158,10 @@ class UserController extends AbstractController
             if (filter_var($cleanValue, FILTER_VALIDATE_EMAIL)) {
                 $userManager = new UserManager();
                 $user = $userManager->selectOneByEmail($_POST["email"]);
-                if ($user && password_verify($_POST["password"], $user["password"])) {
+                if ($user && password_verify($_POST["passWord"], $user["passWord"])) {
                     $_SESSION['userId'] = $user["id"];
-                    $_SESSION['nickname'] = $user["nickName"];
+                    $_SESSION['nickName'] = $user["nickName"];
+                    $_SESSION['passWord'] = $user['passWord'];
                     header("location: /rules");
                 }
             }
