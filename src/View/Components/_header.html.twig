@@ -15,8 +15,9 @@
 <aside class=" topnav responsivenav{{sessionUser ? '':' notconnected' }}" id="mytopnav">
 	<ul>
 		<li><a class="headerLinks radiusButton" href="/rules">Règles</a></li>
-		<li><a class="headerLinks radiusButton"href={{sessionUser ? "/users/show?id=sessionUser.id" : "#"}}>Mon profil</a></li>
+		<li><a class="headerLinks radiusButton" href={{sessionUser ? "/users/show?id=" ~ sessionUser.id : "#"}}>Mon profil</a></li>
 		<li><a class="headerLinks radiusButton" href="/users">Classement</a></li>
 		<li><a class="headerLinks radiusButton" href="#">Combat</a></li>
+		<li><a class="headerLinks radiusButton" href="/logout">Logout</a></li>
 	</ul>
 </aside>
