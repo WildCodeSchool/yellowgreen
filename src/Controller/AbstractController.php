@@ -29,7 +29,7 @@ abstract class AbstractController
                 'debug' => true,
             ]
         );
-        
+
         if (isset($_SESSION["userId"])) {
             $userManager = new UserManager();
             $this->sessionUser = $userManager->selectOneById($_SESSION["userId"]);
