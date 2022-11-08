@@ -127,13 +127,11 @@ hr {
 }
 
 .detailsTitle {
+    font-family: var(--primary-font);
     text-align: center;
 }
 
 .deleteWarning {
     font-family: var(--secondary-font);
-    font-size: 2grem;
-}
-
-@media only screen and (max-width: 768px) {
+    font-size: 2rem;
 }

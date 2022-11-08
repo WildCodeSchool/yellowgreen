@@ -1,4 +1,5 @@
-input {
+input,
+textarea {
     display: block;
     width: 70%;
     margin: 4px auto;
@@ -9,12 +10,21 @@ input {
     border-radius: 10px;
     font-weight: 400;
     outline: none;
+    font-family: var(--primary-font);
 }
 
 h2,
 h3 {
     text-align: center;
     padding: 3px;
+}
+
+.formSection h2,
+h3 {
+    background-color: var(--third-color);
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    font-family: var(--primary-font);
 }
 
 .formSection {
@@ -24,8 +34,10 @@ h3 {
     border-top-right-radius: 15px;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
-    filter: drop-shadow(0px 4px 4px var(--shadow));
     padding-bottom: 10px;
+    -webkit-box-shadow: 0px 10px 36px 0px rgba(0, 0, 0, 0.55);
+    -moz-box-shadow: 0px 10px 36px 0px rgba(0, 0, 0, 0.55);
+    box-shadow: 0px 10px 36px 0px rgba(0, 0, 0, 0.55);
 }
 
 .formSectionModale {
@@ -66,7 +78,7 @@ h3 {
     float: right;
     font-size: 28px;
     font-weight: bold;
-    margin: -5px;
+    margin: 5px 10px;
 }
 
 .close:hover {
