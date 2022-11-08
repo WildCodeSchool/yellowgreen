@@ -59,17 +59,27 @@
 		</ul>
 		<div>
 			<form class="selectUnicornForm" method="post" action="/select-unicorn/select?id={{ post.selectedUnicorn }}">
-				<select class="select-hidden" name="selectedUnicorn" id="select-user">
-					<option value="1">Allena</option>
-					<option value="2">Larissa</option>
-					<option value="3">Suki</option>
+				<select class="select-hidden" name="selectedUnicorn" id="select-user" required>
+					<option hidden disabled selected value></option>
+					{% set currentUnicorn = -1 %}
+					{% for uni in unicorns %}
+						{% if uni.unicornId is not same as(currentUnicorn)  %}
+							{% set currentUnicorn = uni.unicornId %}
+							<option value="{{uni.unicornId}}">{{uni.unicornName}}</option>
+						{% endif %}
+					{% endfor %}
 				</select>
-				<select class="select-hidden" name="opponentUnicorn" id="select-opponent">
-					<option value="1">Allena</option>
-					<option value="2">Larissa</option>
-					<option value="3">Suki</option>
+				<select class="select-hidden" name="opponentUnicorn" id="select-opponent" required>
+					<option hidden disabled selected value></option>
+					{% set currentUnicorn = -1 %}
+					{% for uni in unicorns %}
+						{% if uni.unicornId is not same as(currentUnicorn)  %}
+							{% set currentUnicorn = uni.unicornId %}
+							<option value="{{uni.unicornId}}">{{uni.unicornName}}</option>
+						{% endif %}
+					{% endfor %}
 				</select>
-				<input type="submit" value="Submit">
+				<button class="redButton" type="submit">J'ai choisi ma licorne !</button>
 			</form>
 		</div>
 	</main>

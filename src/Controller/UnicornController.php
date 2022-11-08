@@ -11,7 +11,11 @@ class UnicornController extends AbstractController
      */
     public function index(): string
     {
-        return $this->twig->render('Fight/select-unicorn.html.twig', ['post' => $_POST]);
+        if (!empty($_SESSION)) {
+            return $this->twig->render('Fight/select-unicorn.html.twig', ['post' => $_POST]);
+        } else {
+            return $this->twig->render('Home/index.html.twig');     
+        }
     }
     /**
      * Show informations for a specific unicorn
@@ -32,17 +36,10 @@ class UnicornController extends AbstractController
                 $unicornManager = new UnicornManager();
                 $unicorn = $unicornManager->selectOneById($cleanIdUnicorn);
                 $_SESSION['opponentUnicorn'] = $unicorn["id"];
-                header("location: /select-unicorn");
+                header("location: /select-unicorn"); // will be changed to the "select the attack" page when it's ready
             }
         } else {
             header("location: /");
         }
     }
-
-    /**
-     * It's computer turn to pick a unicorn
-     * Implement a function that removes the unicorn chosen by the user from the available choice list
-     * Implement a function that randomizes the choice
-     * Save the choice to a $_SESSION var
-    */
 }
