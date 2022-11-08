@@ -14,7 +14,7 @@ class UnicornController extends AbstractController
         if (!empty($_SESSION)) {
             return $this->twig->render('Fight/select-unicorn.html.twig', ['post' => $_POST]);
         } else {
-            return $this->twig->render('Home/index.html.twig');     
+            return $this->twig->render('Home/index.html.twig');
         }
     }
     /**
