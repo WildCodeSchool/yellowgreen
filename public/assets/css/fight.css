@@ -1,7 +1,8 @@
 main{
     display: flex;
-    justify-content: center;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     padding-top: 20px;
 }
 
@@ -13,10 +14,8 @@ main .choose_fighter{
     font-weight: bold;
     flex-direction: column;
     background-color: var(--third-color);
-    width: 50%;
-    box-shadow: 0px 5px 8px 0px rgb(0 0 0 / 30%);
+    width: 60%;
     border-radius: 15px;
-
 }
 
 table{
@@ -39,26 +38,27 @@ main button.goFight{
 
     margin-top: 30px;
     justify-content: center;
-    font-size: 20px;
+    font-size: 15px;
     font-family: var(--secondary-font);
     color: var(--secondary-color);
     background-color: var(--primary-color);
     padding: 15px 30px;
+    margin-bottom: 20px;;
     border-radius: 20px;
     border: none;
     text-align: center;
     text-decoration: none;
     -webkit-box-shadow: 0px 10px 8px 0px rgba(0, 0, 0, 0.3);
     box-shadow: 0px 5px 8px 0px rgba(0, 0, 0, 0.3);
-    width: 30%;
 }
+    
 
 .title_array{
     background-color: var(--third-color);
 }
 
 .choose_fighter p{
-    font-size: 30px;
+    font-size: 15px;
 }
 
 main table th,
@@ -139,4 +139,64 @@ section.info {
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+}
+
+.sectionVS{
+    padding-top: 30px;
+}
+
+.sectionVS img{
+    width:30px;
+    height:30px;
+}
+
+@media screen and (min-width: 768px){
+    main .choose_fighter{
+        width:40%;
+    }
+
+    .choose_fighter p{
+        font-size: 20px;
+    }
+
+    .sectionVS{
+        text-align: center;
+    }
+
+    .sectionVS img{
+        width:60px;
+        height:60px;
+    }
+
+    .main button.goFight{
+        width:30%;
+    }
+}
+
+@media screen and (min-width: 1024px){
+    main .choose_fighter{
+        width:50%;
+    }
+
+    .choose_fighter p{
+        font-size: 25px;
+    }
+
+    .sectionVS{
+        text-align: center;
+    }
+
+    .sectionVS img{
+        width:100px;
+        height:100px;
+    }
+
+    main button.goFight{
+        width:30%;
+        font-size: 25px;
+    }
+
+    main table{
+        font-size:2vw;
+    }
 }

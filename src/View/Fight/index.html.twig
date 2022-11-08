@@ -15,6 +15,12 @@
             <p>Choisis ton adversaire!</p>
         </div>
 
+		<div class="sectionVS">
+			<img src="" alt="Avatar">
+			<img src="\assets\images\vs-index.png" alt="vs picture">
+			<img src="\assets\images\profile\{{opponentPicture}}" alt="avatar opponent">
+		</div>
+
         <table>
 			<tr>
 				<th></th>
@@ -22,15 +28,21 @@
 				<th>Pseudo</th>
 				<th>Points</th>
 			</tr>
-			{% set rank = 1 %}
+			{# {% set rank = 1 %} #}
 			{% for user in users %}
-				<tr>
-					<td><img src="/assets/images/profile/{{user.avatar}}"/></td>
-					<td>{{rank}}</td>
-					<td class="left-justify">{{user.nickName}}</td>
-					<td class="right-justify">{{user.score}}</td>
-				</tr>
-				{% set rank =  rank + 1  %}
+					<a href="Fight/index.html.twig?id=user.id">
+					<tr id="rowSelected">
+					
+
+						<td><img src="" alt="avatar"></td>
+						<td>{{user.rank}}</td>
+						<td class="right-justify">{{user.nickName}}</td>
+						<td class="right-justify">{{user.score}}</td>
+						
+					</tr>
+					</a>
+				
+				{# {% set rank =  rank + 1  %} #}
 			{% endfor %}
 		</table>
 
