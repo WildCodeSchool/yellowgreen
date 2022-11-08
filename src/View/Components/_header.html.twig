@@ -5,9 +5,9 @@
 
 	<a class="headerLinks headerTitle" href="/">Happiness & Glitters</a>
 
-		{% if sessionUser %}
-			<img class='imgavatar' src={{"/assets/images/profile/" ~ sessionUser.avatar }}>
-		{% endif %}
+	{% if sessionUser %}
+		<img class='imgavatar' src={{"/assets/images/profile/" ~ sessionUser.avatar }}>
+	{% endif %}
 
 
 	<button type="button" class="icon{{sessionUser ? '':' notconnected' }}" onclick="displayMenu()" id="burger">
@@ -20,9 +20,9 @@
 <aside class=" topnav responsivenav{{sessionUser ? '':' notconnected' }}" id="mytopnav">
 	<ul>
 		<li><a class="headerLinks radiusButton" href="/rules">Règles</a></li>
-		<li><a class="headerLinks radiusButton" href={{sessionUser ? "/users/show?id=" ~ sessionUser.id : "#"}}>Mon profil</a></li>
+		<li><a class="headerLinks radiusButton"href={{sessionUser ? "/users/show?id=" ~ sessionUser.id : "#"}}>Mon profil</a></li>
 		<li><a class="headerLinks radiusButton" href="/users">Classement</a></li>
-		<li><a class="headerLinks radiusButton" href="#">Combat</a></li>
+		<li><a class="headerLinks radiusButton" href="/fight/">Combat</a></li>
 		<li><a class="headerLinks radiusButton" href="/logout">Logout</a></li>
 	</ul>
 </aside>
