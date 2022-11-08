@@ -107,6 +107,11 @@
         padding-bottom: 0px;
         justify-content: center;
     }
+    .topnav ul {
+        width: 90%;
+        display: flex;
+        justify-content: space-between;
+    }
 
     .unicornLogo {
         padding-top: 20px;
@@ -131,10 +136,6 @@
     .unicornLogo {
         width: 100px;
         height: 100px;
-    }
-
-    .radiusButton {
-        margin: 60px;
     }
 
     .notconnected {
