@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Amp\Success;
 use App\Model\UserManager;
 use App\Utils\UserUtils;
 use PDOException;
@@ -18,7 +19,7 @@ class FightController extends AbstractController
             $_SESSION['userUnicornId'] = 2;
             $this->twig->addGlobal('userScore', 100);
             $this->twig->addGlobal('opponentScore', 100);
-            $this->twig->addGlobal('round', 1);
+            $this->twig->addGlobal('round', 10);
         } else {
             $globals = $this->twig->getGlobals();
             if ($round % 10 == 0) {
@@ -45,27 +46,29 @@ class FightController extends AbstractController
     {
         $globals = $this->twig->getGlobals();
         $attack = $globals['userAttack'];
-        $globals['userScore'] -= $attack["cost"];
+        $score = $globals["userScore"];
+        $score -= $attack["cost"];
         $success = rand(0, 100) <= $attack["succesRate"];
         if ($success) {
-            $globals['userScore'] += $attack["gain"];
+            $score += $attack["gain"];
         }
-        $this->twig->mergeGlobals($globals);
-
-        return $globals['userScore'] > 0 && $globals['userScore'] < self::MAX_SCORE;
+        $this->twig->addGlobal('successRound', $success);
+        $this->twig->addGlobal('userScore', $score);
+        return $score > 0 && $score < self::MAX_SCORE;
     }
 
     private function buildRoundOpponent(): bool
     {
         $globals = $this->twig->getGlobals();
         $attack = $globals['opponentAttack'];
-        $globals['opponentScore'] -= $attack["cost"];
+        $score = $globals["opponentScore"];
+        $score -= $attack["cost"];
         $success = rand(0, 100) <= $attack["succesRate"];
         if ($success) {
-            $globals['opponentScore'] += $attack["gain"];
+            $score += $attack["gain"];
         }
-        $this->twig->mergeGlobals($globals);
-
-        return $globals['opponentScore'] > 0 && $globals['opponentScore'] < self::MAX_SCORE;
+        $this->twig->addGlobal('successRound', $success);
+        $this->twig->addGlobal('opponentScore', $score);
+        return $score > 0 && $score < self::MAX_SCORE;
     }
 }
