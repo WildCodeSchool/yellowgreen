@@ -37,7 +37,7 @@
 			</div>
 
 			<div class="right-top">
-				<div class="rank">🥇 1st</div>
+				<h2>Ton Score</h2>
 				<div class="points">{{ user.score }}
 					Points</div>
 			</div>
@@ -75,7 +75,7 @@
 
 			<div class="endDiv">
 				<a href="#" onclick="document.getElementById('id01').style.display='block'">Supprimer mon profil</a>
-				<a href="/users">⬅️Retour</a>
+				<a href="/users">⬅️ Retour</a>
 			</div>
 
 		</section>
@@ -83,5 +83,6 @@
 {% endblock %}
 
 {% block javascript %}
+	{{parent()}}
 	<script type="application/javascript" src="/assets/js/confirmModale.js"></script>
 {% endblock %}

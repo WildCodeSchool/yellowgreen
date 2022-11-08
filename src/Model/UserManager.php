@@ -11,16 +11,16 @@ class UserManager extends AbstractManager
     /**
      * Insert new user in database and retrieve the id
      */
-    public function insert(array $user): int
+    public function insert(array $user): int|array
     {
-        $statement = $this->pdo->prepare("INSERT INTO " . self::TABLE . " (firstName, lastName, nickName, 
-        email, password, avatar, description) VALUES 
-        (:firstName, :lastName, :nickName, :email, :password, :avatar, :description)");
+        $statement = $this->pdo->prepare("INSERT INTO " . self::TABLE . " (firstName, lastName, nickName, email,
+        passWord, avatar, description) VALUES (:firstName, :lastName, :nickName,
+        :email, :passWord, :avatar, :description)");
         $statement->bindValue('firstName', $user['firstName'], PDO::PARAM_STR);
         $statement->bindValue('lastName', $user['lastName'], PDO::PARAM_STR);
         $statement->bindValue('nickName', $user['nickName'], PDO::PARAM_STR);
         $statement->bindValue('email', $user['email'], PDO::PARAM_STR);
-        $statement->bindValue('password', $user['password'], PDO::PARAM_STR);
+        $statement->bindValue('passWord', $user['passWord'], PDO::PARAM_STR);
         $statement->bindValue('avatar', $user['avatar'], PDO::PARAM_STR);
         $statement->bindValue('description', $user['description'], PDO::PARAM_STR);
         $statement->execute();
@@ -59,5 +59,12 @@ class UserManager extends AbstractManager
         $statement = $this->pdo->prepare("SELECT * FROM " . static::TABLE . " ORDER BY RAND() LIMIT 5");
         $statement->execute();
         return $statement->fetchAll();
+    }
+    
+    public function delete(int $id): void
+    {
+        $statement = $this->pdo->prepare("DELETE FROM " . static::TABLE . " WHERE id=:id");
+        $statement->bindValue(':id', $id, \PDO::PARAM_INT);
+        $statement->execute();
     }
 }
