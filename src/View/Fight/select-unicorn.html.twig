@@ -7,6 +7,7 @@
 {% block stylesheet %}
 	{{parent()}}
 	<link rel="stylesheet" href="/assets/css/unicorn.css">
+	<link rel="stylesheet" href="/assets/css/versus.css">
 {% endblock %}
 
 {% block content %}
@@ -16,19 +17,7 @@
 			{{ sessionUser.nickName }}
 		</h1>
 		<h2 class="unicorn-title">N'oublie pas que tu ne peux choisir qu'une seule licorne, alors réfléchis bien !</h2>
-		<div class="versus">
-			<div class="user-image">
-				<img src="/assets/images/profile/{{ sessionUser.avatar }}" alt="Avatar" class="userPic">
-			</div>
-			<div class="versus-image">
-				<img src="/assets/images/versus.png" alt="Versus" class="userPic">
-			</div>
-			<div
-				class="opponent-image">
-				<!-- the image src is destined to be changed when the opponent avatar is accessible -->
-				<img src="/assets/images/profile/{{ sessionUser.avatar }}" alt="Avatar" class="userPic">
-			</div>
-		</div>
+		{% include 'Components/_versus.html.twig' %}
 		<ul class="unicorns">
 			{% set currentUnicorn = -1 %}
 			{% for uni in unicorns %}

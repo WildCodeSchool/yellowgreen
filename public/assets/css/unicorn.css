@@ -12,22 +12,6 @@
     flex-wrap: wrap;
 }
 
-.versus {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.versus img {
-    width: 200px;
-}
-
-.versus .versus-image img {
-    width: 100px;
-}
-
-
-
 .unicorn {
     display: flex;
     flex-direction: column;
