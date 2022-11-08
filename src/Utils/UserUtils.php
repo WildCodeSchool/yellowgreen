@@ -34,7 +34,7 @@ class UserUtils
         $errors = array();
         if (!isset($value) || $value === '') {
             $errors[] = "Password is required";
-        } elseif (strlen($value) > 45 || strlen($value) < 9) {
+        } elseif (strlen($value) > 45 || strlen($value) < 8) {
             $errors[] = "Your password must be between 8 and 45 characters";
         } else {
             $value = password_hash($value, PASSWORD_ARGON2ID);
