@@ -4,6 +4,15 @@ section h1 {
     border-top-right-radius: 15px;
 }
 
+section .centerImg {
+    display: flex;
+    justify-content: center;
+}
+
+.centerImg img {
+    max-width: 250px;
+}
+
 table {
     width: 50%;
     table-layout: center;
@@ -74,9 +83,17 @@ td {
     font-family: var(--primary-font);
 }
 
-a {
+.endDiv a {
     justify-content: center;
-    margin: 12px auto;
+    margin: 10px auto;
+    color: inherit;
+    text-decoration: inherit;
+}
+
+.editPen {
+    font-size: 30px;
+    float: right;
+    margin: 0px auto;
     color: inherit;
     text-decoration: inherit;
 }
@@ -129,9 +146,9 @@ hr {
 .detailsTitle {
     font-family: var(--primary-font);
     text-align: center;
+    font-size: 30px;
 }
 
 .deleteWarning {
     font-family: var(--secondary-font);
-    font-size: 2rem;
 }
