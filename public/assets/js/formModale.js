@@ -17,3 +17,8 @@ window.onclick = function (event) {
         event.target.style.display = "none";
     }
 };
+window.addEventListener("click", function (event) {
+    if (event.target.id === "modalOne") {
+        event.target.style.display = "none";
+    }
+});

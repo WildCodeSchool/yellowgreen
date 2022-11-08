@@ -14,7 +14,7 @@ use App\Model\UnicornManager;
 abstract class AbstractController
 {
     protected Environment $twig;
-    protected array|false $user = false;
+    protected array|false $sessionUser = false;
     protected array|false $unicorn = false;
     protected array|false $opponentUnicorn = false;
 
@@ -33,8 +33,32 @@ abstract class AbstractController
 
         if (isset($_SESSION["userId"])) {
             $userManager = new UserManager();
-            $this->user = $userManager->selectOneById($_SESSION["userId"]);
-            $this->twig->addGlobal('sessionUser', $this->user);
+            $this->sessionUser = $userManager->selectOneById($_SESSION["userId"]);
+            $this->twig->addGlobal('sessionUser', $this->sessionUser);
+        }
+    }
+
+    public function cleanParam(mixed $value): mixed
+    {
+        switch (gettype($value)) {
+            case "integer":
+                $value = filter_var($value, FILTER_VALIDATE_INT);
+                break;
+            case "boolean":
+                $value = filter_var($value, FILTER_VALIDATE_BOOLEAN);
+                break;
+            case "double":
+                $value = filter_var($value);
+                break;
+            case "string":
+                $value = htmlentities($value);
+                break;
+            case "array":
+                foreach ($value as $val) {
+                    $val = $this->cleanParam($val);
+                }
+                break;
+            default:
         }
         if (isset($_SESSION["selectedUnicorn"])) {
             $unicornManager = new UnicornManager();
@@ -47,5 +71,6 @@ abstract class AbstractController
             $this->opponentUnicorn = $unicornManager->selectOneById($_SESSION["opponentUnicorn"]);
             $this->twig->addGlobal('opponentUnicorn', $this->opponentUnicorn);
         }
+        return $value;
     }
 }
