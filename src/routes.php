@@ -19,5 +19,5 @@ return [
     'rgpd' => ['RgpdController', 'index',],
     'legal' => ['LegalController', 'index',],
     'about' => ['AboutController', 'index',],
-    'fight' => ['FightController', 'fight',],
+    'fight' => ['RoundController', 'fight',],
 ];

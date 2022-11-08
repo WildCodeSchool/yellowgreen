@@ -7,7 +7,7 @@ use App\Model\UserManager;
 use App\Utils\UserUtils;
 use PDOException;
 
-class FightController extends AbstractController
+class RoundController extends AbstractController
 {
     public const MAX_SCORE = 200;
 
