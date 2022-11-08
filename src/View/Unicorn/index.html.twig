@@ -11,12 +11,10 @@
 
 {% block content %}
 
-
-	{{dump(post)}}
-	{{dump(unicorn)}}
-	{{dump(opponentUnicorn)}}
-	<main>
-		<h1 class="unicorn-title">Sélectionne ta licorne,
+	{# {{dump(unicorn)}} #}
+	{# 	{{dump(opponentUnicorn)}} #}
+		<main>
+			<h1 class="unicorn-title"> Sélectionne ta licorne,
 			{{ user.nickName }}
 		</h1>
 		<h2 class="unicorn-title">N'oublie pas que tu ne peux choisir qu'une seule licorne, alors réfléchis bien !</h2>
@@ -101,7 +99,7 @@
 					</table>
 				</div>
 			</li>
-			<li class="unicorn" id="suki">
+			<li class="unicorn normal" id="suki">
 				<div class="unicorn-name">
 					<h3>Suki</h3>
 				</div>
@@ -144,12 +142,12 @@
 		</ul>
 		<div>
 			<form class="selectUnicornForm" method="post" action="/unicorn/select?id={{ post.selectedUnicorn }}">
-				<select name="selectedUnicorn" id="select-user">
+				<select class="select-hidden" name="selectedUnicorn" id="select-user">
 					<option value="1">Allena</option>
 					<option value="2">Larissa</option>
 					<option value="3">Suki</option>
 				</select>
-				<select name="opponentUnicorn" id="select-opponent">
+				<select class="select-hidden" name="opponentUnicorn" id="select-opponent">
 					<option value="1">Allena</option>
 					<option value="2">Larissa</option>
 					<option value="3">Suki</option>

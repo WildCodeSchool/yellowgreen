@@ -62,8 +62,8 @@
     text-align: center;
 }
 
-#select {
-    /*display: none;*/
+.select-hidden {
+    display: none;
 }
 
 .opacity-low {
@@ -76,6 +76,16 @@
 .shadow-drop-2-center {
     -webkit-animation: shadow-drop-2-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
     animation: shadow-drop-2-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+.grow {
+    transition: transform 0.5s;
+    transform: scale(1.1, 1.1);
+}
+
+.normal {
+    transition: transform 0.5s;
+    transform: scale(1, 1);
 }
 
 /* ----------------------------------------------
