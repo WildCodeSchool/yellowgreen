@@ -50,22 +50,4 @@ const SelectedByComputer = () => {
     } else { selectOpponent.value = 3; }
 };
 
-
 SelectedByComputer();
-
-// Hover on the unicorn cards 
-
-let unicorns = document.querySelectorAll('.unicorn');
-
-grow = (e) => {
-    e.target.classList.toggle('normal')
-    e.target.classList.toggle('grow')
-}
-
-function eventHandler() {
-    unicorns.forEach(item => {
-        item.addEventListener("mouseenter", grow, false);
-        item.addEventListener("mouseleave", grow, false);
-    })
-}
-eventHandler();

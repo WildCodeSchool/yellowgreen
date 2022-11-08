@@ -10,137 +10,63 @@
 {% endblock %}
 
 {% block content %}
-	{{dump(post)}}
-	{{dump(unicorns)}}
-	{{dump(unicorn)}}
-	{{dump(opponentUnicorn)}}
 	<main>
 		<h1 class="unicorn-title">
 			Sélectionne ta licorne,
 			{{ sessionUser.nickName }}
 		</h1>
 		<h2 class="unicorn-title">N'oublie pas que tu ne peux choisir qu'une seule licorne, alors réfléchis bien !</h2>
+		<div class="versus">
+			<div class="user-image">
+				<img src="/assets/images/profile/{{ sessionUser.avatar }}" alt="Avatar" class="userPic">
+			</div>
+			<div class="versus-image">
+				<img src="/assets/images/versus.png" alt="Versus" class="userPic">
+			</div>
+			<div
+				class="opponent-image">
+				<!-- the image src is destined to be changed when the opponent avatar is accessible -->
+				<img src="/assets/images/profile/{{ sessionUser.avatar }}" alt="Avatar" class="userPic">
+			</div>
+		</div>
 		<ul class="unicorns">
-			<li class="unicorn" id="allena">
-				<div class="unicorn-name">
-					<h3>Allena</h3>
-				</div>
-				<div class="unicorn-image">
-					<img src="/assets/images/unicorn/allena.png" alt="">
-				</div>
-				<div class="unicorn-skills">
-					<h4>Capacités</h4>
-				</div>
-				<div class="unicorn-table">
-					<table>
-						<tr>
-							<th>Nom</th>
-							<th>Coût</th>
-							<th>Gain</th>
-							<th>Chance</th>
-						</tr>
-
-						<tr>
-							<td>Etoiles filantes</td>
-							<td>2</td>
-							<td>4</td>
-							<td>90%</td>
-						</tr>
-						<tr>
-							<td>Cabrage</td>
-							<td>4</td>
-							<td>10</td>
-							<td>70%</td>
-						</tr>
-						<tr>
-							<td>Bisou</td>
-							<td>8</td>
-							<td>24</td>
-							<td>30%</td>
-						</tr>
-					</table>
-				</div>
-			</li>
-			<li class="unicorn" id="larissa">
-				<div class="unicorn-name">
-					<h3>Larissa</h3>
-				</div>
-				<div class="unicorn-image">
-					<img src="/assets/images/unicorn/larissa.png" alt="">
-				</div>
-				<div class="unicorn-skills">
-					<h4>Capacités</h4>
-				</div>
-				<div class="unicorn-table">
-					<table>
-						<tr>
-							<th>Nom</th>
-							<th>Coût</th>
-							<th>Gain</th>
-							<th>Chance</th>
-						</tr>
-
-						<tr>
-							<td>Clin d'oeil</td>
-							<td>3</td>
-							<td>6</td>
-							<td>75%</td>
-						</tr>
-						<tr>
-							<td>Malice</td>
-							<td>5</td>
-							<td>15</td>
-							<td>60%</td>
-						</tr>
-						<tr>
-							<td>Bisou</td>
-							<td>8</td>
-							<td>24</td>
-							<td>30%</td>
-						</tr>
-					</table>
-				</div>
-			</li>
-			<li class="unicorn normal" id="suki">
-				<div class="unicorn-name">
-					<h3>Suki</h3>
-				</div>
-				<div class="unicorn-image">
-					<img src="/assets/images/unicorn/suki.png" alt="">
-				</div>
-				<div class="unicorn-skills">
-					<h4>Capacités</h4>
-				</div>
-				<div class="unicorn-table">
-					<table>
-						<tr>
-							<th>Nom</th>
-							<th>Coût</th>
-							<th>Gain</th>
-							<th>Chance</th>
-						</tr>
-
-						<tr>
-							<td>Etoiles filantes</td>
-							<td>2</td>
-							<td>4</td>
-							<td>90%</td>
-						</tr>
-						<tr>
-							<td>Câlin</td>
-							<td>7</td>
-							<td>20</td>
-							<td>40%</td>
-						</tr>
-						<tr>
-							<td>Bisou</td>
-							<td>8</td>
-							<td>24</td>
-							<td>30%</td>
-						</tr>
-					</table>
-				</div>
-			</li>
+			{% set currentUnicorn = -1 %}
+			{% for uni in unicorns %}
+				{% if uni.unicornId is not same as(currentUnicorn)  %}
+					{% set currentUnicorn = uni.unicornId %}
+					<li class="unicorn" id="{{ uni.unicornName|lower }}">
+						<div class="unicorn-name">
+							<h3>{{uni.unicornName}}</h3>
+						</div>
+						<div class="unicorn-image">
+							<img src="/assets/images/unicorn/{{uni.unicornName|lower }}.png" alt="">
+						</div>
+						<div class="unicorn-skills">
+							<h4>Capacités</h4>
+						</div>
+						<div class="unicorn-table">
+							<table>
+								<tr>
+									<th>Nom</th>
+									<th>Coût</th>
+									<th>Gain</th>
+									<th>Chance</th>
+								</tr>
+								{% for uni in unicorns %}
+									{% if uni.unicornId is same as(currentUnicorn) %}
+										<tr>
+											<td>{{ uni.attName }}</td>
+											<td>{{ uni.attCost }}</td>
+											<td>{{ uni.attGain }}</td>
+											<td>{{ uni.attSuccessRate }}%</td>
+										</tr>
+									{% endif %}
+								{% endfor %}
+							</table>
+						</div>
+					</li>
+				{% endif %}
+			{% endfor %}
 		</ul>
 		<div>
 			<form class="selectUnicornForm" method="post" action="/select-unicorn/select?id={{ post.selectedUnicorn }}">
