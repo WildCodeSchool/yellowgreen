@@ -12,8 +12,6 @@
 
 {% block content %}
 	<main>
-		{{dump(userUnicorn)}}
-		{{dump(opponentUnicorn)}}
 		<h1 class="unicorn-title">
 			Sélectionne ta licorne,
 			{{ sessionUser.nickName }}
@@ -61,7 +59,7 @@
 		</ul>
 		<div>
 			<form class="selectUnicornForm" method="post" action="/select-unicorn/select?id={{ post.selectedUnicorn }}">
-				<select class="select" name="userUnicorn" id="userUnicorn" required>
+				<select class="select-hidden" name="userUnicorn" id="userUnicorn" required>
 					<option hidden disabled selected value></option>
 					{% set currentUnicorn = -1 %}
 					{% for uni in unicorns %}
@@ -71,7 +69,7 @@
 						{% endif %}
 					{% endfor %}
 				</select>
-				<select class="select" name="opponentUnicorn" id="opponentUnicorn" required>
+				<select class="select-hidden" name="opponentUnicorn" id="opponentUnicorn" required>
 					<option hidden disabled selected value></option>
 					{% set currentUnicorn = -1 %}
 					{% for uni in unicorns %}
