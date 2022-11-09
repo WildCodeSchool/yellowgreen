@@ -40,7 +40,7 @@ abstract class AbstractController
                         $unicorns = $unicornManager->selectAll();
                         $this->twig->addGlobal('unicorns', $unicorns);
                         break;
-                    case "opponentId":
+                    case "opponentUserId":
                         $userManager = new UserManager();
                         $opponentUser = $userManager->selectOneById($value);
                         $this->twig->addGlobal('opponentUser', $opponentUser);
