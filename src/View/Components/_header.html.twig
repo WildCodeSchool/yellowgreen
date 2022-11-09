@@ -3,7 +3,7 @@
 		<img class="unicornLogo" src="/assets/images/logo4.png">
 	</a>
 
-	<a class="headerLinks headerTitle" href="/">Happiness & Glitters</a>
+	<a class="headerLinks headerTitle" href="/">Happiness & Glitters </a>
 
 		{% if sessionUser %}
 			<a href={{sessionUser ? "/users/show?id=" ~ sessionUser.id : "#"}}><img class='imgavatar' alt={{sessionUser.nickName}} src={{"/assets/images/profile/" ~ sessionUser.avatar }}></a>
@@ -22,7 +22,7 @@
 		<li><a class="headerLinks radiusButton" href="/rules">Règles</a></li>
 		<li><a class="headerLinks radiusButton" href={{sessionUser ? "/users/show?id=" ~ sessionUser.id : "#"}}>Mon profil</a></li>
 		<li><a class="headerLinks radiusButton" href="/users">Classement</a></li>
-		<li><a class="headerLinks radiusButton" href="/round/">Combat</a></li>
+		<li><a class="headerLinks radiusButton" href="/fight">Combat</a></li>
 		<li><a class="headerLinks radiusButton" href="/logout">Logout</a></li>
 	</ul>
 </aside>
