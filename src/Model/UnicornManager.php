@@ -19,7 +19,6 @@ class UnicornManager extends AbstractManager
         if ($orderBy) {
             $query .= ' ORDER BY ' . $orderBy . ' ' . $direction;
         }
-
         return $this->pdo->query($query)->fetchAll();
     }
 
