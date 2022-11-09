@@ -24,6 +24,18 @@ class RoundController extends AbstractController
                 return null;
             }
         }
+
+        $user = $globals['sessionUser'];
+        $opponent = $globals['opponentUser'];
+        if ($_SESSION['userScore'] > $_SESSION['opponentScore']) {
+            $user['score'] += (int) ($opponent['score'] / 10);
+            $userDb = new UserManager();
+            $userDb->updateScore($user);
+        } else {
+            $opponent['score'] += (int) ($user['score'] / 10);
+            $userDb = new UserManager();
+            $userDb->updateScore($opponent);
+        }
         $_SESSION['round'] = 0;
         header("location: /fight");
         return null;
@@ -56,6 +68,7 @@ class RoundController extends AbstractController
         }
         $_SESSION['successRound'] =  $success;
         $_SESSION['opponentScore'] = $score;
+
         return $score > 0 && $score < self::MAX_SCORE;
     }
 }
