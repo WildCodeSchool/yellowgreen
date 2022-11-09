@@ -30,8 +30,8 @@ abstract class AbstractController
 
         if (isset($_SESSION["userId"])) {
             $userManager = new UserManager();
-            $this->sessionUser = $userManager->selectOneById($_SESSION["userId"]);
-            $this->twig->addGlobal('sessionUser', $this->sessionUser);
+            $sessionUser = $userManager->selectOneById($_SESSION["userId"]);
+            $this->twig->addGlobal('sessionUser', $sessionUser);
             $unicornManager = new UnicornManager();
             $unicorns = $unicornManager->selectAll();
             $this->twig->addGlobal('unicorns', $unicorns);
