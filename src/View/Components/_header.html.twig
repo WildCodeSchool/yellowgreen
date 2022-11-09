@@ -6,7 +6,7 @@
 	<a class="headerLinks headerTitle" href="/">Happiness & Glitters</a>
 
 		{% if sessionUser %}
-			<a href={{sessionUser ? "/users/show?id=" ~ sessionUser.id : "#"}}><img class='imgavatar' src={{"/assets/images/profile/" ~ sessionUser.avatar }}></a>
+			<a href={{sessionUser ? "/users/show?id=" ~ sessionUser.id : "#"}}><img class='imgavatar' alt={{sessionUser.nickName}} src={{"/assets/images/profile/" ~ sessionUser.avatar }}></a>
 		{% endif %}
 
 
