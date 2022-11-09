@@ -18,4 +18,3 @@ class AttackManager extends AbstractManager
         $statement->execute();
         return $statement->fetchAll();
     }
-}

@@ -15,7 +15,6 @@ use App\Model\AttackManager;
 abstract class AbstractController
 {
     protected Environment $twig;
-    protected array|false $sessionUser = false;
 
     public function __construct()
     {
@@ -27,6 +26,7 @@ abstract class AbstractController
                 'debug' => true,
             ]
         );
+
         $this->twig->addExtension(new DebugExtension());
 
         if ($_SESSION) {
@@ -36,6 +36,9 @@ abstract class AbstractController
                         $userManager = new UserManager();
                         $sessionUser = $userManager->selectOneById($value);
                         $this->twig->addGlobal('sessionUser', $sessionUser);
+                        $unicornManager = new UnicornManager();
+                        $unicorns = $unicornManager->selectAll();
+                        $this->twig->addGlobal('unicorns', $unicorns);
                         break;
                     case "opponentId":
                         $userManager = new UserManager();
