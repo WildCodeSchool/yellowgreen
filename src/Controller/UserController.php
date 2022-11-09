@@ -70,7 +70,7 @@ class UserController extends AbstractController
                 try {
                     $userManager->update($user);
                     $_SESSION['nickName'] = $user['nickName'];
-                    $_SESSION['passWord'] = $user['passWord'];
+                    // $_SESSION['passWord'] = $user['passWord'];
                     header('Location:/users/show?id=' . $id);
                     return null;
                 } catch (PDOException $err) {

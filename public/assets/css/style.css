@@ -39,6 +39,7 @@ body {
     --grey-hover: #2e2f32;
     --filter-shadow: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.45));
     --shadow: rgba(0, 0, 0, 0.06);
+    --shadow-buttons: 0px 2px 3px 0px rgba(0, 0, 0, 0.20);
     --primary-font: "Mali", sans-serif;
     --secondary-font: "Roboto";
 }
