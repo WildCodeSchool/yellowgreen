@@ -2,8 +2,6 @@
 
 namespace App\Model;
 
-use PDO;
-
 class UnicornManager extends AbstractManager
 {
     public const TABLE = 'unicorn';
@@ -19,7 +17,6 @@ class UnicornManager extends AbstractManager
         if ($orderBy) {
             $query .= ' ORDER BY ' . $orderBy . ' ' . $direction;
         }
-
         return $this->pdo->query($query)->fetchAll();
     }
 

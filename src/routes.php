@@ -19,6 +19,9 @@ return [
     'rgpd' => ['RgpdController', 'index',],
     'legal' => ['LegalController', 'index',],
     'about' => ['AboutController', 'index',],
+    'round' => ['RoundController', 'fight',],
     'select-unicorn' => ['UnicornController', 'index',],
     'select-unicorn/select' => ['UnicornController', 'addSelectedUnicornToSession', ['id']],
+    'selectattack' => ['FightController', 'index',],
+    'confirmAttack'  => ['FightController', 'confirmAttack',],
 ];
