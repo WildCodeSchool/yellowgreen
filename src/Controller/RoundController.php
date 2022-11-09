@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use Amp\Success;
 use App\Model\UserManager;
 use App\Utils\UserUtils;
 use PDOException;
@@ -25,19 +24,18 @@ class RoundController extends AbstractController
             if ($round % 10 == 0) {
                 $continue = $this->buildRoundUser();
                 if (!$continue) {
-                    $globals['round'] = 0;
+                    $this->twig->addGlobal('round', 0);
                 } else {
-                    $globals['round'] += 1;
+                    $this->twig->addGlobal('round', $globals['round'] + 1);
                 }
             } else {
                 $continue = $this->buildRoundOpponent();
                 if ($continue) {
-                    $globals['round'] += 9;
+                    $this->twig->addGlobal('round', $globals['round'] + 9);
                 } else {
-                    $globals['round'] = 0;
+                    $this->twig->addGlobal('round', 0);
                 }
             }
-            $this->twig->mergeGlobals($globals);
         }
         return $this->twig->render("Fight/fight.html.twig");
     }
