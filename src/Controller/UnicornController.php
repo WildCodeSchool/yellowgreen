@@ -36,7 +36,7 @@ class UnicornController extends AbstractController
                 $unicornManager = new UnicornManager();
                 $unicorn = $unicornManager->selectOneById($cleanIdUnicorn);
                 $_SESSION['opponentUnicornId'] = $unicorn["id"];
-                header("location: /select-unicorn"); // will be changed to the "select the attack" page when it's ready
+                header("location: /selectattack"); // will be changed to the "select the attack" page when it's ready
             }
         } else {
             header("location: /");
