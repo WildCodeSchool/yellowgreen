@@ -30,7 +30,7 @@ CREATE TABLE
     );
 
 CREATE TABLE
-    IF NOT EXISTS attack (
+    IF NOT EXISTS attack(
         id INT NOT NULL AUTO_INCREMENT,
         name VARCHAR(45) NOT NULL UNIQUE,
         avatar VARCHAR(100),
@@ -48,3 +48,83 @@ CREATE TABLE
         FOREIGN KEY (unicorn_Id) REFERENCES unicorn(id) ON DELETE CASCADE,
         FOREIGN KEY (attack_Id) REFERENCES attack(id) ON DELETE CASCADE
     );
+
+INSERT INTO
+    unicorn (
+        name,
+        avatar,
+        score,
+        fights,
+        wonFights,
+        lostFights,
+        koFights
+    )
+VALUES (
+        'Allena',
+        'allena.png',
+        100,
+        0,
+        0,
+        0,
+        0
+    ), (
+        'Larissa',
+        'larissa.png',
+        100,
+        0,
+        0,
+        0,
+        0
+    ), (
+        'Suki',
+        'suki.png',
+        100,
+        0,
+        0,
+        0,
+        0
+    );
+
+INSERT INTO
+    attack (
+        name,
+        avatar,
+        cost,
+        gain,
+        successRate
+    )
+VALUES (
+        'Etoiles filantes',
+        'star.png',
+        2,
+        4,
+        90
+    ), (
+        'Cabrage',
+        'cabrage.png',
+        4,
+        10,
+        70
+    ), ('Bisou', 'kiss.png', 8, 24, 30), (
+        'Clin d\'oeil',
+        'wink.png',
+        3,
+        6,
+        75
+    ), (
+        'Malice',
+        'malice.png',
+        5,
+        15,
+        60
+    ), ('Câlin', 'hug.png', 7, 20, 40);
+
+INSERT INTO
+    unicorn_attack (unicorn_id, attack_id)
+VALUES (1, 1), (1, 2), (1, 3), (2, 4), (2, 5), (2, 3), (3, 1), (3, 6), (3, 3);
+
+DROP TABLE unicorn;
+
+DROP TABLE unicorn_attack;
+
+DROP TABLE attack;

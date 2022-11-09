@@ -27,7 +27,6 @@ abstract class AbstractController
             ]
         );
         $this->twig->addExtension(new DebugExtension());
-
         if ($_SESSION) {
             foreach ($_SESSION as $key => $value) {
                 switch ($key) {
@@ -35,6 +34,9 @@ abstract class AbstractController
                         $userManager = new UserManager();
                         $sessionUser = $userManager->selectOneById($value);
                         $this->twig->addGlobal('sessionUser', $sessionUser);
+                        $unicornManager = new UnicornManager();
+                        $this->unicorns = $unicornManager->selectAll();
+                        $this->twig->addGlobal('unicorns', $this->unicorns);
                         break;
                     case "opponentId":
                         $userManager = new UserManager();
