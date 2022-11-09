@@ -14,7 +14,7 @@
     <section class="battle">
         <img class="player" src="/assets/images/profile/{{sessionUser ? sessionUser.avatar : 'img_avatar.png'}}">
         <img class="versus" src="/assets/images/vs-index.png">
-        <img class="player" src="/assets/images/fight.png">
+        <img class="player" src="/assets/images/profile/{{opponentUser ? opponentUser.avatar : 'img_avatar.png'}}">
     </section>
 
     <section class="round">
@@ -27,7 +27,7 @@
     </section>
 
     <div class="containerTableau">
-            <section class="avatarCapacity"> X</section>
+            <section class="avatarCapacity"><img  src="/assets/images/unicorn/{{type == 'user' ? userUnicorn.avatar : opponentUnicorn.avatar}}"> </section>
         <section>
 
         <div class="titleTableau"> capacités</div>
@@ -42,7 +42,7 @@
         </div>
 
         <div>
-            {% for attack in unicorn %}                        
+            {% for attack in attacks %}                        
                 <ol>                    
                     <li>
                         {{attack.attName}}
@@ -69,15 +69,11 @@
     </section>
 
     <section class="containerRedButton">
+    {% for attack in attacks %}                        
         <div>
-            <a href="{{attack.attName}}" class="selectAttack">clin d'oeil </a>
+            <a href="confirmAttack?type={{type}}&&id={{attack.attId}}" class="selectAttack">{{attack.attName}} </a>
         </div>
-        <div>
-            <a href="{{attack.attName}}" class="selectAttack">Malice </a>
-        </div>
-        <div>
-            <a href="{{attack.attName}}" class="selectAttack">Bisous </a>
-        </div>
+    {%  endfor %}
     </section>
 
 </main>

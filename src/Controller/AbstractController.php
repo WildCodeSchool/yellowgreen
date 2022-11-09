@@ -6,6 +6,8 @@ use Twig\Environment;
 use Twig\Extension\DebugExtension;
 use Twig\Loader\FilesystemLoader;
 use App\Model\UserManager;
+use App\Model\UnicornManager;
+use App\Model\AttackManager;
 
 /**
  * Initialized some Controller common features (Twig...)
@@ -27,10 +29,43 @@ abstract class AbstractController
         );
         $this->twig->addExtension(new DebugExtension());
 
-        if (isset($_SESSION["userId"])) {
-            $userManager = new UserManager();
-            $this->sessionUser = $userManager->selectOneById($_SESSION["userId"]);
-            $this->twig->addGlobal('sessionUser', $this->sessionUser);
+        if ($_SESSION) {
+            foreach ($_SESSION as $key => $value) {
+                switch ($key) {
+                    case "userId":
+                        $userManager = new UserManager();
+                        $sessionUser = $userManager->selectOneById($value);
+                        $this->twig->addGlobal('sessionUser', $sessionUser);
+                        break;
+                    case "opponentId":
+                        $userManager = new UserManager();
+                        $opponentUser = $userManager->selectOneById($value);
+                        $this->twig->addGlobal('opponentUser', $opponentUser);
+                        break;
+                    case "userUnicornId":
+                        $unicornManager = new UnicornManager();
+                        $userUnicorn = $unicornManager->selectOneById($value);
+                        $this->twig->addGlobal('userUnicorn', $userUnicorn);
+                        break;
+                    case "opponentUnicornId":
+                        $unicornManager = new UnicornManager();
+                        $opponentUnicorn = $unicornManager->selectOneById($value);
+                        $this->twig->addGlobal('opponentUnicorn', $opponentUnicorn);
+                        break;
+                    case "userAttackId":
+                        $attackManager = new attackManager();
+                        $userAttack = $attackManager->selectOneById($value);
+                        $this->twig->addGlobal('userAttack', $userAttack);
+                        break;
+                    case "opponentAttackId":
+                        $attackManager = new attackManager();
+                        $opponentAttack = $attackManager->selectOneById($value);
+                        $this->twig->addGlobal('opponentAttack', $opponentAttack);
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
     }
 

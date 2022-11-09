@@ -20,4 +20,5 @@ return [
     'legal' => ['LegalController', 'index',],
     'about' => ['AboutController', 'index',],
     'selectattack' => ['FightController', 'index',],
+    'confirmAttack'  => ['FightController', 'confirmAttack',],
 ];
