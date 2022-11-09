@@ -65,8 +65,8 @@ abstract class AbstractController
                         $opponentAttack = $attackManager->selectOneById($value);
                         $this->twig->addGlobal('opponentAttack', $opponentAttack);
                         break;
-                default:
-                break;
+                    default:
+                        break;
                 }
             }
         }
