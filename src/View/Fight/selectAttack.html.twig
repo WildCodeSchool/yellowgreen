@@ -18,7 +18,7 @@
     </section>
 
     <section class="round">
-        <h1> ROUND 1 </h1>
+        <h1> ROUND </h1>
     </section>
 
  <div class="tableau">
@@ -71,7 +71,7 @@
     <section class="containerRedButton">
     {% for attack in attacks %}                        
         <div>
-            <a href="confirmAttack?type={{type}}&&id={{attack.attId}}" class="selectAttack">{{attack.attName}} </a>
+            <a href="confirmAttack?type={{type}}&id={{attack.attId}}" class="selectAttack">{{attack.attName}} </a>
         </div>
     {%  endfor %}
     </section>

@@ -8,12 +8,12 @@ use App\Model\UnicornManager;
 class FightController extends AbstractController
 {
     /**
-     * Display about page
+     * Display fight page
      */
     public function index(): string
     {
-        $unicornManager = new AttackManager();
-        $attacks = $unicornManager->selectUnicornWithAttacksById($_SESSION["userUnicornId"]);
+        $attackManager = new AttackManager();
+        $attacks = $attackManager->selectUnicornWithAttacksById($_SESSION["userUnicornId"]);
         return $this->twig->render('Fight/selectAttack.html.twig', ["type" => "user", 'attacks' => $attacks]);
     }
 
@@ -34,7 +34,7 @@ class FightController extends AbstractController
     {
 
         if ($_GET) {
-            if ($_GET['type'] == 'user') {
+            if ($_GET['type'] === 'user') {
                 $attacks = $this->confirmUserAttack();
                 return $this->twig->render('Fight/selectAttack.html.twig', [
                     "type" => "opponent",
