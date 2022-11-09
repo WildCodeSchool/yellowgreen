@@ -6,6 +6,7 @@ use Twig\Environment;
 use Twig\Extension\DebugExtension;
 use Twig\Loader\FilesystemLoader;
 use App\Model\UserManager;
+use App\Model\UnicornManager;
 
 /**
  * Initialized some Controller common features (Twig...)
@@ -14,6 +15,9 @@ abstract class AbstractController
 {
     protected Environment $twig;
     protected array|false $sessionUser = false;
+    protected array|false $unicorn = false;
+    protected array|false $opponentUnicorn = false;
+
 
     public function __construct()
     {
@@ -25,12 +29,27 @@ abstract class AbstractController
                 'debug' => true,
             ]
         );
-        $this->twig->addExtension(new DebugExtension());
 
         if (isset($_SESSION["userId"])) {
             $userManager = new UserManager();
             $this->sessionUser = $userManager->selectOneById($_SESSION["userId"]);
             $this->twig->addGlobal('sessionUser', $this->sessionUser);
+            $this->twig->addExtension(new DebugExtension());
+            $unicornManager = new UnicornManager();
+            $this->unicorn = $unicornManager->selectAll();
+            $this->twig->addGlobal('unicorns', $this->unicorn);
+        }
+
+        if (isset($_SESSION["userUnicornId"])) {
+            $unicornManager = new UnicornManager();
+            $this->unicorn = $unicornManager->selectOneById($_SESSION["userUnicornId"]);
+            $this->twig->addGlobal('userUnicorn', $this->unicorn);
+        }
+
+        if (isset($_SESSION["opponentUnicornId"])) {
+            $unicornManager = new UnicornManager();
+            $this->opponentUnicorn = $unicornManager->selectOneById($_SESSION["opponentUnicornId"]);
+            $this->twig->addGlobal('opponentUnicorn', $this->opponentUnicorn);
         }
     }
 

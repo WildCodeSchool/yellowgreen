@@ -18,5 +18,7 @@ return [
     'logout' => ['UserController', 'logout',],
     'rgpd' => ['RgpdController', 'index',],
     'legal' => ['LegalController', 'index',],
-    'about' => ['AboutController', 'index',]
+    'about' => ['AboutController', 'index',],
+    'select-unicorn' => ['UnicornController', 'index',],
+    'select-unicorn/select' => ['UnicornController', 'addSelectedUnicornToSession', ['id']],
 ];
