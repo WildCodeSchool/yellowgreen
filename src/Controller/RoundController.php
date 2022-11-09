@@ -22,14 +22,11 @@ class RoundController extends AbstractController
                 $_SESSION['round'] = $globals['round'] + 1;
                 header("location: /loopInRound");
                 return null;
-            } else {
-                $_SESSION['round'] = 0;
-                return $this->twig->render("Fight/index.html.twig");
             }
-        } else {
-            $_SESSION['round'] = 0;
-            return $this->twig->render("Fight/index.html.twig");
         }
+        $_SESSION['round'] = 0;
+        header("location: /fight");
+        return null;
     }
 
     private function buildRoundUser(): bool

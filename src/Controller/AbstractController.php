@@ -66,7 +66,6 @@ abstract class AbstractController
                         $opponentAttack = $attackManager->selectOneById($value);
                         $this->twig->addGlobal('opponentAttack', $opponentAttack);
                         break;
-                        /*
                     case "userScore":
                         $this->twig->addGlobal('userScore', $_SESSION['userScore']);
                         break;
@@ -75,7 +74,7 @@ abstract class AbstractController
                         break;
                     case "round":
                         $this->twig->addGlobal('round', $_SESSION['round']);
-                        break;*/
+                        break;
                     default:
                         break;
                 }
