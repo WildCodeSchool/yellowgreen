@@ -18,5 +18,6 @@ return [
     'logout' => ['UserController', 'logout',],
     'rgpd' => ['RgpdController', 'index',],
     'legal' => ['LegalController', 'index',],
-    'about' => ['AboutController', 'index',]
+    'about' => ['AboutController', 'index',],
+    'selectattack' => ['FightController', 'index',],
 ];
