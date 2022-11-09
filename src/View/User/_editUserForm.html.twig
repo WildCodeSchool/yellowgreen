@@ -26,7 +26,7 @@
 
 		<input id="avatar" name="avatar" type="file" value="{{user.avatar}}" accept="image/*" onchange="showPreview(event);"/>
 
-		<input type="text" value="{{user.description}}" name="description" id="description" placeholder="Description">
+		<textarea rows="4" name="description" id="description" placeholder="Description"/>{{user.description}}</textarea>
 
 		<div class="modalButtons">
 			<button class="redButton">Enregistrer</button><br>
