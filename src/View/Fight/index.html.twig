@@ -31,7 +31,7 @@
 			{% for user in users %}
 					
 					<tr id="rowSelected">
-						<td><img src="" alt="avatar"></td>
+						<td><img src="/assets/images/profile/{{user.avatar}}" alt="avatar"></td>
 						<td class="right-justify">{{user.nickName}}</td>
 						<td class="right-justify">{{user.score}}</td>
 						<td><a href="fight?id={{user.id}}"><input type="submit" value="choisir" class="chooseOpponentButton"></a></td>
