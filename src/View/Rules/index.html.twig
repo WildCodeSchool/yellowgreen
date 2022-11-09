@@ -75,7 +75,12 @@
 			</li>
 		</ul>
 
-		 <div class="rule-button">
+		{% if sessionUser %}
+		<div class="rule-button">
+			<a href="#" class="redButton">Combat</a>
+		</div>
+		{% else %}
+		<div class="rule-button">
 			<button class="redButton" data-modal="modalOne" style="button" onclick="">Pas encore membre?</button>
 		</div>
 
@@ -96,6 +101,9 @@
 				{% include 'User/_login.html.twig' %}
 			</div>
 		</div>
+		{% endif %}
+
+		
 
 
 	</main>
