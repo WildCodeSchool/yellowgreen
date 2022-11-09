@@ -29,6 +29,7 @@ abstract class AbstractController
 
         $this->twig->addExtension(new DebugExtension());
 
+
         if ($_SESSION) {
             foreach ($_SESSION as $key => $value) {
                 switch ($key) {
@@ -65,6 +66,16 @@ abstract class AbstractController
                         $opponentAttack = $attackManager->selectOneById($value);
                         $this->twig->addGlobal('opponentAttack', $opponentAttack);
                         break;
+                        /*
+                    case "userScore":
+                        $this->twig->addGlobal('userScore', $_SESSION['userScore']);
+                        break;
+                    case "opponentScore":
+                        $this->twig->addGlobal('opponentScore', $_SESSION['opponentScore']);
+                        break;
+                    case "round":
+                        $this->twig->addGlobal('round', $_SESSION['round']);
+                        break;*/
                     default:
                         break;
                 }

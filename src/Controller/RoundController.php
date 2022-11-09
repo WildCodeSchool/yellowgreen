@@ -10,34 +10,26 @@ class RoundController extends AbstractController
 {
     public const MAX_SCORE = 200;
 
-    public function fight(?int $round = 0): string
+    public function fight(): string|null
     {
-        if ($round == 0) {
-            $_SESSION['opponentId'] = 1;
-            $_SESSION['opponentUnicornId'] = 1;
-            $_SESSION['userUnicornId'] = 2;
-            $this->twig->addGlobal('userScore', 100);
-            $this->twig->addGlobal('opponentScore', 100);
-            $this->twig->addGlobal('round', 10);
-        } else {
-            $globals = $this->twig->getGlobals();
-            if ($round % 10 == 0) {
-                $continue = $this->buildRoundUser();
-                if (!$continue) {
-                    $this->twig->addGlobal('round', 0);
-                } else {
-                    $this->twig->addGlobal('round', $globals['round'] + 1);
-                }
+        $globals = $this->twig->getGlobals();
+
+        $continue = $this->buildRoundUser();
+
+        if ($continue) {
+            $continue = $this->buildRoundOpponent();
+            if ($continue) {
+                $_SESSION['round'] = $globals['round'] + 1;
+                header("location: /loopInRound");
+                return null;
             } else {
-                $continue = $this->buildRoundOpponent();
-                if ($continue) {
-                    $this->twig->addGlobal('round', $globals['round'] + 9);
-                } else {
-                    $this->twig->addGlobal('round', 0);
-                }
+                $_SESSION['round'] = 0;
+                return $this->twig->render("Fight/index.html.twig");
             }
+        } else {
+            $_SESSION['round'] = 0;
+            return $this->twig->render("Fight/index.html.twig");
         }
-        return $this->twig->render("Fight/fight.html.twig");
     }
 
     private function buildRoundUser(): bool
@@ -46,12 +38,12 @@ class RoundController extends AbstractController
         $attack = $globals['userAttack'];
         $score = $globals["userScore"];
         $score -= $attack["cost"];
-        $success = rand(0, 100) <= $attack["succesRate"];
+        $success = rand(0, 100) <= $attack["successRate"];
         if ($success) {
             $score += $attack["gain"];
         }
-        $this->twig->addGlobal('successRound', $success);
-        $this->twig->addGlobal('userScore', $score);
+        $_SESSION['successRound'] =  $success;
+        $_SESSION['userScore'] = $score;
         return $score > 0 && $score < self::MAX_SCORE;
     }
 
@@ -61,12 +53,12 @@ class RoundController extends AbstractController
         $attack = $globals['opponentAttack'];
         $score = $globals["opponentScore"];
         $score -= $attack["cost"];
-        $success = rand(0, 100) <= $attack["succesRate"];
+        $success = rand(0, 100) <= $attack["successRate"];
         if ($success) {
             $score += $attack["gain"];
         }
-        $this->twig->addGlobal('successRound', $success);
-        $this->twig->addGlobal('opponentScore', $score);
+        $_SESSION['successRound'] =  $success;
+        $_SESSION['opponentScore'] = $score;
         return $score > 0 && $score < self::MAX_SCORE;
     }
 }
