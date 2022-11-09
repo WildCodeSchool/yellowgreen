@@ -25,7 +25,7 @@
 			{% for uni in unicorns %}
 				{% if uni.unicornId is not same as(currentUnicorn)  %}
 					{% set currentUnicorn = uni.unicornId %}
-					<li class="unicorn" id="{{ uni.unicornName|lower }}">
+					<li class="unicorn" id="{{ uni.unicornId }}">
 						<div class="unicorn-name">
 							<h3>{{uni.unicornName}}</h3>
 						</div>
@@ -61,7 +61,7 @@
 		</ul>
 		<div>
 			<form class="selectUnicornForm" method="post" action="/select-unicorn/select?id={{ post.selectedUnicorn }}">
-				<select class="select-hidden" name="userUnicorn" id="select-user" required>
+				<select class="select" name="userUnicorn" id="userUnicorn" required>
 					<option hidden disabled selected value></option>
 					{% set currentUnicorn = -1 %}
 					{% for uni in unicorns %}
@@ -71,7 +71,7 @@
 						{% endif %}
 					{% endfor %}
 				</select>
-				<select class="select-hidden" name="opponentUnicorn" id="select-opponent" required>
+				<select class="select" name="opponentUnicorn" id="opponentUnicorn" required>
 					<option hidden disabled selected value></option>
 					{% set currentUnicorn = -1 %}
 					{% for uni in unicorns %}
