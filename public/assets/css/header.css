@@ -46,6 +46,8 @@
     width: 40px;
     height: 40px;
     margin: 0px;
+    border-radius: 50%;
+    box-shadow: var(--shadow-buttons);
 }
 
 .icon {
@@ -98,6 +100,7 @@
         color: var(--secondary-color);
         font-weight: initial;
         border-radius: 20px;
+        box-shadow: var(--shadow-buttons);
     }
 
     .topnav {
@@ -106,6 +109,12 @@
         padding-bottom: 0px;
         justify-content: center;
     }
+    .topnav ul {
+        width: 90%;
+        display: flex;
+        justify-content: space-between;
+    }
+
     .topnav ul {
         width: 90%;
         display: flex;
