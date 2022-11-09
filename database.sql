@@ -11,7 +11,7 @@ CREATE TABLE
         passWord VARCHAR(255) NOT NULL,
         email VARCHAR(45) NOT NULL UNIQUE,
         avatar VARCHAR(100) DEFAULT 'avatar.png',
-        description VARCHAR(100),
+        description VARCHAR(255),
         score INT DEFAULT 0,
         PRIMARY KEY(id)
     );
