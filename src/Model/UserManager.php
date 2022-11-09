@@ -54,6 +54,14 @@ class UserManager extends AbstractManager
         return $statement->fetch();
     }
 
+    public function selectRandomUsers(int $userId): array
+    {
+        $statement = $this->pdo->prepare("SELECT * FROM " . static::TABLE .
+        " WHERE id <> " . $userId  . " ORDER BY RAND() LIMIT 5");
+        $statement->execute();
+        return $statement->fetchAll();
+    }
+
     public function delete(int $id): void
     {
         $statement = $this->pdo->prepare("DELETE FROM " . static::TABLE . " WHERE id=:id");

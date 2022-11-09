@@ -16,6 +16,7 @@ main table td {
 main td img {
     width: 6.5vw;
     height: 6.5vw;
+    border-radius: 50%;
 }
 
 main table tr:nth-child(even) {
@@ -72,6 +73,7 @@ section.info {
     font-size: 2vw;
     max-width: 600px;
 }
+
 .rank img {
     width: 9vw;
     height: 9vw;
@@ -81,6 +83,7 @@ section.info {
     width: 7vw;
     height: 7vw;
 }
+
 .rank {
     display: flex;
     flex-direction: column;
@@ -114,12 +117,10 @@ section.info {
     border-top-style: solid;
     border-top-left-radius: 2.8vw;
     border-top-right-radius: 2.8vw;
-    background-image: linear-gradient(
-        to right,
-        var(--primary-color),
-        var(--third-color),
-        var(--primary-color)
-    );
+    background-image: linear-gradient(to right,
+            var(--primary-color),
+            var(--third-color),
+            var(--primary-color));
     width: 100%;
     text-align: center;
 }
@@ -131,12 +132,10 @@ section.info {
 }
 
 .podium-2 {
-    background-image: linear-gradient(
-        to right,
-        rgb(122, 94, 94),
-        silver,
-        rgb(122, 94, 94)
-    );
+    background-image: linear-gradient(to right,
+            rgb(122, 94, 94),
+            silver,
+            rgb(122, 94, 94));
     height: 18vw;
     border-top-color: rgb(65, 48, 48);
 }
