@@ -16,37 +16,32 @@
         </div>
 
 		<div class="sectionVS">
-			<img src="" alt="Avatar">
-			<img src="\assets\images\vs-index.png" alt="vs picture">
-			<img src="\assets\images\profile\{{opponentPicture}}" alt="avatar opponent">
+			<img src="\assets\images\profile\{{sessionUser.avatar}}" class="picture_avatar" alt="Avatar">
+			<img src="\assets\images\vs-index.png" class="vs_pic" alt="vs picture">
+			<img src="\assets\images\profile\{{opponent.avatar}}" class="picture_avatar" alt="avatar opponent">
 		</div>
 
         <table>
 			<tr>
 				<th></th>
-				<th>Rang</th>
 				<th>Pseudo</th>
 				<th>Points</th>
+				<th></th>
 			</tr>
-			{# {% set rank = 1 %} #}
 			{% for user in users %}
-					<a href="Fight/index.html.twig?id=user.id">
-					<tr id="rowSelected">
 					
-
+					<tr id="rowSelected">
 						<td><img src="" alt="avatar"></td>
-						<td>{{user.rank}}</td>
 						<td class="right-justify">{{user.nickName}}</td>
 						<td class="right-justify">{{user.score}}</td>
-						
-					</tr>
-					</a>
-				
-				{# {% set rank =  rank + 1  %} #}
+						<td><a href="fight?id={{user.id}}"><input type="submit" value="choisir"></a></td>
+					</tr>	
 			{% endfor %}
 		</table>
-
-        <button class="goFight"style="button"> Lancer le combat ! </button>
+		<form action="{{ opponent.id ? 'confirmOpponent' :'' }}" method="post">
+		<input type="hidden" name="opponentId" value="{{opponent.id}}"/>
+        <button type="submit" class="goFight" style="button"> Lancer le combat ! </button>
+		</form>
         
     </main>
 {% endblock %}
