@@ -15,11 +15,9 @@
 			<div class="info-session">
 				<h2>Tes infos</h2>
 				<ul>
-					{% set sessionId = 2 %}
-					{# pour le moment sans Session #}
 					{% set rank = 1 %}
 					{% for user in users %}
-						{% if sessionId is same as(user.id) %}
+						{% if sessionUser.id is same as(user.id) %}
 							<li>
 								<p>Rang
 									{{rank}}

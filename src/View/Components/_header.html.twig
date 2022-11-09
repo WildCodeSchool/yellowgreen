@@ -5,6 +5,11 @@
 
 	<a class="headerLinks headerTitle" href="/">Happiness & Glitters</a>
 
+		{% if sessionUser %}
+			<img class='imgavatar' src={{"/assets/images/profile/" ~ sessionUser.avatar }}>
+		{% endif %}
+
+
 	<button type="button" class="icon{{sessionUser ? '':' notconnected' }}" onclick="displayMenu()" id="burger">
 
 		<i class="fa-solid fa-bars"></i>
@@ -18,5 +23,6 @@
 		<li><a class="headerLinks radiusButton" href={{sessionUser ? "/users/show?id=" ~ sessionUser.id : "#"}}>Mon profil</a></li>
 		<li><a class="headerLinks radiusButton" href="/users">Classement</a></li>
 		<li><a class="headerLinks radiusButton" href="#">Combat</a></li>
+		<li><a class="headerLinks radiusButton" href="/logout">Logout</a></li>
 	</ul>
 </aside>

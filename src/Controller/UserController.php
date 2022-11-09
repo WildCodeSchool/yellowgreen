@@ -70,7 +70,7 @@ class UserController extends AbstractController
                 try {
                     $userManager->update($user);
                     $_SESSION['nickName'] = $user['nickName'];
-                    $_SESSION['passWord'] = $user['passWord'];
+                    // $_SESSION['passWord'] = $user['passWord'];
                     header('Location:/users/show?id=' . $id);
                     return null;
                 } catch (PDOException $err) {
@@ -142,13 +142,11 @@ class UserController extends AbstractController
      */
     public function delete(): void
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $id = trim($_POST['id']);
-            $userManager = new UserManager();
-            $userManager->delete((int)$id);
-
-            header('Location:/users');
-        }
+        $id = $_SESSION['userId'];
+        $userManager = new UserManager();
+        $userManager->delete((int)$id);
+        session_destroy();
+        header("location: /");
     }
 
     public function login(): string

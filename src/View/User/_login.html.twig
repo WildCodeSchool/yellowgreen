@@ -1,14 +1,13 @@
 {% block content %}
 	<section class="formSection">
-		<form class="formSection login" method="post" enctype="multipart/form-data" action="/login">
+	<h2>Login</h2>
+		<form class="login" method="post" enctype="multipart/form-data" action="/login">
 
-			<label class="email-login-label" for="email" display="hidden" required></label>
-			<input type="text" value="" name="email" id="email" placeholder="Email">
+			<input type="text" value="" name="email" id="email" placeholder="Email" required>
 
-			<label for="password" display="hidden" required></label>
-			<input type="text" value="" name="passWord" id="password" placeholder="Password">
+			<input type="text" value="" name="passWord" id="password" placeholder="Password" required>
 
-			<button class="button" type="submit">Je me connecte !</button>
+			<button class="loginButton" type="submit">Je me connecte !</button>
 		</form>
 	</section>
 

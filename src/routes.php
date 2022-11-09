@@ -13,7 +13,7 @@ return [
     'users/edit' => ['UserController', 'edit', ['id']],
     'users/show' => ['UserController', 'show', ['id']],
     'users/add' => ['UserController', 'add',],
-    'users/delete' => ['UserController', 'delete',],
+    'users/delete' => ['UserController', 'delete', ['id']],
     'login' => ['UserController', 'login',],
     'logout' => ['UserController', 'logout',],
     'rgpd' => ['RgpdController', 'index',],
