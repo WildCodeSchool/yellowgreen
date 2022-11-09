@@ -21,4 +21,7 @@ return [
     'about' => ['AboutController', 'index',],
     'fight' => ['FightController', 'selectRandomUsers'],
     'confirmOpponent' => ['FightController', 'confirmOpponent'],
+    'round' => ['RoundController', 'fight',],
+    'select-unicorn' => ['UnicornController', 'index',],
+    'select-unicorn/select' => ['UnicornController', 'addSelectedUnicornToSession', ['id']],
 ];

@@ -5,7 +5,27 @@ main{
     justify-content: center;
     padding-top: 20px;
 }
+.chooseOpponentButton {
+    font-size: 13px;
+    font-family: var(--secondary-font);
+    color: var(--secondary-color);
+    background: linear-gradient(to bottom,
+            var(--primary-color) 5%,
+            var(--primary-hover) 100%);
+    padding: 4px 8px;
+    margin: 0;
+    border-radius: 10px;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    filter: var(--filter-shadow);
+}
 
+.chooseOpponentButton:hover {
+    background: linear-gradient(to bottom,
+            var(--primary-hover) 5%,
+            var(--primary-color) 100%);
+}
 .picture_avatar{
     border-radius: 50%;
 }
