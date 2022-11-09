@@ -5,6 +5,11 @@ main.about h1 {
     font-family: var(--primary-font);
 }
 
+section.dev {
+    margin: auto;
+    width: 90%;
+}
+
 section.dev ul {
     list-style-type: none;
     padding-left: 0%;
@@ -13,7 +18,7 @@ section.dev ul {
 section.dev ul {
     display: flex;
     flex-direction: row;
-    font-size: 2vw;
+    font-size: 1.9vw;
 }
 
 section.dev ul p {
@@ -27,19 +32,23 @@ section.dev ul li {
 }
 
 img.picture {
-    width: 100%;
+    width: 90%;
     height: 100%;
+    border-radius: 20%;
     object-fit: cover;
 }
 
+section.dev ul li {
+    transition: transform 500ms ease-in-out;
+}
+
 section.dev ul li:hover {
-    width: 25%;
-    height: 25%;
-    cursor: pointer;
-    font-size: 2.5vw;
+
     font-style: bold;
     text-shadow: 1px 1px 1px red;
+    transform: scale(1.2);
 }
+
 
 section.dev ul li div {
     display: flex;
@@ -55,5 +64,24 @@ img.social {
     max-width: 20px;
 }
 
-@media screen and (max-width: 760px) {
+.dev div {
+    margin-right: 10%;
+}
+
+@media screen and (max-width: 768px) {
+    section.dev ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 4vw;
+    }
+
+    section.dev ul li {
+        width: 55%;
+        height: 40%;
+    }
+
+    img.social {
+        width: 5vw;
+    }
 }
