@@ -23,19 +23,19 @@ class UnicornController extends AbstractController
     public function addSelectedUnicornToSession(): void
     {
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
-            $cleanValue = htmlentities(trim($_POST["selectedUnicorn"]));
+            $cleanValue = htmlentities(trim($_POST["userUnicorn"]));
             $cleanIdUnicorn = intval($cleanValue);
             if (filter_var($cleanIdUnicorn, FILTER_VALIDATE_INT)) {
                 $unicornManager = new UnicornManager();
                 $unicorn = $unicornManager->selectOneById($cleanIdUnicorn);
-                $_SESSION['selectedUnicorn'] = $unicorn["id"];
+                $_SESSION['userUnicornId'] = $unicorn["id"];
             }
             $cleanValue = htmlentities(trim($_POST["opponentUnicorn"]));
             $cleanIdUnicorn = intval($cleanValue);
             if (filter_var($cleanIdUnicorn, FILTER_VALIDATE_INT)) {
                 $unicornManager = new UnicornManager();
                 $unicorn = $unicornManager->selectOneById($cleanIdUnicorn);
-                $_SESSION['opponentUnicorn'] = $unicorn["id"];
+                $_SESSION['opponentUnicornId'] = $unicorn["id"];
                 header("location: /select-unicorn"); // will be changed to the "select the attack" page when it's ready
             }
         } else {

@@ -1,4 +1,11 @@
 // Select and update the chosen unicorn by the user
+let unicorns = document.querySelectorAll('.unicorn');
+console.log(unicorns);
+
+
+unicorns.forEach(unicorn => {
+    
+});
 
 const changeSelected1 = () => {
     let select = document.getElementById('select-user');
@@ -41,7 +48,7 @@ suki.addEventListener('click', () => {
 });
 // Selection by the opponent 
 
-const SelectedByComputer = () => {
+const SelectedByOpponent = () => {
     let selectOpponent = document.getElementById('select-opponent');
     if (Math.random() * 10 < 3.3) {
         selectOpponent.value = 1;
@@ -50,4 +57,4 @@ const SelectedByComputer = () => {
     } else { selectOpponent.value = 3; }
 };
 
-SelectedByComputer();
+SelectedByOpponent();

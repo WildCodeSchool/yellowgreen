@@ -40,15 +40,15 @@ abstract class AbstractController
             $this->twig->addGlobal('unicorns', $this->unicorn);
         }
 
-        if (isset($_SESSION["selectedUnicorn"])) {
+        if (isset($_SESSION["userUnicornId"])) {
             $unicornManager = new UnicornManager();
-            $this->unicorn = $unicornManager->selectOneById($_SESSION["selectedUnicorn"]);
-            $this->twig->addGlobal('unicorn', $this->unicorn);
+            $this->unicorn = $unicornManager->selectOneById($_SESSION["userUnicornId"]);
+            $this->twig->addGlobal('userUnicorn', $this->unicorn);
         }
 
-        if (isset($_SESSION["opponentUnicorn"])) {
+        if (isset($_SESSION["opponentUnicornId"])) {
             $unicornManager = new UnicornManager();
-            $this->opponentUnicorn = $unicornManager->selectOneById($_SESSION["opponentUnicorn"]);
+            $this->opponentUnicorn = $unicornManager->selectOneById($_SESSION["opponentUnicornId"]);
             $this->twig->addGlobal('opponentUnicorn', $this->opponentUnicorn);
         }
     }
