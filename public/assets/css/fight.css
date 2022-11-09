@@ -82,7 +82,7 @@ td{
     background-color: var(--third-color);
 }
 
-.choose_fighter p{
+.choose_fighter h1{
     font-size: 15px;
 }
 
@@ -237,6 +237,10 @@ section.info {
     .sectionVS img{
         width: 120px;
         height:120px;
+    }
+
+    .choose_fighter h1{
+        font-size: 25px;
     }
 
     

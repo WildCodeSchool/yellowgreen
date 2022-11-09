@@ -1,18 +1,18 @@
 {% extends 'layout.html.twig' %}
 
-{% block title %}Combat
+{% block title %}Combat -
+	{{ parent() }}
 {% endblock %}
 
 {% block stylesheet %}
   {{ parent() }}
   <link rel="stylesheet" type="text/css" href="/assets/css/fight.css"/>
-  <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
 {% endblock %}
 
 {% block content %}
     <main>
         <div class="choose_fighter">
-            <p>Choisis ton adversaire!</p>
+            <h1>Choisis ton adversaire!</h1>
         </div>
 
 		<div class="sectionVS">
