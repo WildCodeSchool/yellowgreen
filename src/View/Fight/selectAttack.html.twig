@@ -13,11 +13,25 @@
 {% block content %}
 	<main class="fight">
 
-		{% include 'Components/_versus.html.twig' %}
+		<section class="battle">
+			<div>
+				<img class="player" src="/assets/images/profile/{{sessionUser ? sessionUser.avatar : 'img_avatar.png'}}">
+				<h3>Score
+					{{userScore}}</h3>
+			</div>
+			<img class="versus" src="/assets/images/vs-index.png">
+
+			<div>
+				<img class="player" src="/assets/images/profile/{{opponentUser ? opponentUser.avatar : 'img_avatar.png'}}">
+				<h3>Score
+					{{opponentScore}}</h3>
+			</div>
+		</section>
 
 		<section class="round">
 			<h1>
-				ROUND
+				Round
+				{{round}}
 			</h1>
 		</section>
 
@@ -74,7 +88,7 @@
 		<section class="containerRedButton">
 			{% for attack in attacks %}
 				<div>
-					<a href="confirmAttack?type={{type}}&id={{attack.attId}}" class="selectAttack">{{attack.attName}}
+					<a href="confirmAttack?id={{attack.attId}}" class="selectAttack">{{attack.attName}}
 					</a>
 				</div>
 			{%  endfor %}

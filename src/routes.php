@@ -25,5 +25,6 @@ return [
     'select-unicorn' => ['UnicornController', 'index',],
     'select-unicorn/select' => ['UnicornController', 'addSelectedUnicornToSession', ['id']],
     'selectattack' => ['FightController', 'index',],
+    'loopInRound' => ['FightController', 'loopInRound',],
     'confirmAttack'  => ['FightController', 'confirmAttack',],
 ];
