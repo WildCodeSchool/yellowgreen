@@ -12,39 +12,33 @@ class FightController extends AbstractController
     {
         $attackManager = new AttackManager();
         $attacks = $attackManager->selectUnicornWithAttacksById($_SESSION["userUnicornId"]);
-        return $this->twig->render('Fight/selectAttack.html.twig', ["type" => "user", 'attacks' => $attacks]);
+        $_SESSION['round'] = 1;
+        $_SESSION['userScore'] = 100;
+        $_SESSION['opponentScore'] = 100;
+        return $this->twig->render('Fight/selectAttack.html.twig', ['attacks' => $attacks]);
     }
 
-    public function confirmUserAttack(): array
+    public function loopInRound(): string
     {
-        $_SESSION["userAttackId"] = $_GET["id"];
-        $unicornManager = new AttackManager();
-        $attacks = $unicornManager->selectUnicornWithAttacksById($_SESSION["opponentUnicornId"]);
-        return $attacks;
+        $attackManager = new AttackManager();
+        $attacks = $attackManager->selectUnicornWithAttacksById($_SESSION["userUnicornId"]);
+        return $this->twig->render('Fight/selectAttack.html.twig', ['attacks' => $attacks]);
     }
 
-    public function confirmOpponentAttack(): void
-    {
-        $_SESSION["opponentAttackId"] = $_GET["id"];
-    }
 
-    public function confirmAttack(): string|null
-    {
 
+    public function confirmAttack(): void
+    {
         if ($_GET) {
-            if ($_GET['type'] === 'user') {
-                $attacks = $this->confirmUserAttack();
-                return $this->twig->render('Fight/selectAttack.html.twig', [
-                    "type" => "opponent",
-                    'attacks' => $attacks
-                ]);
-            } else {
-                $this->confirmOpponentAttack();
-                header("location: /");
-                return null;
-            }
+            $_SESSION["userAttackId"] = $_GET["id"];
+            $unicornManager = new AttackManager();
+            $attacks = $unicornManager->selectUnicornWithAttacksById($_SESSION["opponentUnicornId"]);
+            $count = count($attacks);
+            $rnd = rand(0, $count - 1);
+            $attack = $attacks[$rnd];
+            $_SESSION["opponentAttackId"] = $attack['attId'];
+            header("location: /round");
         }
-        return null;
     }
 
     public function selectRandomUsers(): string

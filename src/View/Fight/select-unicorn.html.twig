@@ -62,6 +62,8 @@
 				<select class="select-hidden" name="userUnicorn" id="userUnicorn" required>
 					<option hidden disabled selected value></option>
 					{% set currentUnicorn = -1 %}
+					{{dump(unicorns)}}
+
 					{% for uni in unicorns %}
 						{% if uni.unicornId is not same as(currentUnicorn)  %}
 							{% set currentUnicorn = uni.unicornId %}

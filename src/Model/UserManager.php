@@ -46,6 +46,14 @@ class UserManager extends AbstractManager
         return $statement->execute();
     }
 
+    public function updateScore(array $user): bool
+    {
+        $statement = $this->pdo->prepare("UPDATE " . self::TABLE . " SET score = :score WHERE id=:id");
+        $statement->bindValue('id', $user['id'], PDO::PARAM_INT);
+        $statement->bindValue('score', $user['score'], PDO::PARAM_INT);
+        return $statement->execute();
+    }
+
     public function selectOneByEmail(string $email): array | false
     {
         $statement = $this->pdo->prepare("SELECT * FROM " . static::TABLE . " WHERE email=:email");
@@ -57,7 +65,7 @@ class UserManager extends AbstractManager
     public function selectRandomUsers(int $userId): array
     {
         $statement = $this->pdo->prepare("SELECT * FROM " . static::TABLE .
-        " WHERE id <> " . $userId  . " ORDER BY RAND() LIMIT 5");
+            " WHERE id <> " . $userId  . " ORDER BY RAND() LIMIT 5");
         $statement->execute();
         return $statement->fetchAll();
     }
