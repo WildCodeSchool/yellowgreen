@@ -1,0 +1,14 @@
+{% block content %}
+	<section class="formSection">
+	<h2>Login</h2>
+		<form class="login" method="post" enctype="multipart/form-data" action="/login">
+
+			<input type="text" value="" name="email" id="email" placeholder="Email" required>
+
+			<input type="password" value="" name="passWord" id="password" placeholder="Password" required>
+
+			<button class="loginButton" type="submit">Je me connecte !</button>
+		</form>
+	</section>
+
+{% endblock %}

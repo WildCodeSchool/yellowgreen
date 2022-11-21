@@ -1,63 +1,130 @@
--- phpMyAdmin SQL Dump
--- version 4.5.4.1deb2ubuntu2
--- http://www.phpmyadmin.net
---
--- Client :  localhost
--- Généré le :  Jeu 26 Octobre 2017 à 13:53
--- Version du serveur :  5.7.19-0ubuntu0.16.04.1
--- Version de PHP :  7.0.22-0ubuntu0.16.04.1
+CREATE DATABASE IF NOT EXISTS bonheur_et_paillettes;
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
+USE bonheur_et_paillettes;
 
+CREATE TABLE
+    IF NOT EXISTS user (
+        id INT NOT NULL AUTO_INCREMENT,
+        firstName VARCHAR(45) NOT NULL,
+        lastName VARCHAR(45) NOT NULL,
+        nickName VARCHAR(45) NOT NULL UNIQUE,
+        passWord VARCHAR(255) NOT NULL,
+        email VARCHAR(45) NOT NULL UNIQUE,
+        avatar VARCHAR(100) DEFAULT 'avatar.png',
+        description VARCHAR(255),
+        score INT DEFAULT 0,
+        PRIMARY KEY(id)
+    );
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+CREATE TABLE
+    IF NOT EXISTS unicorn(
+        id INT NOT NULL AUTO_INCREMENT,
+        name VARCHAR(45) NOT NULL UNIQUE,
+        avatar VARCHAR(100),
+        score INT,
+        fights INT,
+        wonFights INT,
+        lostFights INT,
+        koFights INT,
+        PRIMARY KEY(id)
+    );
 
---
--- Base de données :  `simple-mvc`
---
+CREATE TABLE
+    IF NOT EXISTS attack(
+        id INT NOT NULL AUTO_INCREMENT,
+        name VARCHAR(45) NOT NULL UNIQUE,
+        avatar VARCHAR(100),
+        cost INT,
+        gain INT,
+        successRate INT,
+        PRIMARY KEY(id)
+    );
 
--- --------------------------------------------------------
+CREATE TABLE
+    IF NOT EXISTS unicorn_attack(
+        unicorn_id INT NOT NULL,
+        attack_id INT NOT NULL,
+        INDEX uni_att (unicorn_id, attack_id),
+        FOREIGN KEY (unicorn_Id) REFERENCES unicorn(id) ON DELETE CASCADE,
+        FOREIGN KEY (attack_Id) REFERENCES attack(id) ON DELETE CASCADE
+    );
 
---
--- Structure de la table `item`
---
+INSERT INTO
+    unicorn (
+        name,
+        avatar,
+        score,
+        fights,
+        wonFights,
+        lostFights,
+        koFights
+    )
+VALUES (
+        'Allena',
+        'allena.png',
+        100,
+        0,
+        0,
+        0,
+        0
+    ), (
+        'Larissa',
+        'larissa.png',
+        100,
+        0,
+        0,
+        0,
+        0
+    ), (
+        'Suki',
+        'suki.png',
+        100,
+        0,
+        0,
+        0,
+        0
+    );
 
-CREATE TABLE `item` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `title` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+INSERT INTO
+    attack (
+        name,
+        avatar,
+        cost,
+        gain,
+        successRate
+    )
+VALUES (
+        'Etoiles filantes',
+        'star.png',
+        2,
+        4,
+        90
+    ), (
+        'Cabrage',
+        'cabrage.png',
+        4,
+        10,
+        70
+    ), ('Bisou', 'kiss.png', 8, 24, 30), (
+        'Clin d\'oeil',
+        'wink.png',
+        3,
+        6,
+        75
+    ), (
+        'Malice',
+        'malice.png',
+        5,
+        15,
+        60
+    ), ('Câlin', 'hug.png', 7, 20, 40);
 
---
--- Contenu de la table `item`
---
+INSERT INTO
+    unicorn_attack (unicorn_id, attack_id)
+VALUES (1, 1), (1, 2), (1, 3), (2, 4), (2, 5), (2, 3), (3, 1), (3, 6), (3, 3);
 
-INSERT INTO `item` (`id`, `title`) VALUES
-(1, 'Stuff'),
-(2, 'Doodads');
+DROP TABLE unicorn;
 
---
--- Index pour les tables exportées
---
+DROP TABLE unicorn_attack;
 
---
--- Index pour la table `item`
---
-ALTER TABLE `item`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT pour les tables exportées
---
-
---
--- AUTO_INCREMENT pour la table `item`
---
-ALTER TABLE `item`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+DROP TABLE attack;

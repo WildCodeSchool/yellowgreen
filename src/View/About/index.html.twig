@@ -1,0 +1,58 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}A propos - {{parent()}}
+{% endblock %}
+
+{% block stylesheet %}
+	{{parent()}}
+	<link rel="stylesheet" href="/assets/css/about.css">
+{% endblock %}
+
+{% block content %}
+    <main class="about">
+        <h1>A propos</h1>
+		<section class="dev">
+            <ul>
+            <li>
+                <p> Julie Jeançon-Donon </p>
+                <img class="picture" src="/assets/images/julie.jpeg">
+               <div>
+                <a target="_blank" href="https://www.linkedin.com/in/julie-jean%C3%A7on-donon/"> <img class="social" src="/assets/images/linkedin.svg"></a>
+                <a target="_blank" href="https://github.com/julie-jeancon-donon"> <img class="social" src="/assets/images/github.svg"></a>
+               </div>
+             </li>
+             <li>
+                <p> Ali Serhani </p>
+                <img class="picture" src="/assets/images/ali.jpeg">
+               <div>
+                <a target="_blank" href="https://www.linkedin.com/in/ali-serhani-6744a6251/"> <img class="social" src="/assets/images/linkedin.svg"></a>
+                <a target="_blank" href="https://github.com/serhanif59"> <img class="social" src="/assets/images/github.svg"></a>
+             </li>
+             <li>
+                <p> Marco Sigismondi </p>
+                <img class="picture" src="/assets/images/marco.jpeg">
+               <div>
+                <a target="_blank" href="https://www.linkedin.com/in/marco-sigismondi-64a934176/"> <img class="social" src="/assets/images/linkedin.svg"></a>
+                <a target="_blank" href="https://github.com/marcosigis"> <img class="social" src="/assets/images/github.svg"></a>
+               </div>
+             </li>
+             <li>
+                <p> Thomas Henriet </p>
+                <img class="picture" src="/assets/images/thomas.jpeg">
+               <div>
+                <a target="_blank" href="https://www.linkedin.com/in/tom-henriet/"> <img class="social" src="/assets/images/linkedin.svg"></a>
+                <a target="_blank" href="https://github.com/thenriet"> <img class="social" src="/assets/images/github.svg"></a>
+               </div>
+             </li>
+             <li>
+                <p> Mehdi Daaji </p>
+                <img class="picture" src="/assets/images/mehdi.jpeg">
+               <div>
+                <a target="_blank" href="https://www.linkedin.com/in/daaji-mehdi/"> <img class="social" src="/assets/images/linkedin.svg"></a>
+                <a target="_blank" href="https://github.com/MehdiDAAJI"> <img class="social" src="/assets/images/github.svg"></a>
+               </div>
+             </li>  
+            </ul>
+        </section>	        
+	</main>
+{% endblock %}

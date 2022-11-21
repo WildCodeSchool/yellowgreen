@@ -1,0 +1,50 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Combat -
+	{{ parent() }}
+{% endblock %}
+
+{% block stylesheet %}
+	{{ parent() }}
+	<link rel="stylesheet" type="text/css" href="/assets/css/fight.css"/>
+{% endblock %}
+
+{% block content %}
+	<main>
+		<div class="choose_fighter">
+			<h1>Choisis ton adversaire!</h1>
+		</div>
+
+		<div class="sectionVS">
+			<img src="\assets\images\profile\{{sessionUser.avatar}}" class="picture_avatar" alt="Avatar">
+			<img src="\assets\images\vs-index.png" class="vs_pic" alt="vs picture">
+			<img src="\assets\images\profile\{{opponent.avatar}}" class="picture_avatar" alt="avatar opponent">
+		</div>
+
+		<table>
+			<tr>
+				<th></th>
+				<th>Pseudo</th>
+				<th>Points</th>
+				<th></th>
+			</tr>
+			{% for user in users %}
+				<tr id="rowSelected">
+					<td><img src="/assets/images/profile/{{user.avatar}}" alt="avatar"></td>
+					<td class="right-justify">{{user.nickName}}</td>
+					<td class="right-justify">{{user.score}}</td>
+					<td>
+						<a href="fight?id={{user.id}}"><input type="submit" value="choisir" class="chooseOpponentButton"></a>
+					</td>
+				</tr>
+			{% endfor %}
+		</table>
+		<form action="{{ opponent.id ? 'confirmOpponent' :'' }}" method="post">
+			<input type="hidden" name="opponentId" value="{{opponent.id}}"/>
+			<button type="submit" class="goFight" style="button">
+				Lancer le combat !
+			</button>
+		</form>
+
+	</main>
+{% endblock %}
